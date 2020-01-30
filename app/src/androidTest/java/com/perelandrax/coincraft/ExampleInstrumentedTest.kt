@@ -1,4 +1,4 @@
-package com.perelandrax.coincraf
+package com.perelandrax.coincraft
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4

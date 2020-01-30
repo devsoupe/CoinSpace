@@ -1,4 +1,4 @@
-package com.perelandrax.coincraf
+package com.perelandrax.coincraft
 
 import org.junit.Test
 
