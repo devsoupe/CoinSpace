@@ -3,6 +3,7 @@ package com.perelandrax.coincraft.ribs.root
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.perelandrax.coincraft.R
+import com.perelandrax.coincraft.ribs.main.MainBuilder
 import com.uber.rib.core.InteractorBaseComponent
 import com.uber.rib.core.ViewBuilder
 import dagger.Binds
@@ -60,7 +61,7 @@ class RootBuilder(dependency: ParentComponent) :
         view: RootView,
         interactor: RootInteractor
       ): RootRouter {
-        return RootRouter(view, interactor, component)
+        return RootRouter(view, interactor, component, MainBuilder(component))
       }
 
       // TODO: Create provider methods for dependencies created by this Rib. These should be static.
@@ -69,7 +70,10 @@ class RootBuilder(dependency: ParentComponent) :
 
   @RootScope
   @dagger.Component(modules = arrayOf(Module::class), dependencies = arrayOf(ParentComponent::class))
-  interface Component : InteractorBaseComponent<RootInteractor>, BuilderComponent {
+  interface Component :
+    InteractorBaseComponent<RootInteractor>,
+    BuilderComponent,
+    MainBuilder.ParentComponent {
 
     @dagger.Component.Builder
     interface Builder {

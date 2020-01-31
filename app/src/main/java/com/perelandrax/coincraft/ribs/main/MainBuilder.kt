@@ -2,6 +2,8 @@ package com.perelandrax.coincraft.ribs.main
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import com.perelandrax.coincraft.R
+import com.perelandrax.coincraft.ribs.mainBottomTab.MainBottomTabBuilder
 import com.uber.rib.core.InteractorBaseComponent
 import com.uber.rib.core.ViewBuilder
 import dagger.Binds
@@ -37,9 +39,7 @@ class MainBuilder(dependency: ParentComponent) :
   }
 
   override fun inflateView(inflater: LayoutInflater, parentViewGroup: ViewGroup): MainView? {
-    // TODO: Inflate a new view using the provided inflater, or create a new view programatically using the
-    // provided context from the parentViewGroup.
-    return null
+    return inflater.inflate(R.layout.main_rib, parentViewGroup, false) as MainView
   }
 
   interface ParentComponent {
@@ -61,7 +61,7 @@ class MainBuilder(dependency: ParentComponent) :
         view: MainView,
         interactor: MainInteractor
       ): MainRouter {
-        return MainRouter(view, interactor, component)
+        return MainRouter(view, interactor, component, MainBottomTabBuilder(component))
       }
 
       // TODO: Create provider methods for dependencies created by this Rib. These should be static.
@@ -70,10 +70,14 @@ class MainBuilder(dependency: ParentComponent) :
 
   @MainScope
   @dagger.Component(modules = arrayOf(Module::class), dependencies = arrayOf(ParentComponent::class))
-  interface Component : InteractorBaseComponent<MainInteractor>, BuilderComponent {
+  interface Component :
+    InteractorBaseComponent<MainInteractor>,
+    BuilderComponent,
+    MainBottomTabBuilder.ParentComponent {
 
     @dagger.Component.Builder
     interface Builder {
+
       @BindsInstance
       fun interactor(interactor: MainInteractor): Builder
 

@@ -17,14 +17,15 @@ class MainInteractor : Interactor<MainInteractor.MainPresenter, MainRouter>() {
 
   override fun didBecomeActive(savedInstanceState: Bundle?) {
     super.didBecomeActive(savedInstanceState)
+    routeToMainBottomTab()
+  }
 
-    // TODO: Add attachment logic here (RxSubscriptions, etc.).
+  fun routeToMainBottomTab() {
+    router.attachMainBottomTab()
   }
 
   override fun willResignActive() {
     super.willResignActive()
-
-    // TODO: Perform any required clean up here, or delete this method entirely if not needed.
   }
 
   /**

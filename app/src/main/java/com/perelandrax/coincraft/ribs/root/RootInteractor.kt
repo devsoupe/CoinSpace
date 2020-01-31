@@ -17,14 +17,15 @@ class RootInteractor : Interactor<RootInteractor.RootPresenter, RootRouter>() {
 
   override fun didBecomeActive(savedInstanceState: Bundle?) {
     super.didBecomeActive(savedInstanceState)
+    routeToMain()
+  }
 
-    // TODO: Add attachment logic here (RxSubscriptions, etc.).
+  fun routeToMain() {
+    router.attachMain()
   }
 
   override fun willResignActive() {
     super.willResignActive()
-
-    // TODO: Perform any required clean up here, or delete this method entirely if not needed.
   }
 
   /**
