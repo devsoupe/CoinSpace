@@ -4,93 +4,100 @@ apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 
 android {
-    compileSdkVersion 29
-    buildToolsVersion "29.0.2"
+  compileSdkVersion 29
+  buildToolsVersion "29.0.2"
 
-    defaultConfig {
-        applicationId "com.perelandrax.coincraft"
-        minSdkVersion 16
-        targetSdkVersion 29
-        versionCode 1
-        versionName "1.0"
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-    }
+  defaultConfig {
+    applicationId "com.perelandrax.coincraft"
+    minSdkVersion 16
+    targetSdkVersion 29
+    versionCode 1
+    versionName "1.0"
+    testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+  }
 
-    buildTypes {
-        release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-        }
+  buildTypes {
+    release {
+      minifyEnabled false
+      proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
     }
+  }
+
+  android {
+    compileOptions {
+      sourceCompatibility 1.8
+      targetCompatibility 1.8
+    }
+  }
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
+  implementation fileTree(dir: 'libs', include: ['*.jar'])
 
-    // Kotlin
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
-    implementation "org.jetbrains.kotlin:kotlin-test:$kotlin_version"
-    implementation "org.jetbrains.kotlin:kotlin-test-junit:$kotlin_version"
+  // Kotlin
+  implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
+  implementation "org.jetbrains.kotlin:kotlin-test:$kotlin_version"
+  implementation "org.jetbrains.kotlin:kotlin-test-junit:$kotlin_version"
 
-    // Support Libraries
-    implementation 'androidx.appcompat:appcompat:1.1.0'
-    implementation 'androidx.core:core-ktx:1.1.0'
-    implementation 'androidx.constraintlayout:constraintlayout:2.0.0-beta4'
-    implementation 'androidx.lifecycle:lifecycle-extensions:2.1.0'
-    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.1.0'
-    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
-    implementation 'com.google.android.material:material:1.0.0'
+  // Support Libraries
+  implementation 'androidx.appcompat:appcompat:1.1.0'
+  implementation 'androidx.core:core-ktx:1.1.0'
+  implementation 'androidx.constraintlayout:constraintlayout:2.0.0-beta4'
+  implementation 'androidx.lifecycle:lifecycle-extensions:2.1.0'
+  implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.1.0'
+  implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+  implementation 'com.google.android.material:material:1.0.0'
 
-    // Uber
-    kapt 'com.uber.rib:rib-compiler-test:0.9.2'
-    implementation 'com.uber.rib:rib-android:0.9.2'
-    implementation 'com.uber.rib:rib-workflow:0.9.1'
-    implementation 'com.uber.rib:rib-screen-stack-base:0.9.1'
-    testImplementation 'com.uber.rib:rib-test-utils:0.9.2'
+  // Uber
+  kapt 'com.uber.rib:rib-compiler-test:0.9.2'
+  implementation 'com.uber.rib:rib-android:0.9.2'
+  implementation 'com.uber.rib:rib-workflow:0.9.1'
+  implementation 'com.uber.rib:rib-screen-stack-base:0.9.1'
+  testImplementation 'com.uber.rib:rib-test-utils:0.9.2'
 
-    // RxJava
-    implementation 'io.reactivex.rxjava2:rxjava:2.2.12'
-    implementation 'io.reactivex.rxjava2:rxandroid:2.1.1'
-    implementation 'io.reactivex.rxjava2:rxkotlin:2.4.0'
+  // RxJava
+  implementation 'io.reactivex.rxjava2:rxjava:2.2.12'
+  implementation 'io.reactivex.rxjava2:rxandroid:2.1.1'
+  implementation 'io.reactivex.rxjava2:rxkotlin:2.4.0'
 
-    // RxBinding
-    implementation 'com.jakewharton.rxrelay2:rxrelay:2.1.1'
-    implementation 'com.jakewharton.rxbinding2:rxbinding-appcompat-v7-kotlin:2.1.1'
-    implementation 'com.jakewharton.rxbinding2:rxbinding-recyclerview-v7-kotlin:2.1.1'
+  // RxBinding
+  implementation 'com.jakewharton.rxrelay2:rxrelay:2.1.1'
+  implementation 'com.jakewharton.rxbinding2:rxbinding-appcompat-v7-kotlin:2.1.1'
+  implementation 'com.jakewharton.rxbinding2:rxbinding-recyclerview-v7-kotlin:2.1.1'
 
-    // Dagger
-    kapt 'com.google.dagger:dagger-android-processor:2.15'
-    kapt 'com.google.dagger:dagger-compiler:2.15'
-    implementation 'com.google.dagger:dagger:2.15'
-    implementation 'com.google.dagger:dagger-android:2.15'
-    implementation 'com.google.dagger:dagger-android-support:2.15'
+  // Dagger
+  kapt 'com.google.dagger:dagger-android-processor:2.15'
+  kapt 'com.google.dagger:dagger-compiler:2.15'
+  implementation 'com.google.dagger:dagger:2.15'
+  implementation 'com.google.dagger:dagger-android:2.15'
+  implementation 'com.google.dagger:dagger-android-support:2.15'
 
-    // Extras
-    implementation 'com.facebook.stetho:stetho:1.5.1'
+  // Extras
+  implementation 'com.facebook.stetho:stetho:1.5.1'
 
-    // Test Assertions
-    testImplementation 'com.google.truth:truth:1.0'
+  // Test Assertions
+  testImplementation 'com.google.truth:truth:1.0'
 
-    // AndroidTest Core
-    androidTestImplementation 'androidx.test:core:1.2.0'
-    androidTestImplementation 'androidx.room:room-testing:2.2.3'
-    androidTestImplementation 'androidx.arch.core:core-testing:2.1.0'
+  // AndroidTest Core
+  androidTestImplementation 'androidx.test:core:1.2.0'
+  androidTestImplementation 'androidx.room:room-testing:2.2.3'
+  androidTestImplementation 'androidx.arch.core:core-testing:2.1.0'
 
-    // AndroidTest AndroidJUnitRunner and JUnit Rules
-    androidTestImplementation 'androidx.test:runner:1.2.0'
-    androidTestImplementation 'androidx.test:rules:1.2.0'
+  // AndroidTest AndroidJUnitRunner and JUnit Rules
+  androidTestImplementation 'androidx.test:runner:1.2.0'
+  androidTestImplementation 'androidx.test:rules:1.2.0'
 
-    // AndroidTest Assertions
-    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
-    androidTestImplementation 'androidx.test.ext:truth:1.2.0'
-    androidTestImplementation 'com.google.truth:truth:1.0'
+  // AndroidTest Assertions
+  androidTestImplementation 'androidx.test.ext:junit:1.1.1'
+  androidTestImplementation 'androidx.test.ext:truth:1.2.0'
+  androidTestImplementation 'com.google.truth:truth:1.0'
 
-    // AndroidTest Espresso dependencies
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
-    androidTestImplementation 'androidx.test.espresso:espresso-contrib:3.2.0'
-    androidTestImplementation 'androidx.test.espresso:espresso-intents:3.2.0'
-    androidTestImplementation 'androidx.test.espresso:espresso-accessibility:3.2.0'
-    androidTestImplementation 'androidx.test.espresso:espresso-web:3.2.0'
-    androidTestImplementation 'androidx.test.espresso.idling:idling-concurrent:3.2.0'
-    androidTestImplementation 'androidx.test.espresso:espresso-idling-resource:3.2.0'
+  // AndroidTest Espresso dependencies
+  androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+  androidTestImplementation 'androidx.test.espresso:espresso-contrib:3.2.0'
+  androidTestImplementation 'androidx.test.espresso:espresso-intents:3.2.0'
+  androidTestImplementation 'androidx.test.espresso:espresso-accessibility:3.2.0'
+  androidTestImplementation 'androidx.test.espresso:espresso-web:3.2.0'
+  androidTestImplementation 'androidx.test.espresso.idling:idling-concurrent:3.2.0'
+  androidTestImplementation 'androidx.test.espresso:espresso-idling-resource:3.2.0'
 }
