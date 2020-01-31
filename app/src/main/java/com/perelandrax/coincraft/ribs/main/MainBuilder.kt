@@ -3,7 +3,8 @@ package com.perelandrax.coincraft.ribs.main
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.perelandrax.coincraft.R
-import com.perelandrax.coincraft.ribs.mainBottomTab.MainBottomTabBuilder
+import com.perelandrax.coincraft.ribs.navigation.NavigationBuilder
+import com.perelandrax.coincraft.ribs.navigation.NavigationInteractor
 import com.uber.rib.core.InteractorBaseComponent
 import com.uber.rib.core.ViewBuilder
 import dagger.Binds
@@ -61,10 +62,15 @@ class MainBuilder(dependency: ParentComponent) :
         view: MainView,
         interactor: MainInteractor
       ): MainRouter {
-        return MainRouter(view, interactor, component, MainBottomTabBuilder(component))
+        return MainRouter(view, interactor, component, NavigationBuilder(component))
       }
 
-      // TODO: Create provider methods for dependencies created by this Rib. These should be static.
+      @MainScope
+      @Provides
+      @JvmStatic
+      internal fun provideNavigationListener(mainInteractor: MainInteractor): NavigationInteractor.Listener {
+        return mainInteractor.NavigationListener()
+      }
     }
   }
 
@@ -73,7 +79,7 @@ class MainBuilder(dependency: ParentComponent) :
   interface Component :
     InteractorBaseComponent<MainInteractor>,
     BuilderComponent,
-    MainBottomTabBuilder.ParentComponent {
+    NavigationBuilder.ParentComponent {
 
     @dagger.Component.Builder
     interface Builder {

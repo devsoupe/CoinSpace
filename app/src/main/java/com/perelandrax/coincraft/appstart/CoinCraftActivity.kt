@@ -1,4 +1,4 @@
-package com.perelandrax.coincraft
+package com.perelandrax.coincraft.appstart
 
 import android.view.ViewGroup
 import com.perelandrax.coincraft.ribs.root.RootBuilder

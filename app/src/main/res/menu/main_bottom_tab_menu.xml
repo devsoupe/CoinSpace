@@ -2,19 +2,19 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
   <item
-    android:id="@+id/navigation_list"
+    android:id="@+id/coins"
     android:enabled="true"
     android:icon="@drawable/ic_list"
     android:title="Coins"/>
 
   <item
-    android:id="@+id/navigation_ico"
+    android:id="@+id/ico"
     android:enabled="true"
     android:icon="@drawable/ic_ico"
     android:title="ICO"/>
 
   <item
-    android:id="@+id/navigation_about"
+    android:id="@+id/about"
     android:enabled="true"
     android:icon="@drawable/ic_about"
     android:title="About"/>

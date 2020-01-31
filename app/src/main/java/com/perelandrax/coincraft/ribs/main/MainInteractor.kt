@@ -1,5 +1,6 @@
 package com.perelandrax.coincraft.ribs.main
 
+import com.perelandrax.coincraft.ribs.navigation.NavigationInteractor
 import com.uber.rib.core.Bundle
 import com.uber.rib.core.Interactor
 import com.uber.rib.core.RibInteractor
@@ -37,4 +38,19 @@ class MainInteractor : Interactor<MainInteractor.MainPresenter, MainRouter>() {
    * Listener interface implemented by a parent RIB's interactor's inner class.
    */
   interface Listener
+
+  inner class NavigationListener : NavigationInteractor.Listener {
+
+    override fun coinsSelected() {
+      println("coinsSelected")
+    }
+
+    override fun icoSelected() {
+      println("icoSelected")
+    }
+
+    override fun aboutSelected() {
+      println("aboutSelected")
+    }
+  }
 }
