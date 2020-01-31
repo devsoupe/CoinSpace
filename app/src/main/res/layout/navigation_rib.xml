@@ -8,4 +8,4 @@
   app:itemBackground="@color/colorPrimary"
   app:itemIconTint="@drawable/selector"
   app:itemTextColor="@drawable/selector"
-  app:menu="@menu/main_bottom_tab_menu"/>
+  app:menu="@menu/navigation_menu"/>

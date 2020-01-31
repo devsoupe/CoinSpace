@@ -38,7 +38,7 @@ class NavigationBuilder(dependency: ParentComponent) :
   }
 
   override fun inflateView(inflater: LayoutInflater, parentViewGroup: ViewGroup): NavigationView? {
-    return inflater.inflate(R.layout.main_bottom_tab_rib, parentViewGroup, false) as NavigationView
+    return inflater.inflate(R.layout.navigation_rib, parentViewGroup, false) as NavigationView
   }
 
   interface ParentComponent {
