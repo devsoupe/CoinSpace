@@ -5,6 +5,9 @@ import android.view.ViewGroup
 import com.perelandrax.coincraft.R
 import com.perelandrax.coincraft.ribs.navigation.NavigationBuilder
 import com.perelandrax.coincraft.ribs.navigation.NavigationInteractor
+import com.perelandrax.coincraft.ribs.navigation.stream.NavigationMenuEventStreamUpdater
+import com.perelandrax.coincraft.ribs.navigation.stream.NavigationMenuEventStream
+import com.perelandrax.coincraft.ribs.navigation.stream.NavigationMenuEventStreamSource
 import com.uber.rib.core.InteractorBaseComponent
 import com.uber.rib.core.ViewBuilder
 import dagger.Binds
@@ -31,10 +34,12 @@ class MainBuilder(dependency: ParentComponent) :
   fun build(parentViewGroup: ViewGroup): MainRouter {
     val view = createView(parentViewGroup)
     val interactor = MainInteractor()
+    val navigationMenuEventStream = NavigationMenuEventStream()
     val component = DaggerMainBuilder_Component.builder()
       .parentComponent(dependency)
       .view(view)
       .interactor(interactor)
+      .navigationMenuEventStream(navigationMenuEventStream)
       .build()
     return component.mainRouter()
   }
@@ -68,8 +73,15 @@ class MainBuilder(dependency: ParentComponent) :
       @MainScope
       @Provides
       @JvmStatic
-      internal fun provideNavigationListener(mainInteractor: MainInteractor): NavigationInteractor.Listener {
-        return mainInteractor.NavigationListener()
+      internal fun provideNavigationMenuEventStreamSource(navigationMenuEventStream: NavigationMenuEventStream): NavigationMenuEventStreamSource {
+        return navigationMenuEventStream
+      }
+
+      @MainScope
+      @Provides
+      @JvmStatic
+      internal fun provideNavigationMenuEventStreamUpdater(navigationMenuEventStream: NavigationMenuEventStream): NavigationMenuEventStreamUpdater {
+        return navigationMenuEventStream
       }
     }
   }
@@ -90,7 +102,11 @@ class MainBuilder(dependency: ParentComponent) :
       @BindsInstance
       fun view(view: MainView): Builder
 
+      @BindsInstance
+      fun navigationMenuEventStream(navigationMenuEventStream: NavigationMenuEventStream): Builder
+
       fun parentComponent(component: ParentComponent): Builder
+
       fun build(): Component
     }
   }

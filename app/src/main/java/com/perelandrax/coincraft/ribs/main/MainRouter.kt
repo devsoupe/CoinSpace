@@ -19,7 +19,7 @@ class MainRouter(
 
   private var navigationRouter: NavigationRouter? = null
 
-  fun attachMainBottomTab() {
+  fun attachNavigation() {
     navigationRouter = navigationBuilder.build(view)
     attachChild(navigationRouter)
     view.navigation.addView(navigationRouter?.view)
