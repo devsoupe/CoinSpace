@@ -3,6 +3,7 @@ package com.perelandrax.coincraft.ribs.navigation
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.perelandrax.coincraft.R
+import com.perelandrax.coincraft.ribs.coins.CoinsBuilder
 import com.uber.rib.core.InteractorBaseComponent
 import com.uber.rib.core.ViewBuilder
 import dagger.Binds
@@ -71,7 +72,8 @@ class NavigationBuilder(dependency: ParentComponent) :
   @dagger.Component(modules = arrayOf(Module::class), dependencies = arrayOf(ParentComponent::class))
   interface Component :
     InteractorBaseComponent<NavigationInteractor>,
-    BuilderComponent {
+    BuilderComponent,
+    CoinsBuilder.ParentComponent {
 
     @dagger.Component.Builder
     interface Builder {
