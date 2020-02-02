@@ -2,6 +2,8 @@ package com.perelandrax.coincraft.ribs.coins
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import com.perelandrax.coincraft.R
+import com.perelandrax.coincraft.ribs.main.MainView
 import com.uber.rib.core.InteractorBaseComponent
 import com.uber.rib.core.ViewBuilder
 import dagger.Binds
@@ -37,9 +39,7 @@ class CoinsBuilder(dependency: ParentComponent) :
   }
 
   override fun inflateView(inflater: LayoutInflater, parentViewGroup: ViewGroup): CoinsView? {
-    // TODO: Inflate a new view using the provided inflater, or create a new view programatically using the
-    // provided context from the parentViewGroup.
-    return null
+    return inflater.inflate(R.layout.coins_rib, parentViewGroup, false) as CoinsView
   }
 
   interface ParentComponent {

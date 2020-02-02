@@ -21,41 +21,15 @@ class MainRouter(
   private val naviTypeBuilder: NaviTypeBuilder
 ) : ViewRouter<MainView, MainInteractor, MainBuilder.Component>(view, interactor, component) {
 
-  private var navigationRouter: NavigationRouter? = null
-  private var naviTypeRouter: NaviTypeRouter? = null
+  private var navigationRouter: NavigationRouter = navigationBuilder.build(view)
+  private var naviTypeRouter: NaviTypeRouter = naviTypeBuilder.build()
 
   fun attachNavigation() {
-    navigationRouter = navigationBuilder.build(view)
     attachChild(navigationRouter)
-    view.navigation.addView(navigationRouter?.view)
+    view.navigation.addView(navigationRouter.view)
   }
 
   fun attachNaviType() {
-    naviTypeRouter = naviTypeBuilder.build()
     attachChild(naviTypeRouter)
   }
-
-//  fun attachCoins() {
-//
-//  }
-//
-//  fun detachCoins() {
-//
-//  }
-//
-//  fun attachICO() {
-//
-//  }
-//
-//  fun detachICO() {
-//
-//  }
-//
-//  fun attachAbout() {
-//
-//  }
-//
-//  fun detachAbout() {
-//
-//  }
 }

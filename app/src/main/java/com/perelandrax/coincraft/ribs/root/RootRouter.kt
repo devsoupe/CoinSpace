@@ -16,18 +16,10 @@ class RootRouter(
   private val mainBuilder: MainBuilder
 ) : ViewRouter<RootView, RootInteractor, RootBuilder.Component>(view, interactor, component) {
 
-  private var mainRouter: MainRouter? = null
+  private var mainRouter: MainRouter = mainBuilder.build(view)
 
   fun attachMain() {
-    mainRouter = mainBuilder.build(view)
     attachChild(mainRouter)
-    view.addView(mainRouter?.view)
-  }
-
-  fun detachMain() {
-    mainRouter?.let {
-      detachChild(it)
-      mainRouter = null
-    }
+    view.addView(mainRouter.view)
   }
 }
