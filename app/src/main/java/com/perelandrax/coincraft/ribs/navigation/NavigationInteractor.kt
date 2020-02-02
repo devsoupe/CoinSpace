@@ -1,6 +1,6 @@
 package com.perelandrax.coincraft.ribs.navigation
 
-import com.perelandrax.coincraft.ribs.navigation.stream.NavigationMenuEventStreamUpdater
+import com.perelandrax.coincraft.R
 import com.uber.rib.core.Bundle
 import com.uber.rib.core.Interactor
 import com.uber.rib.core.RibInteractor
@@ -18,19 +18,21 @@ import javax.inject.Inject
 class NavigationInteractor : Interactor<NavigationInteractor.MainBottomTabPresenter, NavigationRouter>() {
 
   @Inject lateinit var presenter: MainBottomTabPresenter
-  @Inject lateinit var navigationMenuEventStreamUpdater: NavigationMenuEventStreamUpdater
+  @Inject lateinit var listener: Listener
 
   private val disposables = CompositeDisposable()
 
   override fun didBecomeActive(savedInstanceState: Bundle?) {
     super.didBecomeActive(savedInstanceState)
 
-    println("navigationMenuEventStreamUpdater : $navigationMenuEventStreamUpdater")
-
     presenter.menuIdEvent()
       .doOnError { OnErrorNotImplementedException(it) }
       .subscribe { menuId ->
-        navigationMenuEventStreamUpdater.updateMenuId(menuId)
+        when (menuId) {
+          R.id.coins -> listener.coinsSelected()
+          R.id.ico -> listener.icoSelected()
+          R.id.about -> listener.aboutSelected()
+        }
       }
   }
 
@@ -48,5 +50,9 @@ class NavigationInteractor : Interactor<NavigationInteractor.MainBottomTabPresen
   /**
    * Listener interface implemented by a parent RIB's interactor's inner class.
    */
-  interface Listener
+  interface Listener {
+    fun coinsSelected()
+    fun icoSelected()
+    fun aboutSelected()
+  }
 }

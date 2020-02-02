@@ -85,6 +85,7 @@ class RootBuilder(dependency: ParentComponent) :
       fun view(view: RootView): Builder
 
       fun parentComponent(component: ParentComponent): Builder
+
       fun build(): Component
     }
   }

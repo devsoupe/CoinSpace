@@ -4,7 +4,7 @@ import com.perelandrax.coincraft.ribs.navigation.NavigationInteractor
 import com.perelandrax.coincraft.ribs.navigation.stream.NavigationMenuEvent.ABOUT
 import com.perelandrax.coincraft.ribs.navigation.stream.NavigationMenuEvent.COINS
 import com.perelandrax.coincraft.ribs.navigation.stream.NavigationMenuEvent.ICO
-import com.perelandrax.coincraft.ribs.navigation.stream.NavigationMenuEventStreamSource
+import com.perelandrax.coincraft.ribs.navigation.stream.NavigationMenuEventStreamUpdater
 import com.uber.rib.core.Bundle
 import com.uber.rib.core.Interactor
 import com.uber.rib.core.RibInteractor
@@ -19,35 +19,21 @@ import javax.inject.Inject
 class MainInteractor : Interactor<MainInteractor.MainPresenter, MainRouter>() {
 
   @Inject lateinit var presenter: MainPresenter
-  @Inject lateinit var navigationMenuEventStreamSource: NavigationMenuEventStreamSource
+  @Inject lateinit var navigationMenuEventStreamUpdater: NavigationMenuEventStreamUpdater
 
   override fun didBecomeActive(savedInstanceState: Bundle?) {
     super.didBecomeActive(savedInstanceState)
+
     routeToNavigation()
-
-    handleNavigationMenuEventStreamSource()
-  }
-
-  private fun handleNavigationMenuEventStreamSource() {
-    navigationMenuEventStreamSource.event.subscribe { event ->
-      when (event) {
-        COINS -> {
-          println("COINS")
-        }
-
-        ICO -> {
-          println("ICO")
-        }
-
-        ABOUT -> {
-          println("ABOUT")
-        }
-      }
-    }
+    routeToNaviType()
   }
 
   fun routeToNavigation() {
     router.attachNavigation()
+  }
+
+  fun routeToNaviType() {
+    router.attachNaviType()
   }
 
   override fun willResignActive() {
@@ -63,4 +49,19 @@ class MainInteractor : Interactor<MainInteractor.MainPresenter, MainRouter>() {
    * Listener interface implemented by a parent RIB's interactor's inner class.
    */
   interface Listener
+
+  inner class NavigationListener : NavigationInteractor.Listener {
+
+    override fun coinsSelected() {
+      navigationMenuEventStreamUpdater.updateMenuId(COINS)
+    }
+
+    override fun icoSelected() {
+      navigationMenuEventStreamUpdater.updateMenuId(ICO)
+    }
+
+    override fun aboutSelected() {
+      navigationMenuEventStreamUpdater.updateMenuId(ABOUT)
+    }
+  }
 }

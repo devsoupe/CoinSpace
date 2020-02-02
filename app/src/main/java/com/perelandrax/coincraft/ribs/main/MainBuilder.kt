@@ -5,9 +5,10 @@ import android.view.ViewGroup
 import com.perelandrax.coincraft.R
 import com.perelandrax.coincraft.ribs.navigation.NavigationBuilder
 import com.perelandrax.coincraft.ribs.navigation.NavigationInteractor
-import com.perelandrax.coincraft.ribs.navigation.stream.NavigationMenuEventStreamUpdater
 import com.perelandrax.coincraft.ribs.navigation.stream.NavigationMenuEventStream
 import com.perelandrax.coincraft.ribs.navigation.stream.NavigationMenuEventStreamSource
+import com.perelandrax.coincraft.ribs.navigation.stream.NavigationMenuEventStreamUpdater
+import com.perelandrax.coincraft.ribs.navitype.NaviTypeBuilder
 import com.uber.rib.core.InteractorBaseComponent
 import com.uber.rib.core.ViewBuilder
 import dagger.Binds
@@ -67,7 +68,14 @@ class MainBuilder(dependency: ParentComponent) :
         view: MainView,
         interactor: MainInteractor
       ): MainRouter {
-        return MainRouter(view, interactor, component, NavigationBuilder(component))
+        return MainRouter(view, interactor, component, NavigationBuilder(component), NaviTypeBuilder(component))
+      }
+
+      @MainScope
+      @Provides
+      @JvmStatic
+      internal fun provideNavigationListener(mainInteractor: MainInteractor): NavigationInteractor.Listener {
+        return mainInteractor.NavigationListener()
       }
 
       @MainScope
@@ -91,7 +99,8 @@ class MainBuilder(dependency: ParentComponent) :
   interface Component :
     InteractorBaseComponent<MainInteractor>,
     BuilderComponent,
-    NavigationBuilder.ParentComponent {
+    NavigationBuilder.ParentComponent,
+    NaviTypeBuilder.ParentComponent {
 
     @dagger.Component.Builder
     interface Builder {

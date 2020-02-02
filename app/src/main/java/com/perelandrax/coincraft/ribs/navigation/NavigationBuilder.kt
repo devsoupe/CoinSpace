@@ -3,9 +3,6 @@ package com.perelandrax.coincraft.ribs.navigation
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.perelandrax.coincraft.R
-import com.perelandrax.coincraft.ribs.navigation.stream.NavigationMenuEvent
-import com.perelandrax.coincraft.ribs.navigation.stream.NavigationMenuEventStream
-import com.perelandrax.coincraft.ribs.navigation.stream.NavigationMenuEventStreamUpdater
 import com.uber.rib.core.InteractorBaseComponent
 import com.uber.rib.core.ViewBuilder
 import dagger.Binds
@@ -45,7 +42,7 @@ class NavigationBuilder(dependency: ParentComponent) :
   }
 
   interface ParentComponent {
-    fun navigationMenuEventStreamUpdater(): NavigationMenuEventStreamUpdater
+    fun navigationListener(): NavigationInteractor.Listener
   }
 
   @dagger.Module

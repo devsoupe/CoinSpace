@@ -12,22 +12,11 @@ interface NavigationMenuEventStreamSource {
 }
 
 interface NavigationMenuEventStreamUpdater : NavigationMenuEventStreamSource {
-  fun updateMenuId(menuId: Int)
+  fun updateMenuId(navigationMenuEvent: NavigationMenuEvent)
 }
 
-class NavigationMenuEventStream :
-  NavigationMenuEventStreamSource,
-  NavigationMenuEventStreamUpdater {
+class NavigationMenuEventStream : NavigationMenuEventStreamUpdater {
 
   override var event = BehaviorRelay.createDefault(NavigationMenuEvent.COINS).toSerialized()
-
-  override fun updateMenuId(menuId: Int) {
-    val newEvent = when (menuId) {
-      R.id.ico -> ICO
-      R.id.about -> ABOUT
-      else -> COINS
-    }
-
-    event.accept(newEvent)
-  }
+  override fun updateMenuId(navigationMenuEvent: NavigationMenuEvent) = event.accept(navigationMenuEvent)
 }
