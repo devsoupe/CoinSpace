@@ -1,10 +1,10 @@
 package com.perelandrax.coincraft.ribs.navitype
 
 import android.annotation.SuppressLint
-import com.perelandrax.coincraft.ribs.navigation.stream.NavigationMenuEvent.ABOUT
-import com.perelandrax.coincraft.ribs.navigation.stream.NavigationMenuEvent.COINS
-import com.perelandrax.coincraft.ribs.navigation.stream.NavigationMenuEvent.ICO
-import com.perelandrax.coincraft.ribs.navigation.stream.NavigationMenuEventStreamSource
+import com.perelandrax.coincraft.ribs.navigation.model.stream.NavigationMenuEvent.ABOUT
+import com.perelandrax.coincraft.ribs.navigation.model.stream.NavigationMenuEvent.COINS
+import com.perelandrax.coincraft.ribs.navigation.model.stream.NavigationMenuEvent.ICO
+import com.perelandrax.coincraft.ribs.navigation.model.stream.NavigationMenuEventStreamSource
 import com.uber.rib.core.Bundle
 import com.uber.rib.core.EmptyPresenter
 import com.uber.rib.core.Interactor

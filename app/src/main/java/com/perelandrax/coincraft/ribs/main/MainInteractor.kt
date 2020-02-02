@@ -1,10 +1,10 @@
 package com.perelandrax.coincraft.ribs.main
 
 import com.perelandrax.coincraft.ribs.navigation.NavigationInteractor
-import com.perelandrax.coincraft.ribs.navigation.stream.NavigationMenuEvent.ABOUT
-import com.perelandrax.coincraft.ribs.navigation.stream.NavigationMenuEvent.COINS
-import com.perelandrax.coincraft.ribs.navigation.stream.NavigationMenuEvent.ICO
-import com.perelandrax.coincraft.ribs.navigation.stream.NavigationMenuEventStreamUpdater
+import com.perelandrax.coincraft.ribs.navigation.model.stream.NavigationMenuEvent.ABOUT
+import com.perelandrax.coincraft.ribs.navigation.model.stream.NavigationMenuEvent.COINS
+import com.perelandrax.coincraft.ribs.navigation.model.stream.NavigationMenuEvent.ICO
+import com.perelandrax.coincraft.ribs.navigation.model.stream.NavigationMenuEventStreamUpdater
 import com.uber.rib.core.Bundle
 import com.uber.rib.core.Interactor
 import com.uber.rib.core.RibInteractor

@@ -1,6 +1,6 @@
 package com.perelandrax.coincraft.ribs.navitype
 
-import com.perelandrax.coincraft.ribs.navigation.stream.NavigationMenuEventStreamSource
+import com.perelandrax.coincraft.ribs.navigation.model.stream.NavigationMenuEventStreamSource
 import com.uber.rib.core.Builder
 import com.uber.rib.core.EmptyPresenter
 import com.uber.rib.core.InteractorBaseComponent

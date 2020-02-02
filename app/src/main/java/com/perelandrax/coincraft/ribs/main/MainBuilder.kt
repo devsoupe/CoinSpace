@@ -5,9 +5,9 @@ import android.view.ViewGroup
 import com.perelandrax.coincraft.R
 import com.perelandrax.coincraft.ribs.navigation.NavigationBuilder
 import com.perelandrax.coincraft.ribs.navigation.NavigationInteractor
-import com.perelandrax.coincraft.ribs.navigation.stream.NavigationMenuEventStream
-import com.perelandrax.coincraft.ribs.navigation.stream.NavigationMenuEventStreamSource
-import com.perelandrax.coincraft.ribs.navigation.stream.NavigationMenuEventStreamUpdater
+import com.perelandrax.coincraft.ribs.navigation.model.stream.NavigationMenuEventStream
+import com.perelandrax.coincraft.ribs.navigation.model.stream.NavigationMenuEventStreamSource
+import com.perelandrax.coincraft.ribs.navigation.model.stream.NavigationMenuEventStreamUpdater
 import com.perelandrax.coincraft.ribs.navitype.NaviTypeBuilder
 import com.uber.rib.core.InteractorBaseComponent
 import com.uber.rib.core.ViewBuilder
@@ -35,7 +35,8 @@ class MainBuilder(dependency: ParentComponent) :
   fun build(parentViewGroup: ViewGroup): MainRouter {
     val view = createView(parentViewGroup)
     val interactor = MainInteractor()
-    val navigationMenuEventStream = NavigationMenuEventStream()
+    val navigationMenuEventStream =
+      NavigationMenuEventStream()
     val component = DaggerMainBuilder_Component.builder()
       .parentComponent(dependency)
       .view(view)
