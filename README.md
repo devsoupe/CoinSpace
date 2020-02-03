@@ -8,6 +8,8 @@ CoinCraft is an android client application for Dribbble. An app to demonstrate R
 Based on Uber's RIBs architecture.
 https://github.com/uber/RIBs/wiki
 
+![ex_screenshot](./resources/Ribs.png)
+
 # Language
 Kotlin
 
