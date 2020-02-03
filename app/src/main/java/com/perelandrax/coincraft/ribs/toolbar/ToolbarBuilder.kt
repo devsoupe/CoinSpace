@@ -2,6 +2,8 @@ package com.perelandrax.coincraft.ribs.toolbar
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import com.perelandrax.coincraft.R
+import com.perelandrax.coincraft.ribs.navigation.model.stream.NavigationMenuEventStreamSource
 import com.uber.rib.core.InteractorBaseComponent
 import com.uber.rib.core.ViewBuilder
 import dagger.Binds
@@ -37,13 +39,11 @@ class ToolbarBuilder(dependency: ParentComponent) :
   }
 
   override fun inflateView(inflater: LayoutInflater, parentViewGroup: ViewGroup): ToolbarView? {
-    // TODO: Inflate a new view using the provided inflater, or create a new view programatically using the
-    // provided context from the parentViewGroup.
-    return null
+    return inflater.inflate(R.layout.toolbar_rib, parentViewGroup, false) as ToolbarView
   }
 
   interface ParentComponent {
-//    val toolbarListener: ToolbarInteractor.Listener
+    fun navigationMenuEventStreamSource(): NavigationMenuEventStreamSource
   }
 
   @dagger.Module
@@ -74,6 +74,7 @@ class ToolbarBuilder(dependency: ParentComponent) :
 
     @dagger.Component.Builder
     interface Builder {
+
       @BindsInstance
       fun interactor(interactor: ToolbarInteractor): Builder
 
@@ -81,6 +82,7 @@ class ToolbarBuilder(dependency: ParentComponent) :
       fun view(view: ToolbarView): Builder
 
       fun parentComponent(component: ParentComponent): Builder
+
       fun build(): Component
     }
   }

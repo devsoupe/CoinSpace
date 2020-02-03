@@ -1,5 +1,11 @@
 package com.perelandrax.coincraft.ribs.toolbar
 
+import android.annotation.SuppressLint
+import com.perelandrax.coincraft.ribs.navigation.model.stream.NavigationMenuEvent
+import com.perelandrax.coincraft.ribs.navigation.model.stream.NavigationMenuEvent.ABOUT
+import com.perelandrax.coincraft.ribs.navigation.model.stream.NavigationMenuEvent.COINS
+import com.perelandrax.coincraft.ribs.navigation.model.stream.NavigationMenuEvent.ICO
+import com.perelandrax.coincraft.ribs.navigation.model.stream.NavigationMenuEventStreamSource
 import com.uber.rib.core.Bundle
 import com.uber.rib.core.Interactor
 import com.uber.rib.core.RibInteractor
@@ -14,27 +20,52 @@ import javax.inject.Inject
 class ToolbarInteractor : Interactor<ToolbarInteractor.ToolbarPresenter, ToolbarRouter>() {
 
   @Inject lateinit var presenter: ToolbarPresenter
-//  @Inject lateinit var listener: Listener
+  @Inject lateinit var navigationMenuEventStreamSource: NavigationMenuEventStreamSource
 
   override fun didBecomeActive(savedInstanceState: Bundle?) {
     super.didBecomeActive(savedInstanceState)
-
-    // TODO: Add attachment logic here (RxSubscriptions, etc.).
+    handleNavigationMenuEventStreamSource()
   }
 
   override fun willResignActive() {
     super.willResignActive()
-
-    // TODO: Perform any required clean up here, or delete this method entirely if not needed.
   }
 
   /**
    * Presenter interface implemented by this RIB's view.
    */
-  interface ToolbarPresenter
+  interface ToolbarPresenter {
+    fun updateTitle(title: String)
+  }
 
   /**
    * Listener interface implemented by a parent RIB's interactor's inner class.
    */
   interface Listener
+
+  @SuppressLint("CheckResult")
+  private fun handleNavigationMenuEventStreamSource() {
+    navigationMenuEventStreamSource.event
+      .subscribe { event ->
+        presenter.updateTitle(TitleForNavigationMenuEvent.getTitle(event))
+      }
+  }
+
+  enum class TitleForNavigationMenuEvent(val event: NavigationMenuEvent, val title: String) {
+
+    COINS_TITLE(COINS, "Coin Craft"),
+    ICO_TITLE(ICO, "ICO List"),
+    ABOUT_TITLE(ABOUT, "About");
+
+    companion object {
+
+      fun getTitle(event: NavigationMenuEvent): String {
+        return when (event) {
+          ICO_TITLE.event -> ICO_TITLE.title
+          ABOUT_TITLE.event -> ABOUT_TITLE.title
+          else -> COINS_TITLE.title
+        }
+      }
+    }
+  }
 }

@@ -9,6 +9,8 @@ import com.perelandrax.coincraft.ribs.navigation.model.stream.NavigationMenuEven
 import com.perelandrax.coincraft.ribs.navigation.model.stream.NavigationMenuEventStreamSource
 import com.perelandrax.coincraft.ribs.navigation.model.stream.NavigationMenuEventStreamUpdater
 import com.perelandrax.coincraft.ribs.navitype.NaviTypeBuilder
+import com.perelandrax.coincraft.ribs.toolbar.ToolbarBuilder
+import com.perelandrax.coincraft.ribs.toolbar.ToolbarInteractor
 import com.uber.rib.core.InteractorBaseComponent
 import com.uber.rib.core.ViewBuilder
 import dagger.Binds
@@ -69,7 +71,7 @@ class MainBuilder(dependency: ParentComponent) :
         view: MainView,
         interactor: MainInteractor
       ): MainRouter {
-        return MainRouter(view, interactor, component, NavigationBuilder(component), NaviTypeBuilder(component))
+        return MainRouter(view, interactor, component, ToolbarBuilder(component), NavigationBuilder(component), NaviTypeBuilder(component))
       }
 
       @MainScope
@@ -100,6 +102,7 @@ class MainBuilder(dependency: ParentComponent) :
   interface Component :
     InteractorBaseComponent<MainInteractor>,
     BuilderComponent,
+    ToolbarBuilder.ParentComponent,
     NavigationBuilder.ParentComponent,
     NaviTypeBuilder.ParentComponent {
 
