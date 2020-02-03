@@ -46,14 +46,20 @@ class NaviTypeInteractor : Interactor<EmptyPresenter, NaviTypeRouter>() {
   }
 
   fun routeToCoins() {
+    router.detachIco()
+    router.detachAbout()
     router.attachCoins()
   }
 
   fun routeToICO() {
     router.detachCoins()
+    router.detachAbout()
+    router.attachIco()
   }
 
   fun routeToAbout() {
     router.detachCoins()
+    router.detachIco()
+    router.attachAbout()
   }
 }

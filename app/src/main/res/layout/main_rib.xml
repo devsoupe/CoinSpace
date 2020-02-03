@@ -9,7 +9,6 @@
     android:id="@+id/toolbar"
     android:layout_width="match_parent"
     android:layout_height="?attr/actionBarSize"
-    android:background="#8800ff00"
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintTop_toTopOf="parent"/>
@@ -18,7 +17,6 @@
     android:id="@+id/navigation"
     android:layout_width="match_parent"
     android:layout_height="?attr/actionBarSize"
-    android:background="#88ff0000"
     app:layout_constraintBottom_toBottomOf="parent"
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintStart_toStartOf="parent"/>
@@ -27,7 +25,6 @@
     android:id="@+id/content"
     android:layout_width="0dp"
     android:layout_height="0dp"
-    android:background="#880000ff"
     app:layout_constraintBottom_toTopOf="@+id/navigation"
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintStart_toStartOf="parent"

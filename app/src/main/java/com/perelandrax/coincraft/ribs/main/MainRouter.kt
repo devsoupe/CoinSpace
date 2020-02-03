@@ -7,7 +7,6 @@ import com.perelandrax.coincraft.ribs.navitype.NaviTypeRouter
 import com.perelandrax.coincraft.ribs.toolbar.ToolbarBuilder
 import com.perelandrax.coincraft.ribs.toolbar.ToolbarRouter
 import com.uber.rib.core.ViewRouter
-import kotlinx.android.synthetic.main.main_rib.view.content
 import kotlinx.android.synthetic.main.main_rib.view.navigation
 import kotlinx.android.synthetic.main.main_rib.view.toolbar
 

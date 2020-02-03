@@ -1,4 +1,4 @@
-package com.perelandrax.coincraft.ribs.toolbar
+package com.perelandrax.coincraft.ribs.ico
 
 import com.uber.rib.core.InteractorHelper
 import com.uber.rib.core.RibTestBasePlaceholder
@@ -7,19 +7,19 @@ import org.junit.Test
 import org.mockito.Mock
 import org.mockito.MockitoAnnotations
 
-class ToolbarInteractorTest : RibTestBasePlaceholder() {
+class IcoInteractorTest : RibTestBasePlaceholder() {
 
-  @Mock internal lateinit var presenter: ToolbarInteractor.ToolbarPresenter
-  @Mock internal lateinit var listener: ToolbarInteractor.Listener
-  @Mock internal lateinit var router: ToolbarRouter
+  @Mock internal lateinit var presenter: IcoInteractor.IcoPresenter
+  @Mock internal lateinit var listener: IcoInteractor.Listener
+  @Mock internal lateinit var router: IcoRouter
 
-  private lateinit var interactor: ToolbarInteractor
+  private lateinit var interactor: IcoInteractor
 
   @Before
   fun setup() {
     MockitoAnnotations.initMocks(this)
 
-    interactor = TestToolbarInteractor.create(presenter)
+    interactor = TestIcoInteractor.create(presenter)
   }
 
   /**
@@ -28,7 +28,7 @@ class ToolbarInteractorTest : RibTestBasePlaceholder() {
   @Test
   fun `an example test`() {
     // Use InteractorHelper to drive your interactor's lifecycle.
-    InteractorHelper.attach<ToolbarInteractor.ToolbarPresenter, ToolbarRouter>(interactor, presenter, router, null)
+    InteractorHelper.attach<IcoInteractor.IcoPresenter, IcoRouter>(interactor, presenter, router, null)
     InteractorHelper.detach(interactor)
 
     throw RuntimeException("Remove this test and add real tests.")

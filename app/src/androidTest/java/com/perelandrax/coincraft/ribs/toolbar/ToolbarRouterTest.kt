@@ -10,30 +10,30 @@ import org.mockito.MockitoAnnotations
 
 class ToolbarRouterTest : RibTestBasePlaceholder() {
 
-    @Mock internal lateinit var component: ToolbarBuilder.Component
-    @Mock internal lateinit var interactor: ToolbarInteractor
-    @Mock internal lateinit var view: ToolbarView
+  @Mock internal lateinit var component: ToolbarBuilder.Component
+  @Mock internal lateinit var interactor: ToolbarInteractor
+  @Mock internal lateinit var view: ToolbarView
 
-    private lateinit var router: ToolbarRouter
+  private lateinit var router: ToolbarRouter
 
-    @Before
-    fun setup() {
-        MockitoAnnotations.initMocks(this)
+  @Before
+  fun setup() {
+    MockitoAnnotations.initMocks(this)
 
-        router = ToolbarRouter(view, interactor, component)
-    }
+    router = ToolbarRouter(view, interactor, component)
+  }
 
-    /**
-     * TODO: Delete this example and add real tests.
-     */
-    @Test
-    fun `an example test`() {
-        // Use RouterHelper to drive your router's lifecycle.
-        RouterHelper.attach(router)
-        RouterHelper.detach(router)
+  /**
+   * TODO: Delete this example and add real tests.
+   */
+  @Test
+  fun `an example test`() {
+    // Use RouterHelper to drive your router's lifecycle.
+    RouterHelper.attach(router)
+    RouterHelper.detach(router)
 
-        throw RuntimeException("Remove this test and add real tests.")
-    }
+    throw RuntimeException("Remove this test and add real tests.")
+  }
 
 }
 

@@ -1,4 +1,4 @@
-package com.perelandrax.coincraft.ribs.coins
+package com.perelandrax.coincraft.ribs.about
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -13,89 +13,86 @@ import javax.inject.Scope
 import kotlin.annotation.AnnotationRetention.BINARY
 
 /**
- * Builder for the {@link CoinsScope}.
+ * Builder for the {@link AboutScope}.
  *
  * TODO describe this scope's responsibility as a whole.
  */
-class CoinsBuilder(dependency: ParentComponent) :
-  ViewBuilder<CoinsView, CoinsRouter, CoinsBuilder.ParentComponent>(dependency) {
+class AboutBuilder(dependency: ParentComponent) :
+  ViewBuilder<AboutView, AboutRouter, AboutBuilder.ParentComponent>(dependency) {
 
   /**
-   * Builds a new [CoinsRouter].
+   * Builds a new [AboutRouter].
    *
    * @param parentViewGroup parent view group that this router's view will be added to.
-   * @return a new [CoinsRouter].
+   * @return a new [AboutRouter].
    */
-  fun build(parentViewGroup: ViewGroup): CoinsRouter {
+  fun build(parentViewGroup: ViewGroup): AboutRouter {
     val view = createView(parentViewGroup)
-    val interactor = CoinsInteractor()
-    val component = DaggerCoinsBuilder_Component.builder()
+    val interactor = AboutInteractor()
+    val component = DaggerAboutBuilder_Component.builder()
       .parentComponent(dependency)
       .view(view)
       .interactor(interactor)
       .build()
-    return component.coinsRouter()
+    return component.aboutRouter()
   }
 
-  override fun inflateView(inflater: LayoutInflater, parentViewGroup: ViewGroup): CoinsView? {
-    return inflater.inflate(R.layout.coins_rib, parentViewGroup, false) as CoinsView
+  override fun inflateView(inflater: LayoutInflater, parentViewGroup: ViewGroup): AboutView? {
+    return inflater.inflate(R.layout.about_rib, parentViewGroup, false) as AboutView
   }
 
   interface ParentComponent {
-//    val coinsListener: CoinsInteractor.Listener
+//        val aboutListener: AboutInteractor.Listener
   }
 
   @dagger.Module
   abstract class Module {
 
-    @CoinsScope @Binds
-    internal abstract fun presenter(view: CoinsView): CoinsInteractor.CoinsPresenter
+    @AboutScope @Binds
+    internal abstract fun presenter(view: AboutView): AboutInteractor.AboutPresenter
 
     @dagger.Module
     companion object {
 
-      @CoinsScope @Provides @JvmStatic
+      @AboutScope @Provides @JvmStatic
       internal fun router(
         component: Component,
-        view: CoinsView,
-        interactor: CoinsInteractor
-      ): CoinsRouter {
-        return CoinsRouter(view, interactor, component)
+        view: AboutView,
+        interactor: AboutInteractor
+      ): AboutRouter {
+        return AboutRouter(view, interactor, component)
       }
 
       // TODO: Create provider methods for dependencies created by this Rib. These should be static.
     }
   }
 
-  @CoinsScope
+  @AboutScope
   @dagger.Component(modules = arrayOf(Module::class), dependencies = arrayOf(ParentComponent::class))
-  interface Component :
-    InteractorBaseComponent<CoinsInteractor>,
-    BuilderComponent {
+  interface Component : InteractorBaseComponent<AboutInteractor>, BuilderComponent {
 
     @dagger.Component.Builder
     interface Builder {
       @BindsInstance
-      fun interactor(interactor: CoinsInteractor): Builder
+      fun interactor(interactor: AboutInteractor): Builder
 
       @BindsInstance
-      fun view(view: CoinsView): Builder
+      fun view(view: AboutView): Builder
 
       fun parentComponent(component: ParentComponent): Builder
-
       fun build(): Component
     }
   }
 
   interface BuilderComponent {
-    fun coinsRouter(): CoinsRouter
+    fun aboutRouter(): AboutRouter
   }
 
   @Scope
   @Retention(BINARY)
-  internal annotation class CoinsScope
+  internal annotation class AboutScope
 
   @Qualifier
   @Retention(BINARY)
-  internal annotation class CoinsInternal
+  internal annotation class AboutInternal
 }

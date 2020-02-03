@@ -1,6 +1,8 @@
 package com.perelandrax.coincraft.ribs.navitype
 
+import com.perelandrax.coincraft.ribs.about.AboutBuilder
 import com.perelandrax.coincraft.ribs.coins.CoinsBuilder
+import com.perelandrax.coincraft.ribs.ico.IcoBuilder
 import com.perelandrax.coincraft.ribs.main.MainView
 import com.perelandrax.coincraft.ribs.navigation.model.stream.NavigationMenuEventStreamSource
 import com.uber.rib.core.Builder
@@ -54,7 +56,8 @@ class NaviTypeBuilder(dependency: ParentComponent) :
 
       @NaviTypeScope @Provides @JvmStatic
       internal fun router(component: Component, interactor: NaviTypeInteractor, mainView: MainView): NaviTypeRouter {
-        return NaviTypeRouter(interactor, component, mainView, CoinsBuilder(component))
+        return NaviTypeRouter(interactor, component, mainView,
+          CoinsBuilder(component), IcoBuilder(component), AboutBuilder(component))
       }
 
       // TODO: Create provider methods for dependencies created by this Rib. These methods should be static.
@@ -66,7 +69,9 @@ class NaviTypeBuilder(dependency: ParentComponent) :
   interface Component :
     InteractorBaseComponent<NaviTypeInteractor>,
     BuilderComponent,
-    CoinsBuilder.ParentComponent {
+    CoinsBuilder.ParentComponent,
+    IcoBuilder.ParentComponent,
+    AboutBuilder.ParentComponent {
 
     @dagger.Component.Builder
     interface Builder {
