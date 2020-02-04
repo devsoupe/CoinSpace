@@ -4,7 +4,6 @@ import android.content.Context
 import android.util.AttributeSet
 import android.view.View
 import android.widget.FrameLayout
-import kotlinx.android.synthetic.main.coins_rib.view.bgAnimationView
 import kotlinx.android.synthetic.main.coins_rib.view.loadingView
 
 /**
@@ -17,11 +16,10 @@ class CoinsView @JvmOverloads constructor(
   override fun onFinishInflate() {
     super.onFinishInflate()
 
-    setupLoading()
+    setupLoadingView()
   }
 
-  private fun setupLoading() {
-    bgAnimationView.speed = 3.5f
+  private fun setupLoadingView() {
     loadingView.speed = 1.25f
   }
 
