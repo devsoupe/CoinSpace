@@ -19,7 +19,7 @@ class CoinsInteractor : Interactor<CoinsInteractor.CoinsPresenter, CoinsRouter>(
   override fun didBecomeActive(savedInstanceState: Bundle?) {
     super.didBecomeActive(savedInstanceState)
 
-    // TODO: Add attachment logic here (RxSubscriptions, etc.).
+    presenter.showLoading()
   }
 
   override fun willResignActive() {
@@ -31,7 +31,11 @@ class CoinsInteractor : Interactor<CoinsInteractor.CoinsPresenter, CoinsRouter>(
   /**
    * Presenter interface implemented by this RIB's view.
    */
-  interface CoinsPresenter
+  interface CoinsPresenter {
+
+    fun showLoading()
+    fun hideLoading()
+  }
 
   /**
    * Listener interface implemented by a parent RIB's interactor's inner class.

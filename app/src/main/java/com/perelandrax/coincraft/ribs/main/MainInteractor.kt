@@ -58,15 +58,15 @@ class MainInteractor : Interactor<MainInteractor.MainPresenter, MainRouter>() {
   inner class NavigationListener : NavigationInteractor.Listener {
 
     override fun coinsSelected() {
-      navigationMenuEventStreamUpdater.updateMenuId(COINS)
+      navigationMenuEventStreamUpdater.updateMenuEvent(COINS)
     }
 
     override fun icoSelected() {
-      navigationMenuEventStreamUpdater.updateMenuId(ICO)
+      navigationMenuEventStreamUpdater.updateMenuEvent(ICO)
     }
 
     override fun aboutSelected() {
-      navigationMenuEventStreamUpdater.updateMenuId(ABOUT)
+      navigationMenuEventStreamUpdater.updateMenuEvent(ABOUT)
     }
   }
 }
