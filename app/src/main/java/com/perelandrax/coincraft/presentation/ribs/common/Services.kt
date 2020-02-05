@@ -35,7 +35,10 @@ class Services {
      * @param context current caller [Context]
      * @param toolbar [Toolbar] instance to be set as [ActionBar]
      */
-    fun setSupportActionBar(context: Context, toolbar: Toolbar) {
+    fun setSupportActionBar(
+      context: Context,
+      toolbar: Toolbar
+    ) {
       (context as RibActivity).setSupportActionBar(toolbar)
     }
 
@@ -55,7 +58,10 @@ class Services {
      * @param view caller [View]
      */
     @Synchronized
-    fun hideSoftKeyboard(context: Context, view: View) {
+    fun hideSoftKeyboard(
+      context: Context,
+      view: View
+    ) {
       val imm = context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
       imm.hideSoftInputFromWindow(view.windowToken, 0)
     }
@@ -66,7 +72,10 @@ class Services {
      * @param focusedView the currently focused [View]
      */
     @Synchronized
-    fun showSoftKeyboard(context: Context, focusedView: View) {
+    fun showSoftKeyboard(
+      context: Context,
+      focusedView: View
+    ) {
       val imm = context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
       imm.showSoftInput(focusedView, 0)
     }

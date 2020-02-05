@@ -47,7 +47,10 @@ class MainBuilder(dependency: ParentComponent) :
     return component.mainRouter()
   }
 
-  override fun inflateView(inflater: LayoutInflater, parentViewGroup: ViewGroup): MainView? {
+  override fun inflateView(
+    inflater: LayoutInflater,
+    parentViewGroup: ViewGroup
+  ): MainView? {
     return inflater.inflate(R.layout.main_rib, parentViewGroup, false) as MainView
   }
 

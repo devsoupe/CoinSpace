@@ -9,6 +9,7 @@ import com.perelandrax.coincraft.presentation.ribs.navigation.model.stream.Navig
 import com.uber.rib.core.Bundle
 import com.uber.rib.core.Interactor
 import com.uber.rib.core.RibInteractor
+import io.reactivex.rxkotlin.subscribeBy
 import javax.inject.Inject
 
 /**
@@ -46,12 +47,17 @@ class ToolbarInteractor : Interactor<ToolbarInteractor.ToolbarPresenter, Toolbar
   @SuppressLint("CheckResult")
   private fun handleNavigationMenuEventStreamSource() {
     navigationMenuEventStreamSource.event
-      .subscribe { event ->
+      .subscribeBy(onNext = { event ->
         presenter.updateTitle(TitleForNavigationMenuEvent.getTitle(event))
-      }
+      }, onError = {
+        it.printStackTrace()
+      })
   }
 
-  enum class TitleForNavigationMenuEvent(val event: NavigationMenuEvent, val title: String) {
+  enum class TitleForNavigationMenuEvent(
+    val event: NavigationMenuEvent,
+    val title: String
+  ) {
 
     COINS_TITLE(COINS, "Coin Craft"),
     ICO_TITLE(ICO, "ICO List"),

@@ -55,9 +55,15 @@ class NaviTypeBuilder(dependency: ParentComponent) :
       }
 
       @NaviTypeScope @Provides @JvmStatic
-      internal fun router(component: Component, interactor: NaviTypeInteractor, mainView: MainView): NaviTypeRouter {
-        return NaviTypeRouter(interactor, component, mainView,
-          CoinsBuilder(component), IcoBuilder(component), AboutBuilder(component))
+      internal fun router(
+        component: Component,
+        interactor: NaviTypeInteractor,
+        mainView: MainView
+      ): NaviTypeRouter {
+        return NaviTypeRouter(
+          interactor, component, mainView,
+          CoinsBuilder(component), IcoBuilder(component), AboutBuilder(component)
+        )
       }
 
       // TODO: Create provider methods for dependencies created by this Rib. These methods should be static.

@@ -3,6 +3,8 @@ package com.perelandrax.coincraft.presentation.ribs.ico
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.perelandrax.coincraft.R
+import com.perelandrax.coincraft.presentation.ribs.active.ActiveBuilder
+import com.perelandrax.coincraft.presentation.ribs.upcoming.UpcomingBuilder
 import com.uber.rib.core.InteractorBaseComponent
 import com.uber.rib.core.ViewBuilder
 import dagger.Binds
@@ -37,7 +39,10 @@ class IcoBuilder(dependency: ParentComponent) :
     return component.icoRouter()
   }
 
-  override fun inflateView(inflater: LayoutInflater, parentViewGroup: ViewGroup): IcoView? {
+  override fun inflateView(
+    inflater: LayoutInflater,
+    parentViewGroup: ViewGroup
+  ): IcoView? {
     return inflater.inflate(R.layout.ico_rib, parentViewGroup, false) as IcoView
   }
 
@@ -60,16 +65,18 @@ class IcoBuilder(dependency: ParentComponent) :
         view: IcoView,
         interactor: IcoInteractor
       ): IcoRouter {
-        return IcoRouter(view, interactor, component)
+        return IcoRouter(view, interactor, component, ActiveBuilder(component), UpcomingBuilder(component))
       }
-
-      // TODO: Create provider methods for dependencies created by this Rib. These should be static.
     }
   }
 
   @IcoScope
   @dagger.Component(modules = arrayOf(Module::class), dependencies = arrayOf(ParentComponent::class))
-  interface Component : InteractorBaseComponent<IcoInteractor>, BuilderComponent {
+  interface Component :
+    InteractorBaseComponent<IcoInteractor>,
+    BuilderComponent,
+    ActiveBuilder.ParentComponent,
+    UpcomingBuilder.ParentComponent {
 
     @dagger.Component.Builder
     interface Builder {
@@ -80,6 +87,7 @@ class IcoBuilder(dependency: ParentComponent) :
       fun view(view: IcoView): Builder
 
       fun parentComponent(component: ParentComponent): Builder
+
       fun build(): Component
     }
   }

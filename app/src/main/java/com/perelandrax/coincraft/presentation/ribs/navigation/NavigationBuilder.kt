@@ -38,7 +38,10 @@ class NavigationBuilder(dependency: ParentComponent) :
     return component.mainbottomtabRouter()
   }
 
-  override fun inflateView(inflater: LayoutInflater, parentViewGroup: ViewGroup): NavigationView? {
+  override fun inflateView(
+    inflater: LayoutInflater,
+    parentViewGroup: ViewGroup
+  ): NavigationView? {
     return inflater.inflate(R.layout.navigation_rib, parentViewGroup, false) as NavigationView
   }
 

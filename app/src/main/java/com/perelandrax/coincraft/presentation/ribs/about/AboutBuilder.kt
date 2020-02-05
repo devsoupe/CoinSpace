@@ -37,7 +37,10 @@ class AboutBuilder(dependency: ParentComponent) :
     return component.aboutRouter()
   }
 
-  override fun inflateView(inflater: LayoutInflater, parentViewGroup: ViewGroup): AboutView? {
+  override fun inflateView(
+    inflater: LayoutInflater,
+    parentViewGroup: ViewGroup
+  ): AboutView? {
     return inflater.inflate(R.layout.about_rib, parentViewGroup, false) as AboutView
   }
 

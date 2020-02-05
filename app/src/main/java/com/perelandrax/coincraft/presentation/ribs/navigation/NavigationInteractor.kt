@@ -6,7 +6,7 @@ import com.uber.rib.core.Interactor
 import com.uber.rib.core.RibInteractor
 import io.reactivex.Observable
 import io.reactivex.disposables.CompositeDisposable
-import io.reactivex.exceptions.OnErrorNotImplementedException
+import io.reactivex.rxkotlin.subscribeBy
 import javax.inject.Inject
 
 /**
@@ -26,14 +26,15 @@ class NavigationInteractor : Interactor<NavigationInteractor.MainBottomTabPresen
     super.didBecomeActive(savedInstanceState)
 
     presenter.menuIdEvent()
-      .doOnError { OnErrorNotImplementedException(it) }
-      .subscribe { menuId ->
+      .subscribeBy(onNext = { menuId ->
         when (menuId) {
           R.id.coins -> listener.coinsSelected()
           R.id.ico -> listener.icoSelected()
           R.id.about -> listener.aboutSelected()
         }
-      }
+      }, onError = {
+
+      })
   }
 
   override fun willResignActive() {

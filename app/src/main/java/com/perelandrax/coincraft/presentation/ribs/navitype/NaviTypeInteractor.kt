@@ -9,6 +9,7 @@ import com.uber.rib.core.Bundle
 import com.uber.rib.core.EmptyPresenter
 import com.uber.rib.core.Interactor
 import com.uber.rib.core.RibInteractor
+import io.reactivex.rxkotlin.subscribeBy
 import javax.inject.Inject
 
 /**
@@ -36,13 +37,15 @@ class NaviTypeInteractor : Interactor<EmptyPresenter, NaviTypeRouter>() {
   @SuppressLint("CheckResult")
   private fun handleNavigationMenuEventStreamSource() {
     navigationMenuEventStreamSource.event
-      .subscribe { event ->
+      .subscribeBy(onNext = { event ->
         when (event) {
           COINS -> routeToCoins()
           ICO -> routeToICO()
           ABOUT -> routeToAbout()
         }
-      }
+      }, onError = {
+        it.printStackTrace()
+      })
   }
 
   fun routeToCoins() {

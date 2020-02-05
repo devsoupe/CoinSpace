@@ -1,24 +1,24 @@
-package com.perelandrax.coincraft.presentation.ribs.ico
+package com.perelandrax.coincraft.presentation.ribs.active
 
-import com.perelandrax.coincraft.presentation.ribs.active.ActiveView
-import com.perelandrax.coincraft.presentation.ribs.upcoming.UpcomingView
 import com.uber.rib.core.Bundle
 import com.uber.rib.core.Interactor
 import com.uber.rib.core.RibInteractor
 import javax.inject.Inject
 
 /**
- * Coordinates Business Logic for [IcoScope].
+ * Coordinates Business Logic for [ActiveScope].
  *
  * TODO describe the logic of this scope.
  */
 @RibInteractor
-class IcoInteractor : Interactor<IcoInteractor.IcoPresenter, IcoRouter>() {
+class ActiveInteractor : Interactor<ActiveInteractor.ActivePresenter, ActiveRouter>() {
 
-  @Inject lateinit var presenter: IcoPresenter
+  @Inject lateinit var presenter: ActivePresenter
 
   override fun didBecomeActive(savedInstanceState: Bundle?) {
     super.didBecomeActive(savedInstanceState)
+
+    // TODO: Add attachment logic here (RxSubscriptions, etc.).
   }
 
   override fun willResignActive() {
@@ -30,12 +30,7 @@ class IcoInteractor : Interactor<IcoInteractor.IcoPresenter, IcoRouter>() {
   /**
    * Presenter interface implemented by this RIB's view.
    */
-  interface IcoPresenter {
-    fun setupTabLayoutAndViewPager(
-      activeView: ActiveView,
-      upcomingView: UpcomingView
-    )
-  }
+  interface ActivePresenter
 
   /**
    * Listener interface implemented by a parent RIB's interactor's inner class.

@@ -10,7 +10,9 @@ import kotlinx.android.synthetic.main.coins_rib.view.loadingView
  * Top level view for {@link CoinsBuilder.CoinsScope}.
  */
 class CoinsView @JvmOverloads constructor(
-  context: Context, attrs: AttributeSet? = null, defStyle: Int = 0
+  context: Context,
+  attrs: AttributeSet? = null,
+  defStyle: Int = 0
 ) : FrameLayout(context, attrs, defStyle), CoinsInteractor.CoinsPresenter {
 
   override fun onFinishInflate() {

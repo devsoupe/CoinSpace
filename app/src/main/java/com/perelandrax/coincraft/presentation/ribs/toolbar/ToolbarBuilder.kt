@@ -38,7 +38,10 @@ class ToolbarBuilder(dependency: ParentComponent) :
     return component.toolbarRouter()
   }
 
-  override fun inflateView(inflater: LayoutInflater, parentViewGroup: ViewGroup): ToolbarView? {
+  override fun inflateView(
+    inflater: LayoutInflater,
+    parentViewGroup: ViewGroup
+  ): ToolbarView? {
     return inflater.inflate(R.layout.toolbar_rib, parentViewGroup, false) as ToolbarView
   }
 

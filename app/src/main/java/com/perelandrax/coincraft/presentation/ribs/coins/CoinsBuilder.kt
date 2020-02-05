@@ -37,7 +37,10 @@ class CoinsBuilder(dependency: ParentComponent) :
     return component.coinsRouter()
   }
 
-  override fun inflateView(inflater: LayoutInflater, parentViewGroup: ViewGroup): CoinsView? {
+  override fun inflateView(
+    inflater: LayoutInflater,
+    parentViewGroup: ViewGroup
+  ): CoinsView? {
     return inflater.inflate(R.layout.coins_rib, parentViewGroup, false) as CoinsView
   }
 
