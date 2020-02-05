@@ -2,9 +2,7 @@ package com.perelandrax.coincraft.presentation.ribs.toolbar
 
 import android.annotation.SuppressLint
 import com.perelandrax.coincraft.presentation.ribs.navigation.model.stream.NavigationMenuEvent
-import com.perelandrax.coincraft.presentation.ribs.navigation.model.stream.NavigationMenuEvent.ABOUT
-import com.perelandrax.coincraft.presentation.ribs.navigation.model.stream.NavigationMenuEvent.COINS
-import com.perelandrax.coincraft.presentation.ribs.navigation.model.stream.NavigationMenuEvent.ICO
+import com.perelandrax.coincraft.presentation.ribs.navigation.model.stream.NavigationMenuEvent.*
 import com.perelandrax.coincraft.presentation.ribs.navigation.model.stream.NavigationMenuEventStreamSource
 import com.uber.rib.core.Bundle
 import com.uber.rib.core.Interactor
@@ -20,8 +18,10 @@ import javax.inject.Inject
 @RibInteractor
 class ToolbarInteractor : Interactor<ToolbarInteractor.ToolbarPresenter, ToolbarRouter>() {
 
-  @Inject lateinit var presenter: ToolbarPresenter
-  @Inject lateinit var navigationMenuEventStreamSource: NavigationMenuEventStreamSource
+  @Inject
+  lateinit var presenter: ToolbarPresenter
+  @Inject
+  lateinit var navigationMenuEventStreamSource: NavigationMenuEventStreamSource
 
   override fun didBecomeActive(savedInstanceState: Bundle?) {
     super.didBecomeActive(savedInstanceState)

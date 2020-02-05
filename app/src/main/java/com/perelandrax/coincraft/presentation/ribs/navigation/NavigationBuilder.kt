@@ -52,13 +52,16 @@ class NavigationBuilder(dependency: ParentComponent) :
   @dagger.Module
   abstract class Module {
 
-    @MainBottomTabScope @Binds
+    @MainBottomTabScope
+    @Binds
     internal abstract fun presenter(view: NavigationView): NavigationInteractor.MainBottomTabPresenter
 
     @dagger.Module
     companion object {
 
-      @MainBottomTabScope @Provides @JvmStatic
+      @MainBottomTabScope
+      @Provides
+      @JvmStatic
       internal fun router(
         component: Component,
         view: NavigationView,

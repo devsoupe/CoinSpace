@@ -19,9 +19,9 @@ class NaviTypeRouter(
   interactor: NaviTypeInteractor,
   component: NaviTypeBuilder.Component,
   private val parentView: ViewGroup,
-  private val coinsBuilder: CoinsBuilder,
-  private val icoBuilder: IcoBuilder,
-  private val aboutBuilder: AboutBuilder
+  coinsBuilder: CoinsBuilder,
+  icoBuilder: IcoBuilder,
+  aboutBuilder: AboutBuilder
 ) : Router<NaviTypeInteractor, NaviTypeBuilder.Component>(interactor, component) {
 
   private var coinsRouter: CoinsRouter = coinsBuilder.build(parentView)

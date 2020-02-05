@@ -9,9 +9,12 @@ import org.mockito.MockitoAnnotations
 
 class CoinsInteractorTest : RibTestBasePlaceholder() {
 
-  @Mock internal lateinit var presenter: CoinsInteractor.CoinsPresenter
-  @Mock internal lateinit var listener: CoinsInteractor.Listener
-  @Mock internal lateinit var router: CoinsRouter
+  @Mock
+  internal lateinit var presenter: CoinsInteractor.CoinsPresenter
+  @Mock
+  internal lateinit var listener: CoinsInteractor.Listener
+  @Mock
+  internal lateinit var router: CoinsRouter
 
   private lateinit var interactor: CoinsInteractor
 

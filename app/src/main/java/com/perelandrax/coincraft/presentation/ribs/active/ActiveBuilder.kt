@@ -53,13 +53,16 @@ class ActiveBuilder(dependency: ParentComponent) :
   @dagger.Module
   abstract class Module {
 
-    @ActiveScope @Binds
+    @ActiveScope
+    @Binds
     internal abstract fun presenter(view: ActiveView): ActiveInteractor.ActivePresenter
 
     @dagger.Module
     companion object {
 
-      @ActiveScope @Provides @JvmStatic
+      @ActiveScope
+      @Provides
+      @JvmStatic
       internal fun router(
         component: Component,
         view: ActiveView,

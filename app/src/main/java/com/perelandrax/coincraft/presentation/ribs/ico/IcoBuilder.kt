@@ -4,6 +4,8 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.perelandrax.coincraft.R
 import com.perelandrax.coincraft.presentation.ribs.active.ActiveBuilder
+import com.perelandrax.coincraft.presentation.ribs.ico.view.tablayout.ActiveAdapter
+import com.perelandrax.coincraft.presentation.ribs.ico.view.tablayout.UpcomingAdapter
 import com.perelandrax.coincraft.presentation.ribs.upcoming.UpcomingBuilder
 import com.uber.rib.core.InteractorBaseComponent
 import com.uber.rib.core.ViewBuilder
@@ -19,6 +21,7 @@ import kotlin.annotation.AnnotationRetention.BINARY
  *
  * TODO describe this scope's responsibility as a whole.
  */
+
 class IcoBuilder(dependency: ParentComponent) :
   ViewBuilder<IcoView, IcoRouter, IcoBuilder.ParentComponent>(dependency) {
 
@@ -39,10 +42,7 @@ class IcoBuilder(dependency: ParentComponent) :
     return component.icoRouter()
   }
 
-  override fun inflateView(
-    inflater: LayoutInflater,
-    parentViewGroup: ViewGroup
-  ): IcoView? {
+  override fun inflateView(inflater: LayoutInflater, parentViewGroup: ViewGroup): IcoView? {
     return inflater.inflate(R.layout.ico_rib, parentViewGroup, false) as IcoView
   }
 
@@ -53,19 +53,23 @@ class IcoBuilder(dependency: ParentComponent) :
   @dagger.Module
   abstract class Module {
 
-    @IcoScope @Binds
+    @IcoScope
+    @Binds
     internal abstract fun presenter(view: IcoView): IcoInteractor.IcoPresenter
 
     @dagger.Module
     companion object {
 
-      @IcoScope @Provides @JvmStatic
-      internal fun router(
-        component: Component,
-        view: IcoView,
-        interactor: IcoInteractor
-      ): IcoRouter {
-        return IcoRouter(view, interactor, component, ActiveBuilder(component), UpcomingBuilder(component))
+      @IcoScope
+      @Provides
+      @JvmStatic
+      internal fun router(component: Component, view: IcoView, interactor: IcoInteractor): IcoRouter {
+        return IcoRouter(view, interactor, component,
+          listOf(
+            ActiveAdapter(ActiveBuilder(component), view),
+            UpcomingAdapter(UpcomingBuilder(component), view)
+          )
+        )
       }
     }
   }
@@ -80,6 +84,7 @@ class IcoBuilder(dependency: ParentComponent) :
 
     @dagger.Component.Builder
     interface Builder {
+
       @BindsInstance
       fun interactor(interactor: IcoInteractor): Builder
 

@@ -51,13 +51,16 @@ class CoinsBuilder(dependency: ParentComponent) :
   @dagger.Module
   abstract class Module {
 
-    @CoinsScope @Binds
+    @CoinsScope
+    @Binds
     internal abstract fun presenter(view: CoinsView): CoinsInteractor.CoinsPresenter
 
     @dagger.Module
     companion object {
 
-      @CoinsScope @Provides @JvmStatic
+      @CoinsScope
+      @Provides
+      @JvmStatic
       internal fun router(
         component: Component,
         view: CoinsView,

@@ -13,7 +13,8 @@ import javax.inject.Inject
 @RibInteractor
 class RootInteractor : Interactor<RootInteractor.RootPresenter, RootRouter>() {
 
-  @Inject lateinit var presenter: RootPresenter
+  @Inject
+  lateinit var presenter: RootPresenter
 
   override fun didBecomeActive(savedInstanceState: Bundle?) {
     super.didBecomeActive(savedInstanceState)

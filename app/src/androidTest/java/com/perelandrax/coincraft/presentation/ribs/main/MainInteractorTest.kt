@@ -9,9 +9,12 @@ import org.mockito.MockitoAnnotations
 
 class MainInteractorTest : RibTestBasePlaceholder() {
 
-  @Mock internal lateinit var presenter: MainInteractor.MainPresenter
-  @Mock internal lateinit var listener: MainInteractor.Listener
-  @Mock internal lateinit var router: MainRouter
+  @Mock
+  internal lateinit var presenter: MainInteractor.MainPresenter
+  @Mock
+  internal lateinit var listener: MainInteractor.Listener
+  @Mock
+  internal lateinit var router: MainRouter
 
   private lateinit var interactor: MainInteractor
 

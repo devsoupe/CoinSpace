@@ -1,9 +1,6 @@
 package com.perelandrax.coincraft.presentation.ribs.ico
 
-import com.perelandrax.coincraft.presentation.ribs.active.ActiveBuilder
-import com.perelandrax.coincraft.presentation.ribs.active.ActiveRouter
-import com.perelandrax.coincraft.presentation.ribs.upcoming.UpcomingBuilder
-import com.perelandrax.coincraft.presentation.ribs.upcoming.UpcomingRouter
+import com.perelandrax.coincraft.presentation.ribs.ico.view.tablayout.TabLayoutView
 import com.uber.rib.core.ViewRouter
 
 /**
@@ -15,27 +12,18 @@ class IcoRouter(
   view: IcoView,
   interactor: IcoInteractor,
   component: IcoBuilder.Component,
-  private val activeBuilder: ActiveBuilder,
-  private val upcomingBuilder: UpcomingBuilder
+  private val tabLayoutViews: List<TabLayoutView>
 ) : ViewRouter<IcoView, IcoInteractor, IcoBuilder.Component>(view, interactor, component) {
 
   override fun didLoad() {
     super.didLoad()
-
-    val activeRouter = activeBuilder.build(view)
-    val upcomingRouter = upcomingBuilder.build(view)
-
-    attachActive(activeRouter)
-    attachUpcoming(upcomingRouter)
-
-    interactor.presenter.setupTabLayoutAndViewPager(activeRouter.view, upcomingRouter.view)
+    attachTabLayoutViews(tabLayoutViews)
   }
 
-  fun attachActive(activeRouter: ActiveRouter) {
-    attachChild(activeRouter)
-  }
-
-  fun attachUpcoming(upcomingRouter: UpcomingRouter) {
-    attachChild(upcomingRouter)
+  private fun attachTabLayoutViews(tabLayoutViews: List<TabLayoutView>) {
+    for (tabLayoutView in tabLayoutViews) {
+      attachChild(tabLayoutView.router)
+    }
+    interactor.presenter.setupTabLayoutViews(tabLayoutViews)
   }
 }

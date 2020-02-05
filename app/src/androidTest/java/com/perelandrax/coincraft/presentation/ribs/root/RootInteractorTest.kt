@@ -10,8 +10,10 @@ import org.mockito.MockitoAnnotations
 
 class RootInteractorTest : RibTestBasePlaceholder() {
 
-  @Mock internal lateinit var presenter: EmptyPresenter
-  @Mock internal lateinit var router: RootRouter
+  @Mock
+  internal lateinit var presenter: EmptyPresenter
+  @Mock
+  internal lateinit var router: RootRouter
 
   private var interactor: RootInteractor? = null
 

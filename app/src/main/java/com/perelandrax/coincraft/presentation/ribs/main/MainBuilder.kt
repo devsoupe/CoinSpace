@@ -36,13 +36,11 @@ class MainBuilder(dependency: ParentComponent) :
   fun build(parentViewGroup: ViewGroup): MainRouter {
     val view = createView(parentViewGroup)
     val interactor = MainInteractor()
-    val navigationMenuEventStream =
-      NavigationMenuEventStream()
     val component = DaggerMainBuilder_Component.builder()
       .parentComponent(dependency)
       .view(view)
       .interactor(interactor)
-      .navigationMenuEventStream(navigationMenuEventStream)
+      .navigationMenuEventStream(NavigationMenuEventStream())
       .build()
     return component.mainRouter()
   }
@@ -61,13 +59,16 @@ class MainBuilder(dependency: ParentComponent) :
   @dagger.Module
   abstract class Module {
 
-    @MainScope @Binds
+    @MainScope
+    @Binds
     internal abstract fun presenter(view: MainView): MainInteractor.MainPresenter
 
     @dagger.Module
     companion object {
 
-      @MainScope @Provides @JvmStatic
+      @MainScope
+      @Provides
+      @JvmStatic
       internal fun router(
         component: Component,
         view: MainView,

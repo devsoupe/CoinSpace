@@ -10,8 +10,10 @@ import org.mockito.MockitoAnnotations
 
 class NaviTypeRouterTest : RibTestBasePlaceholder() {
 
-  @Mock internal lateinit var component: NaviTypeBuilder.Component
-  @Mock internal lateinit var interactor: NaviTypeInteractor
+  @Mock
+  internal lateinit var component: NaviTypeBuilder.Component
+  @Mock
+  internal lateinit var interactor: NaviTypeInteractor
 
   private var router: NaviTypeRouter? = null
 

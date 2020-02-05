@@ -49,12 +49,16 @@ class NaviTypeBuilder(dependency: ParentComponent) :
     @dagger.Module
     companion object {
 
-      @NaviTypeScope @Provides @JvmStatic
+      @NaviTypeScope
+      @Provides
+      @JvmStatic
       internal fun presenter(): EmptyPresenter {
         return EmptyPresenter()
       }
 
-      @NaviTypeScope @Provides @JvmStatic
+      @NaviTypeScope
+      @Provides
+      @JvmStatic
       internal fun router(
         component: Component,
         interactor: NaviTypeInteractor,

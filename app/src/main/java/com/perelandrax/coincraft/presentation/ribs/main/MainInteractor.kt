@@ -1,9 +1,7 @@
 package com.perelandrax.coincraft.presentation.ribs.main
 
 import com.perelandrax.coincraft.presentation.ribs.navigation.NavigationInteractor
-import com.perelandrax.coincraft.presentation.ribs.navigation.model.stream.NavigationMenuEvent.ABOUT
-import com.perelandrax.coincraft.presentation.ribs.navigation.model.stream.NavigationMenuEvent.COINS
-import com.perelandrax.coincraft.presentation.ribs.navigation.model.stream.NavigationMenuEvent.ICO
+import com.perelandrax.coincraft.presentation.ribs.navigation.model.stream.NavigationMenuEvent.*
 import com.perelandrax.coincraft.presentation.ribs.navigation.model.stream.NavigationMenuEventStreamUpdater
 import com.uber.rib.core.Bundle
 import com.uber.rib.core.Interactor
@@ -18,8 +16,10 @@ import javax.inject.Inject
 @RibInteractor
 class MainInteractor : Interactor<MainInteractor.MainPresenter, MainRouter>() {
 
-  @Inject lateinit var presenter: MainPresenter
-  @Inject lateinit var navigationMenuEventStreamUpdater: NavigationMenuEventStreamUpdater
+  @Inject
+  lateinit var presenter: MainPresenter
+  @Inject
+  lateinit var navigationMenuEventStreamUpdater: NavigationMenuEventStreamUpdater
 
   override fun didBecomeActive(savedInstanceState: Bundle?) {
     super.didBecomeActive(savedInstanceState)

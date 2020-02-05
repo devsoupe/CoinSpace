@@ -1,9 +1,7 @@
 package com.perelandrax.coincraft.presentation.ribs.navitype
 
 import android.annotation.SuppressLint
-import com.perelandrax.coincraft.presentation.ribs.navigation.model.stream.NavigationMenuEvent.ABOUT
-import com.perelandrax.coincraft.presentation.ribs.navigation.model.stream.NavigationMenuEvent.COINS
-import com.perelandrax.coincraft.presentation.ribs.navigation.model.stream.NavigationMenuEvent.ICO
+import com.perelandrax.coincraft.presentation.ribs.navigation.model.stream.NavigationMenuEvent.*
 import com.perelandrax.coincraft.presentation.ribs.navigation.model.stream.NavigationMenuEventStreamSource
 import com.uber.rib.core.Bundle
 import com.uber.rib.core.EmptyPresenter
@@ -20,7 +18,8 @@ import javax.inject.Inject
 @RibInteractor
 class NaviTypeInteractor : Interactor<EmptyPresenter, NaviTypeRouter>() {
 
-  @Inject lateinit var navigationMenuEventStreamSource: NavigationMenuEventStreamSource
+  @Inject
+  lateinit var navigationMenuEventStreamSource: NavigationMenuEventStreamSource
 
   override fun didBecomeActive(savedInstanceState: Bundle?) {
     super.didBecomeActive(savedInstanceState)

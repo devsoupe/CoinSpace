@@ -17,9 +17,8 @@ import kotlin.annotation.AnnotationRetention.BINARY
  *
  * TODO describe this scope's responsibility as a whole.
  */
-class UpcomingBuilder(dependency: ParentComponent) : ViewBuilder<UpcomingView, UpcomingRouter, UpcomingBuilder.ParentComponent>(
-  dependency
-) {
+class UpcomingBuilder(dependency: ParentComponent) :
+  ViewBuilder<UpcomingView, UpcomingRouter, UpcomingBuilder.ParentComponent>(dependency) {
 
   /**
    * Builds a new [UpcomingRouter].
@@ -52,13 +51,16 @@ class UpcomingBuilder(dependency: ParentComponent) : ViewBuilder<UpcomingView, U
   @dagger.Module
   abstract class Module {
 
-    @UpcomingScope @Binds
+    @UpcomingScope
+    @Binds
     internal abstract fun presenter(view: UpcomingView): UpcomingInteractor.UpcomingPresenter
 
     @dagger.Module
     companion object {
 
-      @UpcomingScope @Provides @JvmStatic
+      @UpcomingScope
+      @Provides
+      @JvmStatic
       internal fun router(
         component: Component,
         view: UpcomingView,

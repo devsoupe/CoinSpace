@@ -13,7 +13,8 @@ import javax.inject.Inject
 @RibInteractor
 class CoinsInteractor : Interactor<CoinsInteractor.CoinsPresenter, CoinsRouter>() {
 
-  @Inject lateinit var presenter: CoinsPresenter
+  @Inject
+  lateinit var presenter: CoinsPresenter
 //  @Inject lateinit var listener: Listener
 
   override fun didBecomeActive(savedInstanceState: Bundle?) {

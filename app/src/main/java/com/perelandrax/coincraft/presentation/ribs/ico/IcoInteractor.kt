@@ -1,7 +1,6 @@
 package com.perelandrax.coincraft.presentation.ribs.ico
 
-import com.perelandrax.coincraft.presentation.ribs.active.ActiveView
-import com.perelandrax.coincraft.presentation.ribs.upcoming.UpcomingView
+import com.perelandrax.coincraft.presentation.ribs.ico.view.tablayout.TabLayoutView
 import com.uber.rib.core.Bundle
 import com.uber.rib.core.Interactor
 import com.uber.rib.core.RibInteractor
@@ -15,7 +14,8 @@ import javax.inject.Inject
 @RibInteractor
 class IcoInteractor : Interactor<IcoInteractor.IcoPresenter, IcoRouter>() {
 
-  @Inject lateinit var presenter: IcoPresenter
+  @Inject
+  lateinit var presenter: IcoPresenter
 
   override fun didBecomeActive(savedInstanceState: Bundle?) {
     super.didBecomeActive(savedInstanceState)
@@ -23,18 +23,13 @@ class IcoInteractor : Interactor<IcoInteractor.IcoPresenter, IcoRouter>() {
 
   override fun willResignActive() {
     super.willResignActive()
-
-    // TODO: Perform any required clean up here, or delete this method entirely if not needed.
   }
 
   /**
    * Presenter interface implemented by this RIB's view.
    */
   interface IcoPresenter {
-    fun setupTabLayoutAndViewPager(
-      activeView: ActiveView,
-      upcomingView: UpcomingView
-    )
+    fun setupTabLayoutViews(tabLayoutViews: List<TabLayoutView>)
   }
 
   /**

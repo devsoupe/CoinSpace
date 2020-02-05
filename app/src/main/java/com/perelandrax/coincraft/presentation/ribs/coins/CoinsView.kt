@@ -4,7 +4,7 @@ import android.content.Context
 import android.util.AttributeSet
 import android.view.View
 import android.widget.FrameLayout
-import kotlinx.android.synthetic.main.coins_rib.view.loadingView
+import kotlinx.android.synthetic.main.coins_rib.view.*
 
 /**
  * Top level view for {@link CoinsBuilder.CoinsScope}.

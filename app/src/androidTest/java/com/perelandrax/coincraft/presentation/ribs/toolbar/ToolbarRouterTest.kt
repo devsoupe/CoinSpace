@@ -10,9 +10,12 @@ import org.mockito.MockitoAnnotations
 
 class ToolbarRouterTest : RibTestBasePlaceholder() {
 
-  @Mock internal lateinit var component: ToolbarBuilder.Component
-  @Mock internal lateinit var interactor: ToolbarInteractor
-  @Mock internal lateinit var view: ToolbarView
+  @Mock
+  internal lateinit var component: ToolbarBuilder.Component
+  @Mock
+  internal lateinit var interactor: ToolbarInteractor
+  @Mock
+  internal lateinit var view: ToolbarView
 
   private lateinit var router: ToolbarRouter
 

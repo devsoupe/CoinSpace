@@ -52,13 +52,16 @@ class ToolbarBuilder(dependency: ParentComponent) :
   @dagger.Module
   abstract class Module {
 
-    @ToolbarScope @Binds
+    @ToolbarScope
+    @Binds
     internal abstract fun presenter(view: ToolbarView): ToolbarInteractor.ToolbarPresenter
 
     @dagger.Module
     companion object {
 
-      @ToolbarScope @Provides @JvmStatic
+      @ToolbarScope
+      @Provides
+      @JvmStatic
       internal fun router(
         component: Component,
         view: ToolbarView,

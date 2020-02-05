@@ -52,13 +52,16 @@ class RootBuilder(dependency: ParentComponent) :
   @dagger.Module
   abstract class Module {
 
-    @RootScope @Binds
+    @RootScope
+    @Binds
     internal abstract fun presenter(view: RootView): RootInteractor.RootPresenter
 
     @dagger.Module
     companion object {
 
-      @RootScope @Provides @JvmStatic
+      @RootScope
+      @Provides
+      @JvmStatic
       internal fun router(
         component: Component,
         view: RootView,

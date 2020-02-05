@@ -10,9 +10,12 @@ import org.mockito.MockitoAnnotations
 
 class MainRouterTest : RibTestBasePlaceholder() {
 
-  @Mock internal lateinit var component: MainBuilder.Component
-  @Mock internal lateinit var interactor: MainInteractor
-  @Mock internal lateinit var view: MainView
+  @Mock
+  internal lateinit var component: MainBuilder.Component
+  @Mock
+  internal lateinit var interactor: MainInteractor
+  @Mock
+  internal lateinit var view: MainView
 
   private lateinit var router: MainRouter
 
