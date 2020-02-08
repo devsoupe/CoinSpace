@@ -6,6 +6,8 @@ import com.perelandrax.coincraft.presentation.ribs.coins.model.CoinListViewModel
 import com.uber.rib.core.Bundle
 import com.uber.rib.core.Interactor
 import com.uber.rib.core.RibInteractor
+import io.reactivex.Observable
+import io.reactivex.rxkotlin.subscribeBy
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
@@ -30,6 +32,13 @@ class CoinsInteractor : Interactor<CoinsInteractor.CoinsPresenter, CoinsRouter>(
     super.didBecomeActive(savedInstanceState)
 
     updateCoinListFromNetwork()
+
+    presenter.onRefresh()
+      .subscribeBy(onNext = {
+        updateCoinListFromNetwork()
+      }, onError = {
+
+      })
   }
 
   private fun updateCoinListFromNetwork() {
@@ -58,6 +67,8 @@ class CoinsInteractor : Interactor<CoinsInteractor.CoinsPresenter, CoinsRouter>(
    * Presenter interface implemented by this RIB's view.
    */
   interface CoinsPresenter {
+
+    fun onRefresh(): Observable<Unit>
 
     fun showLoading()
     fun hideLoading()

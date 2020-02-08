@@ -7,11 +7,15 @@ import android.widget.FrameLayout
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView.LayoutManager
+import com.jakewharton.rxbinding2.support.v4.widget.RxSwipeRefreshLayout
+import com.jakewharton.rxbinding2.support.v4.widget.refreshes
 import com.perelandrax.coincraft.R
 import com.perelandrax.coincraft.presentation.ribs.coins.adapter.CoinListAdapter
 import com.perelandrax.coincraft.presentation.ribs.coins.model.CoinListViewModel
+import io.reactivex.Observable
 import kotlinx.android.synthetic.main.layout_coins_rib.view.loadingView
 import kotlinx.android.synthetic.main.layout_coins_rib.view.recyclerView
+import kotlinx.android.synthetic.main.layout_coins_rib.view.swipeRefreshLayout
 
 /**
  * Top level view for {@link CoinsBuilder.CoinsScope}.
@@ -22,8 +26,8 @@ class CoinsView @JvmOverloads constructor(context: Context, attrs: AttributeSet?
   override fun onFinishInflate() {
     super.onFinishInflate()
 
-    setupLoadingView()
     setupRecyclerView()
+    setupLoadingView()
   }
 
   private fun setupLoadingView() {
@@ -34,6 +38,10 @@ class CoinsView @JvmOverloads constructor(context: Context, attrs: AttributeSet?
     recyclerView.layoutManager = LinearLayoutManager(context)
     recyclerView.adapter = CoinListAdapter(R.layout.recyclerview_coin_list_item)
     recyclerView.addItemDecoration(DividerItemDecoration(recyclerView.context, DividerItemDecoration.VERTICAL))
+  }
+
+  override fun onRefresh(): Observable<Unit> {
+    return swipeRefreshLayout.refreshes()
   }
 
   override fun showCoinList(coinList: List<CoinListViewModel>) {
@@ -48,5 +56,6 @@ class CoinsView @JvmOverloads constructor(context: Context, attrs: AttributeSet?
   override fun hideLoading() {
     loadingView.visibility = View.GONE
     loadingView.cancelAnimation()
+    swipeRefreshLayout.isRefreshing = false
   }
 }

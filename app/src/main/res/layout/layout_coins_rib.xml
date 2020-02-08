@@ -2,43 +2,33 @@
 <com.perelandrax.coincraft.presentation.ribs.coins.CoinsView
   xmlns:android="http://schemas.android.com/apk/res/android"
   xmlns:app="http://schemas.android.com/apk/res-auto"
+  xmlns:tools="http://schemas.android.com/tools"
   android:layout_width="match_parent"
   android:layout_height="match_parent"
-  xmlns:tools="http://schemas.android.com/tools"
   android:animateLayoutChanges="true"
   android:background="@android:color/white">
 
   <androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:animateLayoutChanges="true">
 
-<!--    <androidx.cardview.widget.CardView-->
-<!--      android:layout_width="0dp"-->
-<!--      android:layout_height="0dp"-->
-<!--      android:animateLayoutChanges="true"-->
-<!--      android:visibility="gone"-->
-<!--      app:layout_constraintBottom_toBottomOf="parent"-->
-<!--      app:layout_constraintEnd_toEndOf="parent"-->
-<!--      app:layout_constraintStart_toStartOf="parent"-->
-<!--      app:layout_constraintTop_toTopOf="parent"-->
-<!--      app:cardCornerRadius="0dp"-->
-<!--      app:cardElevation="1dp"-->
-<!--      app:cardMaxElevation="1dp"-->
-<!--      app:cardPreventCornerOverlap="false"-->
-<!--      app:cardUseCompatPadding="true">-->
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+      android:id="@+id/swipeRefreshLayout"
+      android:layout_width="0dp"
+      android:layout_height="0dp"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toTopOf="parent">
 
       <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/colorWhite"
-        android:clipToPadding="true"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        android:layout_height="match_parent"
+        android:background="@color/colorWhite"/>
 
-<!--    </androidx.cardview.widget.CardView>-->
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
     <com.airbnb.lottie.LottieAnimationView
       android:id="@+id/loadingView"
