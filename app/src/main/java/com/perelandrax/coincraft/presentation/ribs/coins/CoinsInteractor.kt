@@ -1,8 +1,15 @@
 package com.perelandrax.coincraft.presentation.ribs.coins
 
+import com.perelandrax.coincraft.data.repository.CoinListNetworkRepository
+import com.perelandrax.coincraft.data.repository.remote.model.mapToDomain
+import com.perelandrax.coincraft.presentation.ribs.coins.model.CoinListViewModel
 import com.uber.rib.core.Bundle
 import com.uber.rib.core.Interactor
 import com.uber.rib.core.RibInteractor
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.async
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 /**
@@ -15,12 +22,30 @@ class CoinsInteractor : Interactor<CoinsInteractor.CoinsPresenter, CoinsRouter>(
 
   @Inject
   lateinit var presenter: CoinsPresenter
-//  @Inject lateinit var listener: Listener
+
+  @Inject
+  lateinit var coinListNetworkRepository: CoinListNetworkRepository
 
   override fun didBecomeActive(savedInstanceState: Bundle?) {
     super.didBecomeActive(savedInstanceState)
 
-//    presenter.showLoading()
+    updateCoinListFromNetwork()
+  }
+
+  private fun updateCoinListFromNetwork() {
+    CoroutineScope(Dispatchers.Main).launch {
+      presenter.showLoading()
+
+      val coinList = async { coinListNetworkRepository.getCoinListCoinMarketCap() }.await()
+      val coinListViewModels = mutableListOf<CoinListViewModel>().apply {
+        for (coin in coinList) {
+          add(coin.mapToDomain())
+        }
+      }
+
+      presenter.showCoinList(coinListViewModels)
+      presenter.hideLoading()
+    }
   }
 
   override fun willResignActive() {
@@ -36,6 +61,7 @@ class CoinsInteractor : Interactor<CoinsInteractor.CoinsPresenter, CoinsRouter>(
 
     fun showLoading()
     fun hideLoading()
+    fun showCoinList(coinList: List<CoinListViewModel>)
   }
 
   /**

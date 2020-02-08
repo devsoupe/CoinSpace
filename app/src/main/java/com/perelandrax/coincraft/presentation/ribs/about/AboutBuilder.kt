@@ -37,15 +37,12 @@ class AboutBuilder(dependency: ParentComponent) :
     return component.aboutRouter()
   }
 
-  override fun inflateView(
-    inflater: LayoutInflater,
-    parentViewGroup: ViewGroup
-  ): AboutView? {
+  override fun inflateView(inflater: LayoutInflater, parentViewGroup: ViewGroup): AboutView? {
     return inflater.inflate(R.layout.layout_about_rib, parentViewGroup, false) as AboutView
   }
 
   interface ParentComponent {
-//        val aboutListener: AboutInteractor.Listener
+
   }
 
   @dagger.Module
@@ -61,11 +58,7 @@ class AboutBuilder(dependency: ParentComponent) :
       @AboutScope
       @Provides
       @JvmStatic
-      internal fun router(
-        component: Component,
-        view: AboutView,
-        interactor: AboutInteractor
-      ): AboutRouter {
+      internal fun router(component: Component, view: AboutView, interactor: AboutInteractor): AboutRouter {
         return AboutRouter(view, interactor, component)
       }
 
@@ -79,6 +72,7 @@ class AboutBuilder(dependency: ParentComponent) :
 
     @dagger.Component.Builder
     interface Builder {
+
       @BindsInstance
       fun interactor(interactor: AboutInteractor): Builder
 
@@ -86,6 +80,7 @@ class AboutBuilder(dependency: ParentComponent) :
       fun view(view: AboutView): Builder
 
       fun parentComponent(component: ParentComponent): Builder
+
       fun build(): Component
     }
   }

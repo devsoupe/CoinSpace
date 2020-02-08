@@ -1,5 +1,6 @@
 package com.perelandrax.coincraft.presentation.ribs.main
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.perelandrax.coincraft.R
@@ -45,15 +46,12 @@ class MainBuilder(dependency: ParentComponent) :
     return component.mainRouter()
   }
 
-  override fun inflateView(
-    inflater: LayoutInflater,
-    parentViewGroup: ViewGroup
-  ): MainView? {
+  override fun inflateView(inflater: LayoutInflater, parentViewGroup: ViewGroup): MainView? {
     return inflater.inflate(R.layout.layout_main_rib, parentViewGroup, false) as MainView
   }
 
   interface ParentComponent {
-
+    fun context(): Context
   }
 
   @dagger.Module
@@ -69,15 +67,8 @@ class MainBuilder(dependency: ParentComponent) :
       @MainScope
       @Provides
       @JvmStatic
-      internal fun router(
-        component: Component,
-        view: MainView,
-        interactor: MainInteractor
-      ): MainRouter {
-        return MainRouter(
-          view,
-          interactor,
-          component,
+      internal fun router(component: Component, view: MainView, interactor: MainInteractor): MainRouter {
+        return MainRouter(view, interactor, component,
           ToolbarBuilder(component),
           NavigationBuilder(component),
           NaviTypeBuilder(component)
@@ -109,9 +100,7 @@ class MainBuilder(dependency: ParentComponent) :
 
   @MainScope
   @dagger.Component(modules = arrayOf(Module::class), dependencies = arrayOf(ParentComponent::class))
-  interface Component :
-    InteractorBaseComponent<MainInteractor>,
-    BuilderComponent,
+  interface Component : InteractorBaseComponent<MainInteractor>, BuilderComponent,
     ToolbarBuilder.ParentComponent,
     NavigationBuilder.ParentComponent,
     NaviTypeBuilder.ParentComponent {

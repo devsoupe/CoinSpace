@@ -1,5 +1,6 @@
 package com.perelandrax.coincraft.presentation.ribs.navigation
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.perelandrax.coincraft.R
@@ -78,8 +79,7 @@ class NavigationBuilder(dependency: ParentComponent) :
   @dagger.Component(modules = arrayOf(Module::class), dependencies = arrayOf(ParentComponent::class))
   interface Component :
     InteractorBaseComponent<NavigationInteractor>,
-    BuilderComponent,
-    CoinsBuilder.ParentComponent {
+    BuilderComponent {
 
     @dagger.Component.Builder
     interface Builder {

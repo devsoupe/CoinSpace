@@ -1,5 +1,6 @@
 package com.perelandrax.coincraft.presentation.ribs.root
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.perelandrax.coincraft.R
@@ -27,13 +28,14 @@ class RootBuilder(dependency: ParentComponent) :
    * @param parentViewGroup parent view group that this router's view will be added to.
    * @return a new [RootRouter].
    */
-  fun build(parentViewGroup: ViewGroup): RootRouter {
+  fun build(context: Context, parentViewGroup: ViewGroup): RootRouter {
     val view = createView(parentViewGroup)
     val interactor = RootInteractor()
     val component = DaggerRootBuilder_Component.builder()
       .parentComponent(dependency)
       .view(view)
       .interactor(interactor)
+      .provideContext(context)
       .build()
     return component.rootRouter()
   }
@@ -76,9 +78,7 @@ class RootBuilder(dependency: ParentComponent) :
 
   @RootScope
   @dagger.Component(modules = arrayOf(Module::class), dependencies = arrayOf(ParentComponent::class))
-  interface Component :
-    InteractorBaseComponent<RootInteractor>,
-    BuilderComponent,
+  interface Component : InteractorBaseComponent<RootInteractor>, BuilderComponent,
     MainBuilder.ParentComponent {
 
     @dagger.Component.Builder
@@ -89,6 +89,9 @@ class RootBuilder(dependency: ParentComponent) :
 
       @BindsInstance
       fun view(view: RootView): Builder
+
+      @BindsInstance
+      fun provideContext(context: Context): Builder
 
       fun parentComponent(component: ParentComponent): Builder
 

@@ -1,5 +1,6 @@
 package com.perelandrax.coincraft.presentation.ribs.navitype
 
+import android.content.Context
 import com.perelandrax.coincraft.presentation.ribs.about.AboutBuilder
 import com.perelandrax.coincraft.presentation.ribs.coins.CoinsBuilder
 import com.perelandrax.coincraft.presentation.ribs.ico.IcoBuilder
@@ -39,6 +40,7 @@ class NaviTypeBuilder(dependency: ParentComponent) :
   }
 
   interface ParentComponent {
+    fun context(): Context
     fun mainView(): MainView
     fun navigationMenuEventStreamSource(): NavigationMenuEventStreamSource
   }
@@ -59,11 +61,7 @@ class NaviTypeBuilder(dependency: ParentComponent) :
       @NaviTypeScope
       @Provides
       @JvmStatic
-      internal fun router(
-        component: Component,
-        interactor: NaviTypeInteractor,
-        mainView: MainView
-      ): NaviTypeRouter {
+      internal fun router(component: Component, interactor: NaviTypeInteractor, mainView: MainView): NaviTypeRouter {
         return NaviTypeRouter(
           interactor, component, mainView,
           CoinsBuilder(component), IcoBuilder(component), AboutBuilder(component)

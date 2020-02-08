@@ -6,7 +6,7 @@ import android.widget.FrameLayout
 import com.jakewharton.rxrelay2.BehaviorRelay
 import com.perelandrax.coincraft.R
 import io.reactivex.Observable
-import kotlinx.android.synthetic.main.layout_navigation_rib.view.*
+import kotlinx.android.synthetic.main.layout_navigation_rib.view.navigation
 
 /**
  * Top level view for {@link MainBottomTabBuilder.MainBottomTabScope}.

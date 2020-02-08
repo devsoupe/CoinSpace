@@ -1,13 +1,19 @@
 package com.perelandrax.coincraft.presentation.ribs.coins
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.perelandrax.coincraft.R
+import com.perelandrax.coincraft.data.repository.CoinListNetworkRepository
+import com.perelandrax.coincraft.data.repository.remote.CoinService
 import com.uber.rib.core.InteractorBaseComponent
 import com.uber.rib.core.ViewBuilder
 import dagger.Binds
 import dagger.BindsInstance
 import dagger.Provides
+import okhttp3.Cache
+import okhttp3.OkHttpClient
+import java.io.File
 import javax.inject.Qualifier
 import javax.inject.Scope
 import kotlin.annotation.AnnotationRetention.BINARY
@@ -42,7 +48,7 @@ class CoinsBuilder(dependency: ParentComponent) :
   }
 
   interface ParentComponent {
-//    val coinsListener: CoinsInteractor.Listener
+    fun context(): Context
   }
 
   @dagger.Module
@@ -58,26 +64,46 @@ class CoinsBuilder(dependency: ParentComponent) :
       @CoinsScope
       @Provides
       @JvmStatic
-      internal fun router(
-        component: Component,
-        view: CoinsView,
-        interactor: CoinsInteractor
-      ): CoinsRouter {
+      internal fun router(component: Component, view: CoinsView, interactor: CoinsInteractor): CoinsRouter {
         return CoinsRouter(view, interactor, component)
       }
 
-      // TODO: Create provider methods for dependencies created by this Rib. These should be static.
+      @CoinsScope
+      @Provides
+      @JvmStatic
+      fun provideHttpClient(context: Context): OkHttpClient {
+        var cacheSize = 10 * 1024 * 1024L
+        var cacheDirectory = File(context.cacheDir.absolutePath, "CoinCraftCache")
+        var cache = Cache(cacheDirectory, cacheSize)
+
+        return OkHttpClient.Builder()
+          .cache(cache)
+          .build()
+      }
+
+      @CoinsScope
+      @Provides
+      @JvmStatic
+      fun provideCoinService(okHttpClient: OkHttpClient): CoinService {
+        return CoinService(okHttpClient)
+      }
+
+      @CoinsScope
+      @Provides
+      @JvmStatic
+      fun provideCoinListNetworkRepository(coinService: CoinService): CoinListNetworkRepository {
+        return CoinListNetworkRepository(coinService)
+      }
     }
   }
 
   @CoinsScope
   @dagger.Component(modules = arrayOf(Module::class), dependencies = arrayOf(ParentComponent::class))
-  interface Component :
-    InteractorBaseComponent<CoinsInteractor>,
-    BuilderComponent {
+  interface Component : InteractorBaseComponent<CoinsInteractor>, BuilderComponent {
 
     @dagger.Component.Builder
     interface Builder {
+
       @BindsInstance
       fun interactor(interactor: CoinsInteractor): Builder
 

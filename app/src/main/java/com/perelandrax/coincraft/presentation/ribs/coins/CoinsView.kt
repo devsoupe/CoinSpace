@@ -6,9 +6,10 @@ import android.view.View
 import android.widget.FrameLayout
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView.LayoutManager
 import com.perelandrax.coincraft.R
-import com.perelandrax.coincraft.presentation.ribs.coins.model.CoinListViewModel
 import com.perelandrax.coincraft.presentation.ribs.coins.adapter.CoinListAdapter
+import com.perelandrax.coincraft.presentation.ribs.coins.model.CoinListViewModel
 import kotlinx.android.synthetic.main.layout_coins_rib.view.loadingView
 import kotlinx.android.synthetic.main.layout_coins_rib.view.recyclerView
 
@@ -33,28 +34,10 @@ class CoinsView @JvmOverloads constructor(context: Context, attrs: AttributeSet?
     recyclerView.layoutManager = LinearLayoutManager(context)
     recyclerView.adapter = CoinListAdapter(R.layout.recyclerview_coin_list_item)
     recyclerView.addItemDecoration(DividerItemDecoration(recyclerView.context, DividerItemDecoration.VERTICAL))
-
-    addDummyData()
   }
 
-  private fun addDummyData() {
-    val dummyData = mutableListOf<CoinListViewModel>().apply {
-      for (i in 0..10) {
-        add(
-          CoinListViewModel(
-            "$i",
-            "",
-            "Name $i",
-            "CoinName $i",
-            "Percent $i",
-            "Price $i",
-            "Volume $i", ""
-          )
-        )
-      }
-    }
-
-    (recyclerView.adapter as CoinListAdapter).setRepos(dummyData)
+  override fun showCoinList(coinList: List<CoinListViewModel>) {
+    (recyclerView.adapter as CoinListAdapter).setRepos(coinList)
   }
 
   override fun showLoading() {

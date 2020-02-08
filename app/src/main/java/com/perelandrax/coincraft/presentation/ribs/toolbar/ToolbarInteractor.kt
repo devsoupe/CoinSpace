@@ -2,7 +2,9 @@ package com.perelandrax.coincraft.presentation.ribs.toolbar
 
 import android.annotation.SuppressLint
 import com.perelandrax.coincraft.presentation.ribs.navigation.model.stream.NavigationMenuEvent
-import com.perelandrax.coincraft.presentation.ribs.navigation.model.stream.NavigationMenuEvent.*
+import com.perelandrax.coincraft.presentation.ribs.navigation.model.stream.NavigationMenuEvent.ABOUT
+import com.perelandrax.coincraft.presentation.ribs.navigation.model.stream.NavigationMenuEvent.COINS
+import com.perelandrax.coincraft.presentation.ribs.navigation.model.stream.NavigationMenuEvent.ICO
 import com.perelandrax.coincraft.presentation.ribs.navigation.model.stream.NavigationMenuEventStreamSource
 import com.uber.rib.core.Bundle
 import com.uber.rib.core.Interactor

@@ -12,6 +12,6 @@ class CoinCraftActivity : RibActivity() {
 
   override fun createRouter(parentViewGroup: ViewGroup): ViewRouter<*, *, *> {
     val rootBuilder = RootBuilder(object : ParentComponent {})
-    return rootBuilder.build(parentViewGroup)
+    return rootBuilder.build(this, parentViewGroup)
   }
 }

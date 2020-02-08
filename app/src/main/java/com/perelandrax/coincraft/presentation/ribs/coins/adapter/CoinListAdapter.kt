@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.perelandrax.coincraft.presentation.ribs.coins.model.CoinListViewModel
 import kotlinx.android.synthetic.main.recyclerview_coin_list_item.view.coinLogoImageView
 import kotlinx.android.synthetic.main.recyclerview_coin_list_item.view.nameTextView
@@ -13,7 +14,8 @@ import kotlinx.android.synthetic.main.recyclerview_coin_list_item.view.priceText
 import kotlinx.android.synthetic.main.recyclerview_coin_list_item.view.symbolTextView
 import kotlinx.android.synthetic.main.recyclerview_coin_list_item.view.volumeTextView
 
-class CoinListAdapter(private val resId: Int, val repos: MutableList<CoinListViewModel> = mutableListOf()) : RecyclerView.Adapter<CoinListAdapter.ViewHolder>() {
+class CoinListAdapter(private val resId: Int, val repos: MutableList<CoinListViewModel> = mutableListOf()) :
+  RecyclerView.Adapter<CoinListAdapter.ViewHolder>() {
 
   private lateinit var context: Context
 
@@ -45,7 +47,7 @@ class CoinListAdapter(private val resId: Int, val repos: MutableList<CoinListVie
     private val volumeTextView = itemView.volumeTextView
 
     fun bind(item: CoinListViewModel) {
-//      Glide.with(context).load(item.imageUrl).into(coinLogoImageView)
+      Glide.with(context).load(item.imageUrl).into(coinLogoImageView)
 
       symbolTextView.text = item.coinName
       nameTextView.text = item.name

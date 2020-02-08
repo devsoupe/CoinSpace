@@ -7,7 +7,8 @@ import com.perelandrax.coincraft.presentation.ribs.navitype.NaviTypeRouter
 import com.perelandrax.coincraft.presentation.ribs.toolbar.ToolbarBuilder
 import com.perelandrax.coincraft.presentation.ribs.toolbar.ToolbarRouter
 import com.uber.rib.core.ViewRouter
-import kotlinx.android.synthetic.main.layout_main_rib.view.*
+import kotlinx.android.synthetic.main.layout_main_rib.view.navigation
+import kotlinx.android.synthetic.main.layout_main_rib.view.toolbar
 
 /**
  * Adds and removes children of {@link MainBuilder.MainScope}.

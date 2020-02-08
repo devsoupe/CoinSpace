@@ -64,7 +64,8 @@ class IcoBuilder(dependency: ParentComponent) :
       @Provides
       @JvmStatic
       internal fun router(component: Component, view: IcoView, interactor: IcoInteractor): IcoRouter {
-        return IcoRouter(view, interactor, component,
+        return IcoRouter(
+          view, interactor, component,
           listOf(
             ActiveAdapter(ActiveBuilder(component), view),
             UpcomingAdapter(UpcomingBuilder(component), view)

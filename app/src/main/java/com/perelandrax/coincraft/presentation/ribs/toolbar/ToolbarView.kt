@@ -4,7 +4,8 @@ import android.content.Context
 import android.util.AttributeSet
 import android.widget.FrameLayout
 import com.teamdecano.cryptocoin.common.screen_stack.Services
-import kotlinx.android.synthetic.main.layout_toolbar_rib.view.*
+import kotlinx.android.synthetic.main.layout_toolbar_rib.view.toolbar
+import kotlinx.android.synthetic.main.layout_toolbar_rib.view.toolbar_title
 
 /**
  * Top level view for {@link ToolbarBuilder.ToolbarScope}.
