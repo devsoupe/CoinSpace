@@ -1,4 +1,4 @@
-package com.perelandrax.coincraft.presentation.ribs.coins.model
+package com.perelandrax.coincraft.presentation.ribs.coins.coinlist
 
 data class CoinListViewModel(
   var id: String?,

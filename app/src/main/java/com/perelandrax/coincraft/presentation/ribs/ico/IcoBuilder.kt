@@ -4,8 +4,8 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.perelandrax.coincraft.R
 import com.perelandrax.coincraft.presentation.ribs.active.ActiveBuilder
-import com.perelandrax.coincraft.presentation.ribs.ico.presentation.tablayout.ActiveAdapter
-import com.perelandrax.coincraft.presentation.ribs.ico.presentation.tablayout.UpcomingAdapter
+import com.perelandrax.coincraft.presentation.ribs.ico.tablayout.ActiveAdapter
+import com.perelandrax.coincraft.presentation.ribs.ico.tablayout.UpcomingAdapter
 import com.perelandrax.coincraft.presentation.ribs.upcoming.UpcomingBuilder
 import com.uber.rib.core.InteractorBaseComponent
 import com.uber.rib.core.ViewBuilder
@@ -77,9 +77,7 @@ class IcoBuilder(dependency: ParentComponent) :
 
   @IcoScope
   @dagger.Component(modules = arrayOf(Module::class), dependencies = arrayOf(ParentComponent::class))
-  interface Component :
-    InteractorBaseComponent<IcoInteractor>,
-    BuilderComponent,
+  interface Component : InteractorBaseComponent<IcoInteractor>, BuilderComponent,
     ActiveBuilder.ParentComponent,
     UpcomingBuilder.ParentComponent {
 

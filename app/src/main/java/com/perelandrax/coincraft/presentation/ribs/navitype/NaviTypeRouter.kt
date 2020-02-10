@@ -8,21 +8,18 @@ import com.perelandrax.coincraft.presentation.ribs.coins.CoinsRouter
 import com.perelandrax.coincraft.presentation.ribs.ico.IcoBuilder
 import com.perelandrax.coincraft.presentation.ribs.ico.IcoRouter
 import com.uber.rib.core.Router
-import kotlinx.android.synthetic.main.layout_main_rib.view.content
+import kotlinx.android.synthetic.main.layout_main_rib.view.*
 
 /**
  * Adds and removes children of {@link NaviTypeBuilder.NaviTypeScope}.
  *
  * TODO describe the possible child configurations of this scope.
  */
-class NaviTypeRouter(
-  interactor: NaviTypeInteractor,
-  component: NaviTypeBuilder.Component,
-  private val parentView: ViewGroup,
-  coinsBuilder: CoinsBuilder,
-  icoBuilder: IcoBuilder,
-  aboutBuilder: AboutBuilder
-) : Router<NaviTypeInteractor, NaviTypeBuilder.Component>(interactor, component) {
+class NaviTypeRouter(interactor: NaviTypeInteractor, component: NaviTypeBuilder.Component, private val parentView: ViewGroup,
+                     coinsBuilder: CoinsBuilder,
+                     icoBuilder: IcoBuilder,
+                     aboutBuilder: AboutBuilder) :
+  Router<NaviTypeInteractor, NaviTypeBuilder.Component>(interactor, component) {
 
   private var coinsRouter: CoinsRouter = coinsBuilder.build(parentView)
   private var icoRouter: IcoRouter = icoBuilder.build(parentView)

@@ -7,8 +7,5 @@ import com.uber.rib.core.ViewRouter
  *
  * TODO describe the possible child configurations of this scope.
  */
-class ToolbarRouter(
-  view: ToolbarView,
-  interactor: ToolbarInteractor,
-  component: ToolbarBuilder.Component
-) : ViewRouter<ToolbarView, ToolbarInteractor, ToolbarBuilder.Component>(view, interactor, component)
+class ToolbarRouter(view: ToolbarView, interactor: ToolbarInteractor, component: ToolbarBuilder.Component) :
+  ViewRouter<ToolbarView, ToolbarInteractor, ToolbarBuilder.Component>(view, interactor, component)

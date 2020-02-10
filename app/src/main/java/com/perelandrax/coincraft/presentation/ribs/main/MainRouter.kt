@@ -7,22 +7,18 @@ import com.perelandrax.coincraft.presentation.ribs.navitype.NaviTypeRouter
 import com.perelandrax.coincraft.presentation.ribs.toolbar.ToolbarBuilder
 import com.perelandrax.coincraft.presentation.ribs.toolbar.ToolbarRouter
 import com.uber.rib.core.ViewRouter
-import kotlinx.android.synthetic.main.layout_main_rib.view.navigation
-import kotlinx.android.synthetic.main.layout_main_rib.view.toolbar
+import kotlinx.android.synthetic.main.layout_main_rib.view.*
 
 /**
  * Adds and removes children of {@link MainBuilder.MainScope}.
  *
  * TODO describe the possible child configurations of this scope.
  */
-class MainRouter(
-  view: MainView,
-  interactor: MainInteractor,
-  component: MainBuilder.Component,
-  private val toolbarBuilder: ToolbarBuilder,
-  private val navigationBuilder: NavigationBuilder,
-  private val naviTypeBuilder: NaviTypeBuilder
-) : ViewRouter<MainView, MainInteractor, MainBuilder.Component>(view, interactor, component) {
+class MainRouter(view: MainView, interactor: MainInteractor, component: MainBuilder.Component,
+                 toolbarBuilder: ToolbarBuilder,
+                 navigationBuilder: NavigationBuilder,
+                 naviTypeBuilder: NaviTypeBuilder) :
+  ViewRouter<MainView, MainInteractor, MainBuilder.Component>(view, interactor, component) {
 
   private var toolbarRouter: ToolbarRouter = toolbarBuilder.build(view)
   private var navigationRouter: NavigationRouter = navigationBuilder.build(view)

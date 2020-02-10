@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.FrameLayout
 import androidx.viewpager.widget.PagerAdapter
-import com.perelandrax.coincraft.presentation.ribs.ico.presentation.tablayout.TabLayoutView
+import com.perelandrax.coincraft.presentation.ribs.ico.tablayout.TabLayoutView
 import kotlinx.android.synthetic.main.layout_coins_rib.view.loadingView
 import kotlinx.android.synthetic.main.layout_ico_rib.view.tabLayout
 import kotlinx.android.synthetic.main.layout_ico_rib.view.viewPager

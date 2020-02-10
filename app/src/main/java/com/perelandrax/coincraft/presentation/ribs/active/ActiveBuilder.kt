@@ -81,6 +81,7 @@ class ActiveBuilder(dependency: ParentComponent) :
 
     @dagger.Component.Builder
     interface Builder {
+
       @BindsInstance
       fun interactor(interactor: ActiveInteractor): Builder
 

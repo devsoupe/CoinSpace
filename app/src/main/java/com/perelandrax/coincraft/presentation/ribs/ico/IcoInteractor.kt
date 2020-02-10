@@ -1,6 +1,6 @@
 package com.perelandrax.coincraft.presentation.ribs.ico
 
-import com.perelandrax.coincraft.presentation.ribs.ico.presentation.tablayout.TabLayoutView
+import com.perelandrax.coincraft.presentation.ribs.ico.tablayout.TabLayoutView
 import com.uber.rib.core.Bundle
 import com.uber.rib.core.Interactor
 import com.uber.rib.core.RibInteractor

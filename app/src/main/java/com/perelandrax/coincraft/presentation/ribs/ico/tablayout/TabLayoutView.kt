@@ -1,4 +1,4 @@
-package com.perelandrax.coincraft.presentation.ribs.ico.presentation.tablayout
+package com.perelandrax.coincraft.presentation.ribs.ico.tablayout
 
 import android.view.View
 import com.uber.rib.core.ViewRouter

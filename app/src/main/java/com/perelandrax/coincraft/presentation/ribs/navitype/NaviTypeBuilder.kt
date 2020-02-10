@@ -5,7 +5,7 @@ import com.perelandrax.coincraft.presentation.ribs.about.AboutBuilder
 import com.perelandrax.coincraft.presentation.ribs.coins.CoinsBuilder
 import com.perelandrax.coincraft.presentation.ribs.ico.IcoBuilder
 import com.perelandrax.coincraft.presentation.ribs.main.MainView
-import com.perelandrax.coincraft.presentation.ribs.navigation.model.stream.NavigationMenuEventStreamSource
+import com.perelandrax.coincraft.presentation.ribs.navigation.menustream.NavigationMenuEventStreamSource
 import com.uber.rib.core.Builder
 import com.uber.rib.core.EmptyPresenter
 import com.uber.rib.core.InteractorBaseComponent
@@ -74,9 +74,7 @@ class NaviTypeBuilder(dependency: ParentComponent) :
 
   @NaviTypeScope
   @dagger.Component(modules = arrayOf(Module::class), dependencies = arrayOf(ParentComponent::class))
-  interface Component :
-    InteractorBaseComponent<NaviTypeInteractor>,
-    BuilderComponent,
+  interface Component : InteractorBaseComponent<NaviTypeInteractor>, BuilderComponent,
     CoinsBuilder.ParentComponent,
     IcoBuilder.ParentComponent,
     AboutBuilder.ParentComponent {

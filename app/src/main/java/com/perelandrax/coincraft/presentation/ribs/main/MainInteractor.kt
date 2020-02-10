@@ -1,10 +1,10 @@
 package com.perelandrax.coincraft.presentation.ribs.main
 
 import com.perelandrax.coincraft.presentation.ribs.navigation.NavigationInteractor
-import com.perelandrax.coincraft.presentation.ribs.navigation.model.stream.NavigationMenuEvent.ABOUT
-import com.perelandrax.coincraft.presentation.ribs.navigation.model.stream.NavigationMenuEvent.COINS
-import com.perelandrax.coincraft.presentation.ribs.navigation.model.stream.NavigationMenuEvent.ICO
-import com.perelandrax.coincraft.presentation.ribs.navigation.model.stream.NavigationMenuEventStreamUpdater
+import com.perelandrax.coincraft.presentation.ribs.navigation.menustream.NavigationMenuEvent.ABOUT
+import com.perelandrax.coincraft.presentation.ribs.navigation.menustream.NavigationMenuEvent.COINS
+import com.perelandrax.coincraft.presentation.ribs.navigation.menustream.NavigationMenuEvent.ICO
+import com.perelandrax.coincraft.presentation.ribs.navigation.menustream.NavigationMenuEventStreamUpdater
 import com.uber.rib.core.Bundle
 import com.uber.rib.core.Interactor
 import com.uber.rib.core.RibInteractor
@@ -20,6 +20,7 @@ class MainInteractor : Interactor<MainInteractor.MainPresenter, MainRouter>() {
 
   @Inject
   lateinit var presenter: MainPresenter
+
   @Inject
   lateinit var navigationMenuEventStreamUpdater: NavigationMenuEventStreamUpdater
 

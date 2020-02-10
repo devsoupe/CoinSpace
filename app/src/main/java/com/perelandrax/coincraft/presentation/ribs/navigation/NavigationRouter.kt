@@ -7,8 +7,5 @@ import com.uber.rib.core.ViewRouter
  *
  * TODO describe the possible child configurations of this scope.
  */
-class NavigationRouter(
-  view: NavigationView,
-  interactor: NavigationInteractor,
-  component: NavigationBuilder.Component
-) : ViewRouter<NavigationView, NavigationInteractor, NavigationBuilder.Component>(view, interactor, component)
+class NavigationRouter(view: NavigationView, interactor: NavigationInteractor, component: NavigationBuilder.Component) :
+  ViewRouter<NavigationView, NavigationInteractor, NavigationBuilder.Component>(view, interactor, component)

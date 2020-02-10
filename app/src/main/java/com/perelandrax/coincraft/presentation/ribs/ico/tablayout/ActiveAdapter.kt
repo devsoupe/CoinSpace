@@ -1,4 +1,4 @@
-package com.perelandrax.coincraft.presentation.ribs.ico.presentation.tablayout
+package com.perelandrax.coincraft.presentation.ribs.ico.tablayout
 
 import android.view.ViewGroup
 import com.perelandrax.coincraft.presentation.ribs.active.ActiveBuilder

@@ -64,11 +64,7 @@ class RootBuilder(dependency: ParentComponent) :
       @RootScope
       @Provides
       @JvmStatic
-      internal fun router(
-        component: Component,
-        view: RootView,
-        interactor: RootInteractor
-      ): RootRouter {
+      internal fun router(component: Component, view: RootView, interactor: RootInteractor): RootRouter {
         return RootRouter(view, interactor, component, MainBuilder(component))
       }
 

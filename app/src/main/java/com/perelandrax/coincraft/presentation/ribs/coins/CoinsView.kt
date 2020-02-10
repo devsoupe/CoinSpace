@@ -6,12 +6,10 @@ import android.view.View
 import android.widget.FrameLayout
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView.LayoutManager
-import com.jakewharton.rxbinding2.support.v4.widget.RxSwipeRefreshLayout
 import com.jakewharton.rxbinding2.support.v4.widget.refreshes
 import com.perelandrax.coincraft.R
-import com.perelandrax.coincraft.presentation.ribs.coins.adapter.CoinListAdapter
-import com.perelandrax.coincraft.presentation.ribs.coins.model.CoinListViewModel
+import com.perelandrax.coincraft.presentation.ribs.coins.coinlist.CoinListAdapter
+import com.perelandrax.coincraft.presentation.ribs.coins.coinlist.CoinListViewModel
 import io.reactivex.Observable
 import kotlinx.android.synthetic.main.layout_coins_rib.view.loadingView
 import kotlinx.android.synthetic.main.layout_coins_rib.view.recyclerView
@@ -45,7 +43,7 @@ class CoinsView @JvmOverloads constructor(context: Context, attrs: AttributeSet?
   }
 
   override fun showCoinList(coinList: List<CoinListViewModel>) {
-    (recyclerView.adapter as CoinListAdapter).setRepos(coinList)
+    (recyclerView.adapter as CoinListAdapter).setData(coinList)
   }
 
   override fun showLoading() {

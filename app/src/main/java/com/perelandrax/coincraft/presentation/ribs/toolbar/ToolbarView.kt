@@ -10,11 +10,8 @@ import kotlinx.android.synthetic.main.layout_toolbar_rib.view.toolbar_title
 /**
  * Top level view for {@link ToolbarBuilder.ToolbarScope}.
  */
-class ToolbarView @JvmOverloads constructor(
-  context: Context,
-  attrs: AttributeSet? = null,
-  defStyle: Int = 0
-) : FrameLayout(context, attrs, defStyle), ToolbarInteractor.ToolbarPresenter {
+class ToolbarView @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null, defStyle: Int = 0) :
+  FrameLayout(context, attrs, defStyle), ToolbarInteractor.ToolbarPresenter {
 
   override fun onFinishInflate() {
     super.onFinishInflate()

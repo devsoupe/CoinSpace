@@ -39,10 +39,7 @@ class NavigationBuilder(dependency: ParentComponent) :
     return component.mainbottomtabRouter()
   }
 
-  override fun inflateView(
-    inflater: LayoutInflater,
-    parentViewGroup: ViewGroup
-  ): NavigationView? {
+  override fun inflateView(inflater: LayoutInflater, parentViewGroup: ViewGroup): NavigationView? {
     return inflater.inflate(R.layout.layout_navigation_rib, parentViewGroup, false) as NavigationView
   }
 
@@ -63,11 +60,7 @@ class NavigationBuilder(dependency: ParentComponent) :
       @MainBottomTabScope
       @Provides
       @JvmStatic
-      internal fun router(
-        component: Component,
-        view: NavigationView,
-        interactor: NavigationInteractor
-      ): NavigationRouter {
+      internal fun router(component: Component, view: NavigationView, interactor: NavigationInteractor): NavigationRouter {
         return NavigationRouter(view, interactor, component)
       }
 
@@ -77,9 +70,7 @@ class NavigationBuilder(dependency: ParentComponent) :
 
   @MainBottomTabScope
   @dagger.Component(modules = arrayOf(Module::class), dependencies = arrayOf(ParentComponent::class))
-  interface Component :
-    InteractorBaseComponent<NavigationInteractor>,
-    BuilderComponent {
+  interface Component : InteractorBaseComponent<NavigationInteractor>, BuilderComponent {
 
     @dagger.Component.Builder
     interface Builder {

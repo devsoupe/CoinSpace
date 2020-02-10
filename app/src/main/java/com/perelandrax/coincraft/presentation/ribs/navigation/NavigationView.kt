@@ -11,11 +11,8 @@ import kotlinx.android.synthetic.main.layout_navigation_rib.view.navigation
 /**
  * Top level view for {@link MainBottomTabBuilder.MainBottomTabScope}.
  */
-class NavigationView @JvmOverloads constructor(
-  context: Context,
-  attrs: AttributeSet? = null,
-  defStyle: Int = 0
-) : FrameLayout(context, attrs, defStyle), NavigationInteractor.MainBottomTabPresenter {
+class NavigationView @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null, defStyle: Int = 0) :
+  FrameLayout(context, attrs, defStyle), NavigationInteractor.MainBottomTabPresenter {
 
   private val menuIdEvent = BehaviorRelay.createDefault(R.id.coins)
     .toSerialized()

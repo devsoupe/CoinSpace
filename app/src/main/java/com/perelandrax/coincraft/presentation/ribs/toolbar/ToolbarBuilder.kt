@@ -3,7 +3,7 @@ package com.perelandrax.coincraft.presentation.ribs.toolbar
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.perelandrax.coincraft.R
-import com.perelandrax.coincraft.presentation.ribs.navigation.model.stream.NavigationMenuEventStreamSource
+import com.perelandrax.coincraft.presentation.ribs.navigation.menustream.NavigationMenuEventStreamSource
 import com.uber.rib.core.InteractorBaseComponent
 import com.uber.rib.core.ViewBuilder
 import dagger.Binds
@@ -38,10 +38,7 @@ class ToolbarBuilder(dependency: ParentComponent) :
     return component.toolbarRouter()
   }
 
-  override fun inflateView(
-    inflater: LayoutInflater,
-    parentViewGroup: ViewGroup
-  ): ToolbarView? {
+  override fun inflateView(inflater: LayoutInflater, parentViewGroup: ViewGroup): ToolbarView? {
     return inflater.inflate(R.layout.layout_toolbar_rib, parentViewGroup, false) as ToolbarView
   }
 
@@ -62,11 +59,7 @@ class ToolbarBuilder(dependency: ParentComponent) :
       @ToolbarScope
       @Provides
       @JvmStatic
-      internal fun router(
-        component: Component,
-        view: ToolbarView,
-        interactor: ToolbarInteractor
-      ): ToolbarRouter {
+      internal fun router(component: Component, view: ToolbarView, interactor: ToolbarInteractor): ToolbarRouter {
         return ToolbarRouter(view, interactor, component)
       }
 

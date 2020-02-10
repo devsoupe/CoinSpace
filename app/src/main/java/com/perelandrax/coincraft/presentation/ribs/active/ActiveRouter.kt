@@ -7,8 +7,5 @@ import com.uber.rib.core.ViewRouter
  *
  * TODO describe the possible child configurations of this scope.
  */
-class ActiveRouter(
-  view: ActiveView,
-  interactor: ActiveInteractor,
-  component: ActiveBuilder.Component
-) : ViewRouter<ActiveView, ActiveInteractor, ActiveBuilder.Component>(view, interactor, component)
+class ActiveRouter(view: ActiveView, interactor: ActiveInteractor, component: ActiveBuilder.Component) :
+  ViewRouter<ActiveView, ActiveInteractor, ActiveBuilder.Component>(view, interactor, component)

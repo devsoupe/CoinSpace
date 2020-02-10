@@ -7,8 +7,5 @@ import android.widget.FrameLayout
 /**
  * Top level view for {@link ActiveBuilder.ActiveScope}.
  */
-class ActiveView @JvmOverloads constructor(
-  context: Context,
-  attrs: AttributeSet? = null,
-  defStyle: Int = 0
-) : FrameLayout(context, attrs, defStyle), ActiveInteractor.ActivePresenter
+class ActiveView @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null, defStyle: Int = 0) :
+  FrameLayout(context, attrs, defStyle), ActiveInteractor.ActivePresenter

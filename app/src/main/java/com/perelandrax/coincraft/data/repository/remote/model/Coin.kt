@@ -1,9 +1,9 @@
 package com.perelandrax.coincraft.data.repository.remote.model
 
-import com.perelandrax.coincraft.presentation.ribs.coins.model.CoinListViewModel
+import com.perelandrax.coincraft.presentation.ribs.coins.coinlist.CoinListViewModel
 import com.squareup.moshi.Json
 
-data class CoinListCmc(
+data class CoinModel(
 //  @Id(assignable = true) var coinId: Long? = 0,
   @field:Json(name = "id") var id: String,
   @field:Json(name = "name") var name: String,
@@ -22,7 +22,7 @@ data class CoinListCmc(
   @field:Json(name = "last_updated") var lastUpdated: String
 )
 
-fun CoinListCmc.mapToDomain(): CoinListViewModel =
+fun CoinModel.mapToDomain(): CoinListViewModel =
   CoinListViewModel(
     this.id,
     "https://chasing-coins.com/api/v1/std/logo/" + this.symbol,

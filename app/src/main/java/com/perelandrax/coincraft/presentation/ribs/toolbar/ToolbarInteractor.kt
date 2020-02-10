@@ -1,11 +1,11 @@
 package com.perelandrax.coincraft.presentation.ribs.toolbar
 
 import android.annotation.SuppressLint
-import com.perelandrax.coincraft.presentation.ribs.navigation.model.stream.NavigationMenuEvent
-import com.perelandrax.coincraft.presentation.ribs.navigation.model.stream.NavigationMenuEvent.ABOUT
-import com.perelandrax.coincraft.presentation.ribs.navigation.model.stream.NavigationMenuEvent.COINS
-import com.perelandrax.coincraft.presentation.ribs.navigation.model.stream.NavigationMenuEvent.ICO
-import com.perelandrax.coincraft.presentation.ribs.navigation.model.stream.NavigationMenuEventStreamSource
+import com.perelandrax.coincraft.presentation.ribs.navigation.menustream.NavigationMenuEvent
+import com.perelandrax.coincraft.presentation.ribs.navigation.menustream.NavigationMenuEvent.ABOUT
+import com.perelandrax.coincraft.presentation.ribs.navigation.menustream.NavigationMenuEvent.COINS
+import com.perelandrax.coincraft.presentation.ribs.navigation.menustream.NavigationMenuEvent.ICO
+import com.perelandrax.coincraft.presentation.ribs.navigation.menustream.NavigationMenuEventStreamSource
 import com.uber.rib.core.Bundle
 import com.uber.rib.core.Interactor
 import com.uber.rib.core.RibInteractor
@@ -22,6 +22,7 @@ class ToolbarInteractor : Interactor<ToolbarInteractor.ToolbarPresenter, Toolbar
 
   @Inject
   lateinit var presenter: ToolbarPresenter
+
   @Inject
   lateinit var navigationMenuEventStreamSource: NavigationMenuEventStreamSource
 
@@ -56,10 +57,7 @@ class ToolbarInteractor : Interactor<ToolbarInteractor.ToolbarPresenter, Toolbar
       })
   }
 
-  enum class TitleForNavigationMenuEvent(
-    val event: NavigationMenuEvent,
-    val title: String
-  ) {
+  enum class TitleForNavigationMenuEvent(val event: NavigationMenuEvent, val title: String) {
 
     COINS_TITLE(COINS, "Coin Craft"),
     ICO_TITLE(ICO, "ICO List"),

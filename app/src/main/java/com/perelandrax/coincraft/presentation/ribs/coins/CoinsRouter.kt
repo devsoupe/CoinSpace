@@ -7,8 +7,5 @@ import com.uber.rib.core.ViewRouter
  *
  * TODO describe the possible child configurations of this scope.
  */
-class CoinsRouter(
-  view: CoinsView,
-  interactor: CoinsInteractor,
-  component: CoinsBuilder.Component
-) : ViewRouter<CoinsView, CoinsInteractor, CoinsBuilder.Component>(view, interactor, component)
+class CoinsRouter(view: CoinsView, interactor: CoinsInteractor, component: CoinsBuilder.Component) :
+  ViewRouter<CoinsView, CoinsInteractor, CoinsBuilder.Component>(view, interactor, component)

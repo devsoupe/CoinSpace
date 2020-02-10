@@ -6,9 +6,9 @@ import android.view.ViewGroup
 import com.perelandrax.coincraft.R
 import com.perelandrax.coincraft.presentation.ribs.navigation.NavigationBuilder
 import com.perelandrax.coincraft.presentation.ribs.navigation.NavigationInteractor
-import com.perelandrax.coincraft.presentation.ribs.navigation.model.stream.NavigationMenuEventStream
-import com.perelandrax.coincraft.presentation.ribs.navigation.model.stream.NavigationMenuEventStreamSource
-import com.perelandrax.coincraft.presentation.ribs.navigation.model.stream.NavigationMenuEventStreamUpdater
+import com.perelandrax.coincraft.presentation.ribs.navigation.menustream.NavigationMenuEventStream
+import com.perelandrax.coincraft.presentation.ribs.navigation.menustream.NavigationMenuEventStreamSource
+import com.perelandrax.coincraft.presentation.ribs.navigation.menustream.NavigationMenuEventStreamUpdater
 import com.perelandrax.coincraft.presentation.ribs.navitype.NaviTypeBuilder
 import com.perelandrax.coincraft.presentation.ribs.toolbar.ToolbarBuilder
 import com.uber.rib.core.InteractorBaseComponent

@@ -1,6 +1,6 @@
 package com.perelandrax.coincraft.data.repository.remote
 
-import com.perelandrax.coincraft.data.repository.remote.model.CoinListCmc
+import com.perelandrax.coincraft.data.repository.remote.model.CoinModel
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
@@ -21,5 +21,5 @@ interface CoinApi {
   }
 
   @GET("/v1/ticker/?limit=0")
-  suspend fun getCoinListCmc(): List<CoinListCmc>
+  suspend fun getCoinListCmc(): List<CoinModel>
 }

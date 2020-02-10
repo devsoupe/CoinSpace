@@ -1,17 +1,14 @@
 package com.perelandrax.coincraft.presentation.ribs.coins
 
-import com.perelandrax.coincraft.data.repository.CoinListNetworkRepository
+import com.perelandrax.coincraft.data.repository.CoinNetworkRepository
 import com.perelandrax.coincraft.data.repository.remote.model.mapToDomain
-import com.perelandrax.coincraft.presentation.ribs.coins.model.CoinListViewModel
+import com.perelandrax.coincraft.presentation.ribs.coins.coinlist.CoinListViewModel
 import com.uber.rib.core.Bundle
 import com.uber.rib.core.Interactor
 import com.uber.rib.core.RibInteractor
 import io.reactivex.Observable
 import io.reactivex.rxkotlin.subscribeBy
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.async
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.*
 import javax.inject.Inject
 
 /**
@@ -26,12 +23,12 @@ class CoinsInteractor : Interactor<CoinsInteractor.CoinsPresenter, CoinsRouter>(
   lateinit var presenter: CoinsPresenter
 
   @Inject
-  lateinit var coinListNetworkRepository: CoinListNetworkRepository
+  lateinit var coinNetworkRepository: CoinNetworkRepository
 
   override fun didBecomeActive(savedInstanceState: Bundle?) {
     super.didBecomeActive(savedInstanceState)
 
-    updateCoinListFromNetwork()
+    presenter.showLoading()
 
     presenter.onRefresh()
       .subscribeBy(onNext = {
@@ -39,19 +36,18 @@ class CoinsInteractor : Interactor<CoinsInteractor.CoinsPresenter, CoinsRouter>(
       }, onError = {
 
       })
+
+    updateCoinListFromNetwork()
   }
 
   private fun updateCoinListFromNetwork() {
     CoroutineScope(Dispatchers.Main).launch {
-      presenter.showLoading()
-
-      val coinList = async { coinListNetworkRepository.getCoinListCoinMarketCap() }.await()
+      val coinList = withContext(Dispatchers.Default) { coinNetworkRepository.getCoinListCoinMarketCap() }
       val coinListViewModels = mutableListOf<CoinListViewModel>().apply {
         for (coin in coinList) {
           add(coin.mapToDomain())
         }
       }
-
       presenter.showCoinList(coinListViewModels)
       presenter.hideLoading()
     }

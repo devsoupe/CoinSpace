@@ -1,4 +1,4 @@
-package com.perelandrax.coincraft.presentation.appstart
+package com.perelandrax.coincraft.appstart
 
 import android.app.Application
 

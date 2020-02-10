@@ -19,6 +19,7 @@ class NavigationInteractor : Interactor<NavigationInteractor.MainBottomTabPresen
 
   @Inject
   lateinit var presenter: MainBottomTabPresenter
+
   @Inject
   lateinit var listener: Listener
 

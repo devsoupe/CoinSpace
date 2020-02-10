@@ -37,10 +37,7 @@ class UpcomingBuilder(dependency: ParentComponent) :
     return component.upcomingRouter()
   }
 
-  override fun inflateView(
-    inflater: LayoutInflater,
-    parentViewGroup: ViewGroup
-  ): UpcomingView? {
+  override fun inflateView(inflater: LayoutInflater, parentViewGroup: ViewGroup): UpcomingView? {
     return inflater.inflate(R.layout.layout_upcoming_rib, parentViewGroup, false) as UpcomingView
   }
 
@@ -61,11 +58,7 @@ class UpcomingBuilder(dependency: ParentComponent) :
       @UpcomingScope
       @Provides
       @JvmStatic
-      internal fun router(
-        component: Component,
-        view: UpcomingView,
-        interactor: UpcomingInteractor
-      ): UpcomingRouter {
+      internal fun router(component: Component, view: UpcomingView, interactor: UpcomingInteractor): UpcomingRouter {
         return UpcomingRouter(view, interactor, component)
       }
 

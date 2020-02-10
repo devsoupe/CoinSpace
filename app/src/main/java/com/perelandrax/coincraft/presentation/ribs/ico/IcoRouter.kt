@@ -1,6 +1,6 @@
 package com.perelandrax.coincraft.presentation.ribs.ico
 
-import com.perelandrax.coincraft.presentation.ribs.ico.presentation.tablayout.TabLayoutView
+import com.perelandrax.coincraft.presentation.ribs.ico.tablayout.TabLayoutView
 import com.uber.rib.core.ViewRouter
 
 /**
@@ -8,12 +8,9 @@ import com.uber.rib.core.ViewRouter
  *
  * TODO describe the possible child configurations of this scope.
  */
-class IcoRouter(
-  view: IcoView,
-  interactor: IcoInteractor,
-  component: IcoBuilder.Component,
-  private val tabLayoutViews: List<TabLayoutView>
-) : ViewRouter<IcoView, IcoInteractor, IcoBuilder.Component>(view, interactor, component) {
+class IcoRouter(view: IcoView, interactor: IcoInteractor, component: IcoBuilder.Component,
+                private val tabLayoutViews: List<TabLayoutView>) :
+  ViewRouter<IcoView, IcoInteractor, IcoBuilder.Component>(view, interactor, component) {
 
   override fun didLoad() {
     super.didLoad()
