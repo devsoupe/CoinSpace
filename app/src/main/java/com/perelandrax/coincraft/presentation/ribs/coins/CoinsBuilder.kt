@@ -4,8 +4,8 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.perelandrax.coincraft.R
-import com.perelandrax.coincraft.data.repository.CoinNetworkRepository
-import com.perelandrax.coincraft.data.repository.remote.CoinService
+import com.perelandrax.coincraft.domain.repository.CoinListNetworkRepository
+import com.perelandrax.coincraft.data.api.CoinService
 import com.uber.rib.core.InteractorBaseComponent
 import com.uber.rib.core.ViewBuilder
 import dagger.Binds
@@ -91,8 +91,8 @@ class CoinsBuilder(dependency: ParentComponent) :
       @CoinsScope
       @Provides
       @JvmStatic
-      fun provideCoinListNetworkRepository(coinService: CoinService): CoinNetworkRepository {
-        return CoinNetworkRepository(coinService)
+      fun provideCoinListNetworkRepository(coinService: CoinService): CoinListNetworkRepository {
+        return CoinListNetworkRepository(coinService)
       }
     }
   }

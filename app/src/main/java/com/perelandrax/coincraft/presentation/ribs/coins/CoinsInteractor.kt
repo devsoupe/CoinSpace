@@ -1,9 +1,9 @@
 package com.perelandrax.coincraft.presentation.ribs.coins
 
-import androidx.lifecycle.ViewModel
-import com.perelandrax.coincraft.data.repository.CoinNetworkRepository
-import com.perelandrax.coincraft.data.repository.remote.model.mapToDomain
+import com.perelandrax.coincraft.domain.repository.CoinListNetworkRepository
+import com.perelandrax.coincraft.data.model.mapToDomain
 import com.perelandrax.coincraft.presentation.ribs.coins.coinlist.CoinListViewModel
+import com.perelandrax.coincraft.utilities.Coroutines
 import com.uber.rib.core.Bundle
 import com.uber.rib.core.Interactor
 import com.uber.rib.core.RibInteractor
@@ -11,6 +11,7 @@ import io.reactivex.Observable
 import io.reactivex.rxkotlin.subscribeBy
 import kotlinx.coroutines.*
 import javax.inject.Inject
+import kotlin.coroutines.CoroutineContext
 
 /**
  * Coordinates Business Logic for [CoinsScope].
@@ -18,13 +19,23 @@ import javax.inject.Inject
  * TODO describe the logic of this scope.
  */
 @RibInteractor
-class CoinsInteractor : Interactor<CoinsInteractor.CoinsPresenter, CoinsRouter>() {
+class CoinsInteractor : Interactor<CoinsInteractor.CoinsPresenter, CoinsRouter>(),
+  CoroutineScope {
+
+  override val coroutineContext: CoroutineContext
+    get() = Dispatchers.Main + parentJob + coroutineExceptionHandler
+
+  private val coroutineExceptionHandler = CoroutineExceptionHandler { _, throwable ->
+    throwable.printStackTrace()
+  }
+
+  private val parentJob = SupervisorJob()
 
   @Inject
   lateinit var presenter: CoinsPresenter
 
   @Inject
-  lateinit var coinNetworkRepository: CoinNetworkRepository
+  lateinit var coinListNetworkRepository: CoinListNetworkRepository
 
   override fun didBecomeActive(savedInstanceState: Bundle?) {
     super.didBecomeActive(savedInstanceState)
@@ -33,34 +44,37 @@ class CoinsInteractor : Interactor<CoinsInteractor.CoinsPresenter, CoinsRouter>(
 
     presenter.onRefresh()
       .subscribeBy(
-        onNext = { updateCoinListFromNetwork() },
+        onNext = { getCoinList() },
         onError = { it.printStackTrace() })
 
-    updateCoinListFromNetwork()
+    getCoinList()
   }
 
-  private fun updateCoinListFromNetwork() {
-    CoroutineScope(Dispatchers.Main).launch {
+  private fun getCoinList() {
+    launch {
+      Coroutines.log("updateCoinListFromNetwork", coroutineContext)
 
-      val coinList = withContext(Dispatchers.IO) {
-        coinNetworkRepository.getCoinListCoinMarketCap()
-      }
+      runCatching { coinListNetworkRepository.getCoinMarketCapList() }.apply {
 
-      val coinListViewModels = mutableListOf<CoinListViewModel>().apply {
-        for (coin in coinList) {
-          add(coin.mapToDomain())
+        onSuccess {
+          mutableListOf<CoinListViewModel>().apply {
+            it.forEach { add(it.mapToDomain()) }
+            presenter.showCoinList(this)
+          }
+        }
+
+        onFailure {
+          presenter.showError()
         }
       }
 
-      presenter.showCoinList(coinListViewModels)
       presenter.hideLoading()
     }
   }
 
   override fun willResignActive() {
     super.willResignActive()
-
-    // TODO: Perform any required clean up here, or delete this method entirely if not needed.
+    parentJob.cancelChildren()
   }
 
   /**
@@ -72,6 +86,8 @@ class CoinsInteractor : Interactor<CoinsInteractor.CoinsPresenter, CoinsRouter>(
 
     fun showLoading()
     fun hideLoading()
+
+    fun showError()
     fun showCoinList(coinList: List<CoinListViewModel>)
   }
 

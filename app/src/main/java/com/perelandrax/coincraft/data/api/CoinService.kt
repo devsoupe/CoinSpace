@@ -1,6 +1,6 @@
-package com.perelandrax.coincraft.data.repository.remote
+package com.perelandrax.coincraft.data.api
 
-import com.perelandrax.coincraft.data.repository.remote.model.CoinModel
+import com.perelandrax.coincraft.data.model.CoinMarketCap
 import okhttp3.OkHttpClient
 
 class CoinService(val okHttpClient: OkHttpClient) {
@@ -10,8 +10,8 @@ class CoinService(val okHttpClient: OkHttpClient) {
     private const val COIN_MARKET_CAP = "https://api.coinmarketcap.com/"
   }
 
-  suspend fun getCoinListCmc(): List<CoinModel> {
+  suspend fun getCoinMarketCapList(): List<CoinMarketCap> {
     val coinApi = CoinApi.create(COIN_MARKET_CAP, okHttpClient)
-    return coinApi.getCoinListCmc()
+    return coinApi.getCoinMarketCapList()
   }
 }

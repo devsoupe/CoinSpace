@@ -42,10 +42,6 @@ class CoinsView @JvmOverloads constructor(context: Context, attrs: AttributeSet?
     return swipeRefreshLayout.refreshes()
   }
 
-  override fun showCoinList(coinList: List<CoinListViewModel>) {
-    (recyclerView.adapter as CoinListAdapter).setData(coinList)
-  }
-
   override fun showLoading() {
     loadingView.visibility = View.VISIBLE
     loadingView.playAnimation()
@@ -55,5 +51,13 @@ class CoinsView @JvmOverloads constructor(context: Context, attrs: AttributeSet?
     loadingView.visibility = View.GONE
     loadingView.cancelAnimation()
     swipeRefreshLayout.isRefreshing = false
+  }
+
+  override fun showError() {
+
+  }
+
+  override fun showCoinList(coinList: List<CoinListViewModel>) {
+    (recyclerView.adapter as CoinListAdapter).setData(coinList)
   }
 }
