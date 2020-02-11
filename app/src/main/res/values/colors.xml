@@ -5,6 +5,8 @@
   <color name="colorAccent">#ec2e4a</color>
   <color name="colorTransparentButtonText">#00b8d4</color>
 
+  <color name="colorSplashBg">#6ba8ff</color>
+
   <color name="colorProgress">#f2f4f5</color>
   <color name="colorBg">#f2f4f5</color>
   <color name="colorWhite">#ffffff</color>

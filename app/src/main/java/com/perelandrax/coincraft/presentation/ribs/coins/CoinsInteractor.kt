@@ -54,6 +54,8 @@ class CoinsInteractor : Interactor<CoinsInteractor.CoinsPresenter, CoinsRouter>(
     launch {
       Coroutines.log("updateCoinListFromNetwork", coroutineContext)
 
+      delay(2000)
+
       runCatching { coinListNetworkRepository.getCoinMarketCapList() }.apply {
 
         onSuccess {

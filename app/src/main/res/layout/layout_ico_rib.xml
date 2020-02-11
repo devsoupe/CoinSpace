@@ -2,6 +2,7 @@
 <com.perelandrax.coincraft.presentation.ribs.ico.IcoView
   xmlns:android="http://schemas.android.com/apk/res/android"
   xmlns:app="http://schemas.android.com/apk/res-auto"
+  xmlns:tools="http://schemas.android.com/tools"
   android:layout_width="match_parent"
   android:layout_height="match_parent"
   android:background="@android:color/white">
@@ -25,7 +26,6 @@
       android:id="@+id/loadingView"
       android:layout_width="240dp"
       android:layout_height="240dp"
-      android:layout_gravity="center"
       android:visibility="gone"
       app:layout_constraintBottom_toBottomOf="parent"
       app:layout_constraintLeft_toLeftOf="parent"
@@ -33,8 +33,9 @@
       app:layout_constraintTop_toTopOf="parent"
       app:lottie_autoPlay="true"
       app:lottie_enableMergePathsForKitKatAndAbove="true"
-      app:lottie_fileName="smiley_stack.json"
-      app:lottie_loop="true"/>
+      app:lottie_fileName="waiting2.json"
+      app:lottie_loop="true"
+      tools:visibility="visible"/>
 
     <com.google.android.material.tabs.TabLayout
       android:id="@+id/tabLayout"

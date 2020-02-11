@@ -32,8 +32,8 @@
 
     <com.airbnb.lottie.LottieAnimationView
       android:id="@+id/loadingView"
-      android:layout_width="200dp"
-      android:layout_height="200dp"
+      android:layout_width="240dp"
+      android:layout_height="240dp"
       android:visibility="gone"
       app:layout_constraintBottom_toBottomOf="parent"
       app:layout_constraintLeft_toLeftOf="parent"
@@ -41,7 +41,7 @@
       app:layout_constraintTop_toTopOf="parent"
       app:lottie_autoPlay="true"
       app:lottie_enableMergePathsForKitKatAndAbove="true"
-      app:lottie_fileName="smiley_stack.json"
+      app:lottie_fileName="waiting.json"
       app:lottie_loop="true"
       tools:visibility="visible"/>
 
