@@ -4,7 +4,7 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.perelandrax.coincraft.R
-import com.perelandrax.coincraft.presentation.ribs.main.MainBuilder
+import com.perelandrax.coincraft.presentation.ribs.splash.SplashBuilder
 import com.uber.rib.core.InteractorBaseComponent
 import com.uber.rib.core.ViewBuilder
 import dagger.Binds
@@ -40,10 +40,7 @@ class RootBuilder(dependency: ParentComponent) :
     return component.rootRouter()
   }
 
-  override fun inflateView(
-    inflater: LayoutInflater,
-    parentViewGroup: ViewGroup
-  ): RootView? {
+  override fun inflateView(inflater: LayoutInflater, parentViewGroup: ViewGroup): RootView? {
     return inflater.inflate(R.layout.layout_root_rib, parentViewGroup, false) as RootView
   }
 
@@ -65,7 +62,7 @@ class RootBuilder(dependency: ParentComponent) :
       @Provides
       @JvmStatic
       internal fun router(component: Component, view: RootView, interactor: RootInteractor): RootRouter {
-        return RootRouter(view, interactor, component, MainBuilder(component))
+        return RootRouter(view, interactor, component, SplashBuilder(component))
       }
 
       // TODO: Create provider methods for dependencies created by this Rib. These should be static.
@@ -75,7 +72,7 @@ class RootBuilder(dependency: ParentComponent) :
   @RootScope
   @dagger.Component(modules = arrayOf(Module::class), dependencies = arrayOf(ParentComponent::class))
   interface Component : InteractorBaseComponent<RootInteractor>, BuilderComponent,
-    MainBuilder.ParentComponent {
+    SplashBuilder.ParentComponent {
 
     @dagger.Component.Builder
     interface Builder {

@@ -1,7 +1,7 @@
 package com.perelandrax.coincraft.presentation.ribs.root
 
-import com.perelandrax.coincraft.presentation.ribs.main.MainBuilder
-import com.perelandrax.coincraft.presentation.ribs.main.MainRouter
+import com.perelandrax.coincraft.presentation.ribs.splash.SplashBuilder
+import com.perelandrax.coincraft.presentation.ribs.splash.SplashRouter
 import com.uber.rib.core.ViewRouter
 
 /**
@@ -10,13 +10,13 @@ import com.uber.rib.core.ViewRouter
  * TODO describe the possible child configurations of this scope.
  */
 class RootRouter(view: RootView, interactor: RootInteractor, component: RootBuilder.Component,
-                 mainBuilder: MainBuilder) :
+                 splashBuilder: SplashBuilder) :
   ViewRouter<RootView, RootInteractor, RootBuilder.Component>(view, interactor, component) {
 
-  private var mainRouter: MainRouter = mainBuilder.build(view)
+  private var splashRouter: SplashRouter = splashBuilder.build(view)
 
-  fun attachMain() {
-    attachChild(mainRouter)
-    view.addView(mainRouter.view)
+  fun attachSplash() {
+    attachChild(splashRouter)
+    view.addView(splashRouter.view)
   }
 }
