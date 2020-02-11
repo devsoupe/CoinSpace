@@ -1,5 +1,6 @@
 package com.perelandrax.coincraft.presentation.ribs.coins
 
+import androidx.lifecycle.ViewModel
 import com.perelandrax.coincraft.data.repository.CoinNetworkRepository
 import com.perelandrax.coincraft.data.repository.remote.model.mapToDomain
 import com.perelandrax.coincraft.presentation.ribs.coins.coinlist.CoinListViewModel
@@ -31,23 +32,26 @@ class CoinsInteractor : Interactor<CoinsInteractor.CoinsPresenter, CoinsRouter>(
     presenter.showLoading()
 
     presenter.onRefresh()
-      .subscribeBy(onNext = {
-        updateCoinListFromNetwork()
-      }, onError = {
-
-      })
+      .subscribeBy(
+        onNext = { updateCoinListFromNetwork() },
+        onError = { it.printStackTrace() })
 
     updateCoinListFromNetwork()
   }
 
   private fun updateCoinListFromNetwork() {
     CoroutineScope(Dispatchers.Main).launch {
-      val coinList = withContext(Dispatchers.Default) { coinNetworkRepository.getCoinListCoinMarketCap() }
+
+      val coinList = withContext(Dispatchers.IO) {
+        coinNetworkRepository.getCoinListCoinMarketCap()
+      }
+
       val coinListViewModels = mutableListOf<CoinListViewModel>().apply {
         for (coin in coinList) {
           add(coin.mapToDomain())
         }
       }
+
       presenter.showCoinList(coinListViewModels)
       presenter.hideLoading()
     }

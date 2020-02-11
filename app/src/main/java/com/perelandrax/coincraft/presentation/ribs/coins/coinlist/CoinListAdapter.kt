@@ -4,8 +4,10 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.perelandrax.coincraft.R
 import kotlinx.android.synthetic.main.recyclerview_coin_list_item.view.*
 
 class CoinListAdapter(private val resId: Int) :
@@ -47,6 +49,14 @@ class CoinListAdapter(private val resId: Int) :
       percentTextView.text = item.percentage
       priceTextView.text = item.price
       volumeTextView.text = item.volume
+
+      val percentTextColor = if (percentTextView.text.contains("-")) {
+        ContextCompat.getColor(context, R.color.colorPercentageNegative)
+      } else {
+        ContextCompat.getColor(context, R.color.colorPercentage)
+      }
+
+      percentTextView.setTextColor(percentTextColor)
     }
   }
 }
