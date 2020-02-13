@@ -1,4 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
+
   <dimen name="view_padding">8dp</dimen>
+  <dimen name="bottom_navigation_icon_size" tools:override="true">35dp</dimen>
+
 </resources>

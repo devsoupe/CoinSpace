@@ -1,2 +1,2 @@
-include ':app'
-rootProject.name='CoinCraft'
+include ':app', ':core'
+rootProject.name='CoinSpace'

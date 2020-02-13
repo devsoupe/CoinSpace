@@ -4,14 +4,14 @@
   <item
     android:id="@+id/coins"
     android:enabled="true"
-    android:icon="@drawable/ic_list"
+    android:icon="@drawable/ic_coins"
     android:title="Coins"/>
 
   <item
-    android:id="@+id/ico"
+    android:id="@+id/news"
     android:enabled="true"
-    android:icon="@drawable/ic_ico"
-    android:title="ICO"/>
+    android:icon="@drawable/ic_news"
+    android:title="News"/>
 
   <item
     android:id="@+id/about"

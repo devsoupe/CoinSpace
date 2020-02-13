@@ -35,6 +35,8 @@ android {
 dependencies {
   implementation fileTree(dir: 'libs', include: ['*.jar'])
 
+  implementation project(':core')
+
   // MultiDex
   implementation 'androidx.multidex:multidex:2.0.1'
 
