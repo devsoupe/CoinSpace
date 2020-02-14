@@ -7,7 +7,6 @@ import com.perelandrax.coinspace.R
 import com.perelandrax.coinspace.data.CoinRepository
 import com.perelandrax.coinspace.framework.remote.RemoteCoinDataSource
 import com.perelandrax.coinspace.presentation.ribs.main.MainBuilder
-import com.perelandrax.coinspace.presentation.ribs.navigation.menustream.NavigationMenuEventStream
 import com.perelandrax.coinspace.presentation.ribs.splash.masterstream.CoinMasterStream
 import com.perelandrax.coinspace.presentation.ribs.splash.masterstream.CoinMasterStreamSource
 import com.perelandrax.coinspace.presentation.ribs.splash.masterstream.CoinMasterStreamUpdater

@@ -8,8 +8,8 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.jakewharton.rxbinding2.support.v4.widget.refreshes
 import com.perelandrax.coinspace.R
-import com.perelandrax.coinspace.presentation.ribs.coins.coinlist.CoinListAdapter
 import com.perelandrax.coinspace.domain.Coin
+import com.perelandrax.coinspace.presentation.ribs.coins.coinlist.CoinListAdapter
 import io.reactivex.Observable
 import kotlinx.android.synthetic.main.layout_coins_rib.view.*
 

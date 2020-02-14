@@ -5,17 +5,12 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.perelandrax.coinspace.R
 import com.perelandrax.coinspace.data.CoinRepository
-import com.perelandrax.coinspace.domain.CoinMaster
-import com.perelandrax.coinspace.framework.remote.RemoteCoinDataSource
 import com.perelandrax.coinspace.presentation.ribs.splash.masterstream.CoinMasterStreamSource
 import com.uber.rib.core.InteractorBaseComponent
 import com.uber.rib.core.ViewBuilder
 import dagger.Binds
 import dagger.BindsInstance
 import dagger.Provides
-import okhttp3.Cache
-import okhttp3.OkHttpClient
-import java.io.File
 import javax.inject.Qualifier
 import javax.inject.Scope
 import kotlin.annotation.AnnotationRetention.BINARY

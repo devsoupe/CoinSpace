@@ -2,12 +2,11 @@ package com.perelandrax.coinspace.presentation.ribs.navitype
 
 import android.content.Context
 import com.perelandrax.coinspace.data.CoinRepository
-import com.perelandrax.coinspace.domain.CoinMaster
 import com.perelandrax.coinspace.presentation.ribs.about.AboutBuilder
 import com.perelandrax.coinspace.presentation.ribs.coins.CoinsBuilder
-import com.perelandrax.coinspace.presentation.ribs.news.NewsBuilder
 import com.perelandrax.coinspace.presentation.ribs.main.MainView
 import com.perelandrax.coinspace.presentation.ribs.navigation.menustream.NavigationMenuEventStreamSource
+import com.perelandrax.coinspace.presentation.ribs.news.NewsBuilder
 import com.perelandrax.coinspace.presentation.ribs.splash.masterstream.CoinMasterStreamSource
 import com.uber.rib.core.Builder
 import com.uber.rib.core.EmptyPresenter

@@ -5,7 +5,6 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.perelandrax.coinspace.R
 import com.perelandrax.coinspace.data.CoinRepository
-import com.perelandrax.coinspace.domain.CoinMaster
 import com.perelandrax.coinspace.presentation.ribs.navigation.NavigationBuilder
 import com.perelandrax.coinspace.presentation.ribs.navigation.NavigationInteractor
 import com.perelandrax.coinspace.presentation.ribs.navigation.menustream.NavigationMenuEventStream

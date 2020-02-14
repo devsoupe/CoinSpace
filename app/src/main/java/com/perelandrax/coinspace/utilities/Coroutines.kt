@@ -10,7 +10,7 @@ class Coroutines {
     fun log(methodName: String, coroutineContext: CoroutineContext) {
       Log.d(
         "TestCoroutine", "Thread for $methodName is: ${Thread.currentThread().name}" +
-          "and the context is $coroutineContext"
+        "and the context is $coroutineContext"
       )
     }
   }
