@@ -15,8 +15,8 @@ class Services {
 
   companion object {
 
-    val ACTION_BAR_SERVICE = "com.perelandrax.coincraft.action_bar"
-    val OPTIONS_MENU_SERVICE = "com.perelandrax.coincraft.options_menu"
+    val ACTION_BAR_SERVICE = "com.perelandrax.coinspace.action_bar"
+    val OPTIONS_MENU_SERVICE = "com.perelandrax.coinspace.options_menu"
 
     private val menuAsUp = AtomicBoolean(false)
 

@@ -6,7 +6,7 @@ import com.perelandrax.coinspace.presentation.ribs.root.RootBuilder.ParentCompon
 import com.uber.rib.core.RibActivity
 import com.uber.rib.core.ViewRouter
 
-class CoinCraftActivity : RibActivity() {
+class CoinSpaceActivity : RibActivity() {
 
   private val TAG = javaClass.simpleName
 
