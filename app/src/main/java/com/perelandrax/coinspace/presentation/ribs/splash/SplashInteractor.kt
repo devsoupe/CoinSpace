@@ -1,5 +1,7 @@
 package com.perelandrax.coinspace.presentation.ribs.splash
 
+import com.perelandrax.coinspace.data.CoinRepository
+import com.perelandrax.coinspace.presentation.ribs.splash.masterstream.CoinMasterStreamUpdater
 import com.perelandrax.coinspace.utilities.Coroutines
 import com.uber.rib.core.Bundle
 import com.uber.rib.core.Interactor
@@ -29,21 +31,46 @@ class SplashInteractor : Interactor<SplashInteractor.SplashPresenter, SplashRout
   @Inject
   lateinit var presenter: SplashPresenter
 
+  @Inject
+  lateinit var coinRepository: CoinRepository
+
+  @Inject
+  lateinit var coinMasterStreamUpdater: CoinMasterStreamUpdater
+
   override fun didBecomeActive(savedInstanceState: Bundle?) {
     super.didBecomeActive(savedInstanceState)
-    routeToMain()
+
+    presenter.showLoading()
+
+    getCoinMaster()
   }
 
-  fun routeToMain() {
+  private fun getCoinMaster() {
     launch {
-      Coroutines.log("routeToMain", coroutineContext)
+      Coroutines.log("getCoinMasterData", coroutineContext)
 
-      presenter.showLoading()
-      delay(2000)
+      val delay = async { delay(1500) }
+
+      runCatching { coinRepository.getCoinMaster() }.apply {
+
+        delay.await()
+
+        onSuccess {
+          coinMasterStreamUpdater.updateSource(it)
+          routeToMain()
+        }
+
+        onFailure {
+          presenter.showError()
+        }
+      }
+
       presenter.hideLoading()
-
-      router.attachMain()
     }
+  }
+
+  private fun routeToMain() {
+    router.attachMain()
   }
 
   override fun willResignActive() {
@@ -62,6 +89,8 @@ class SplashInteractor : Interactor<SplashInteractor.SplashPresenter, SplashRout
 
     fun showLoading()
     fun hideLoading()
+
+    fun showError()
   }
 
   /**

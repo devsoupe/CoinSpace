@@ -3,7 +3,7 @@ package com.perelandrax.coinspace.framework.remote.model
 import com.perelandrax.coinspace.domain.Coin
 import com.squareup.moshi.Json
 
-data class CoinMarketCap(
+data class MarketCapCoin(
 //  @Id(assignable = true) var coinId: Long? = 0,
   @field:Json(name = "id") var id: String,
   @field:Json(name = "name") var name: String,
@@ -22,7 +22,7 @@ data class CoinMarketCap(
   @field:Json(name = "last_updated") var lastUpdated: String
 )
 
-fun CoinMarketCap.mapToDomain(): Coin =
+fun MarketCapCoin.mapToDomain(): Coin =
   Coin(
     this.id,
     "https://chasing-coins.com/api/v1/std/logo/" + this.symbol,

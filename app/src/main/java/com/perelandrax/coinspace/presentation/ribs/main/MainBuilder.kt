@@ -4,12 +4,15 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.perelandrax.coinspace.R
+import com.perelandrax.coinspace.data.CoinRepository
+import com.perelandrax.coinspace.domain.CoinMaster
 import com.perelandrax.coinspace.presentation.ribs.navigation.NavigationBuilder
 import com.perelandrax.coinspace.presentation.ribs.navigation.NavigationInteractor
 import com.perelandrax.coinspace.presentation.ribs.navigation.menustream.NavigationMenuEventStream
 import com.perelandrax.coinspace.presentation.ribs.navigation.menustream.NavigationMenuEventStreamSource
 import com.perelandrax.coinspace.presentation.ribs.navigation.menustream.NavigationMenuEventStreamUpdater
 import com.perelandrax.coinspace.presentation.ribs.navitype.NaviTypeBuilder
+import com.perelandrax.coinspace.presentation.ribs.splash.masterstream.CoinMasterStreamSource
 import com.perelandrax.coinspace.presentation.ribs.toolbar.ToolbarBuilder
 import com.uber.rib.core.InteractorBaseComponent
 import com.uber.rib.core.ViewBuilder
@@ -52,6 +55,8 @@ class MainBuilder(dependency: ParentComponent) :
 
   interface ParentComponent {
     fun context(): Context
+    fun coinRepository(): CoinRepository
+    fun coinMasterStreamSource(): CoinMasterStreamSource
   }
 
   @dagger.Module
@@ -85,15 +90,15 @@ class MainBuilder(dependency: ParentComponent) :
       @MainScope
       @Provides
       @JvmStatic
-      internal fun provideNavigationMenuEventStreamSource(navigationMenuEventStream: NavigationMenuEventStream): NavigationMenuEventStreamSource {
-        return navigationMenuEventStream
+      internal fun provideNavigationMenuEventStreamSource(stream: NavigationMenuEventStream): NavigationMenuEventStreamSource {
+        return stream
       }
 
       @MainScope
       @Provides
       @JvmStatic
-      internal fun provideNavigationMenuEventStreamUpdater(navigationMenuEventStream: NavigationMenuEventStream): NavigationMenuEventStreamUpdater {
-        return navigationMenuEventStream
+      internal fun provideNavigationMenuEventStreamUpdater(stream: NavigationMenuEventStream): NavigationMenuEventStreamUpdater {
+        return stream
       }
     }
   }
@@ -115,7 +120,7 @@ class MainBuilder(dependency: ParentComponent) :
       fun view(view: MainView): Builder
 
       @BindsInstance
-      fun navigationMenuEventStream(navigationMenuEventStream: NavigationMenuEventStream): Builder
+      fun navigationMenuEventStream(stream: NavigationMenuEventStream): Builder
 
       fun parentComponent(component: ParentComponent): Builder
 

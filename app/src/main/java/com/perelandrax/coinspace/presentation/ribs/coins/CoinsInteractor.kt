@@ -2,6 +2,7 @@ package com.perelandrax.coinspace.presentation.ribs.coins
 
 import com.perelandrax.coinspace.data.CoinRepository
 import com.perelandrax.coinspace.domain.Coin
+import com.perelandrax.coinspace.presentation.ribs.splash.masterstream.CoinMasterStreamSource
 import com.perelandrax.coinspace.utilities.Coroutines
 import com.uber.rib.core.Bundle
 import com.uber.rib.core.Interactor
@@ -36,6 +37,9 @@ class CoinsInteractor : Interactor<CoinsInteractor.CoinsPresenter, CoinsRouter>(
   @Inject
   lateinit var coinRepository: CoinRepository
 
+  @Inject
+  lateinit var coinMasterStreamSource: CoinMasterStreamSource
+
   override fun didBecomeActive(savedInstanceState: Bundle?) {
     super.didBecomeActive(savedInstanceState)
 
@@ -53,13 +57,16 @@ class CoinsInteractor : Interactor<CoinsInteractor.CoinsPresenter, CoinsRouter>(
 
   private fun updateCoinList() {
     launch {
-      Coroutines.log("updateCoinListFromNetwork", coroutineContext)
+      Coroutines.log("updateCoinList", coroutineContext)
 
-      delay(1000)
+      val delay = async { delay(500) }
 
       runCatching { coinRepository.getCoins() }.apply {
 
+        delay.await()
+
         onSuccess {
+          println("*********************** : CoinsInteractor : updateCoinList : ${coinMasterStreamSource.source.value?.size}")
           presenter.showCoinList(it)
         }
 

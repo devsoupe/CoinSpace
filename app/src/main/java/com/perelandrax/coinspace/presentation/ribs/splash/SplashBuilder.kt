@@ -4,12 +4,21 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.perelandrax.coinspace.R
+import com.perelandrax.coinspace.data.CoinRepository
+import com.perelandrax.coinspace.framework.remote.RemoteCoinDataSource
 import com.perelandrax.coinspace.presentation.ribs.main.MainBuilder
+import com.perelandrax.coinspace.presentation.ribs.navigation.menustream.NavigationMenuEventStream
+import com.perelandrax.coinspace.presentation.ribs.splash.masterstream.CoinMasterStream
+import com.perelandrax.coinspace.presentation.ribs.splash.masterstream.CoinMasterStreamSource
+import com.perelandrax.coinspace.presentation.ribs.splash.masterstream.CoinMasterStreamUpdater
 import com.uber.rib.core.InteractorBaseComponent
 import com.uber.rib.core.ViewBuilder
 import dagger.Binds
 import dagger.BindsInstance
 import dagger.Provides
+import okhttp3.Cache
+import okhttp3.OkHttpClient
+import java.io.File
 import javax.inject.Qualifier
 import javax.inject.Scope
 import kotlin.annotation.AnnotationRetention.BINARY
@@ -35,6 +44,7 @@ class SplashBuilder(dependency: ParentComponent) :
       .parentComponent(dependency)
       .view(view)
       .interactor(interactor)
+      .coinMasterStream(CoinMasterStream())
       .build()
     return component.splashRouter()
   }
@@ -64,7 +74,46 @@ class SplashBuilder(dependency: ParentComponent) :
         return SplashRouter(view, interactor, component, MainBuilder(component))
       }
 
-      // TODO: Create provider methods for dependencies created by this Rib. These should be static.
+      @SplashScope
+      @Provides
+      @JvmStatic
+      fun provideHttpClient(context: Context): OkHttpClient {
+        var cacheSize = 10 * 1024 * 1024L
+        var cacheDirectory = File(context.cacheDir.absolutePath, "CoinSpaceCache")
+        var cache = Cache(cacheDirectory, cacheSize)
+
+        return OkHttpClient.Builder()
+          .cache(cache)
+          .build()
+      }
+
+      @SplashScope
+      @Provides
+      @JvmStatic
+      fun provideRemoteCoinDataSource(okHttpClient: OkHttpClient): RemoteCoinDataSource {
+        return RemoteCoinDataSource(okHttpClient)
+      }
+
+      @SplashScope
+      @Provides
+      @JvmStatic
+      fun provideCoinRepository(remoteCoinDataSource: RemoteCoinDataSource): CoinRepository {
+        return CoinRepository(remoteCoinDataSource)
+      }
+
+      @SplashScope
+      @Provides
+      @JvmStatic
+      internal fun provideCoinMasterStreamSource(stream: CoinMasterStream): CoinMasterStreamSource {
+        return stream
+      }
+
+      @SplashScope
+      @Provides
+      @JvmStatic
+      internal fun provideCoinMasterStreamUpdater(stream: CoinMasterStream): CoinMasterStreamUpdater {
+        return stream
+      }
     }
   }
 
@@ -81,6 +130,9 @@ class SplashBuilder(dependency: ParentComponent) :
 
       @BindsInstance
       fun view(view: SplashView): Builder
+
+      @BindsInstance
+      fun coinMasterStream(stream: CoinMasterStream): Builder
 
       fun parentComponent(component: ParentComponent): Builder
 

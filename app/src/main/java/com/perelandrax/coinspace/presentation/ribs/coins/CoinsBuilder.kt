@@ -5,7 +5,9 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.perelandrax.coinspace.R
 import com.perelandrax.coinspace.data.CoinRepository
+import com.perelandrax.coinspace.domain.CoinMaster
 import com.perelandrax.coinspace.framework.remote.RemoteCoinDataSource
+import com.perelandrax.coinspace.presentation.ribs.splash.masterstream.CoinMasterStreamSource
 import com.uber.rib.core.InteractorBaseComponent
 import com.uber.rib.core.ViewBuilder
 import dagger.Binds
@@ -49,6 +51,8 @@ class CoinsBuilder(dependency: ParentComponent) :
 
   interface ParentComponent {
     fun context(): Context
+    fun coinRepository(): CoinRepository
+    fun coinMasterStreamSource(): CoinMasterStreamSource
   }
 
   @dagger.Module
@@ -66,33 +70,6 @@ class CoinsBuilder(dependency: ParentComponent) :
       @JvmStatic
       internal fun router(component: Component, view: CoinsView, interactor: CoinsInteractor): CoinsRouter {
         return CoinsRouter(view, interactor, component)
-      }
-
-      @CoinsScope
-      @Provides
-      @JvmStatic
-      fun provideHttpClient(context: Context): OkHttpClient {
-        var cacheSize = 10 * 1024 * 1024L
-        var cacheDirectory = File(context.cacheDir.absolutePath, "CoinCraftCache")
-        var cache = Cache(cacheDirectory, cacheSize)
-
-        return OkHttpClient.Builder()
-          .cache(cache)
-          .build()
-      }
-
-      @CoinsScope
-      @Provides
-      @JvmStatic
-      fun provideRemoteCoinDataSource(okHttpClient: OkHttpClient): RemoteCoinDataSource {
-        return RemoteCoinDataSource(okHttpClient)
-      }
-
-      @CoinsScope
-      @Provides
-      @JvmStatic
-      fun provideCoinListNetworkRepository(remoteCoinDataSource: RemoteCoinDataSource): CoinRepository {
-        return CoinRepository(remoteCoinDataSource)
       }
     }
   }

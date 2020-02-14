@@ -8,13 +8,12 @@ interface NavigationMenuEventStreamSource {
 }
 
 interface NavigationMenuEventStreamUpdater : NavigationMenuEventStreamSource {
-  fun updateMenuEvent(navigationMenuEvent: NavigationMenuEvent)
+  fun updateMenuEvent(event: NavigationMenuEvent)
 }
 
 class NavigationMenuEventStream : NavigationMenuEventStreamUpdater {
 
-  override var event = BehaviorRelay.createDefault(NavigationMenuEvent.COINS)
-    .toSerialized()
+  override var event = BehaviorRelay.createDefault(NavigationMenuEvent.COINS).toSerialized()
 
-  override fun updateMenuEvent(navigationMenuEvent: NavigationMenuEvent) = event.accept(navigationMenuEvent)
+  override fun updateMenuEvent(event: NavigationMenuEvent) = this.event.accept(event)
 }

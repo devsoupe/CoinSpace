@@ -1,6 +1,7 @@
 package com.perelandrax.coinspace.framework.remote.api
 
-import com.perelandrax.coinspace.framework.remote.model.CoinMarketCap
+import com.perelandrax.coinspace.framework.remote.model.CrytoCompareCoins
+import com.perelandrax.coinspace.framework.remote.model.MarketCapCoin
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
@@ -21,5 +22,8 @@ interface CoinApi {
   }
 
   @GET("/v1/ticker/?limit=0")
-  suspend fun getCoinMarketCapList(): List<CoinMarketCap>
+  suspend fun getMarketCapCoinList(): List<MarketCapCoin>
+
+  @GET("/data/all/coinlist")
+  suspend fun getCrytoCompareCoinList(): CrytoCompareCoins
 }
