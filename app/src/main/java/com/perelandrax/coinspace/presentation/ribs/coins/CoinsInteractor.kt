@@ -1,6 +1,5 @@
 package com.perelandrax.coinspace.presentation.ribs.coins
 
-import android.widget.Toast
 import com.perelandrax.coinspace.data.CoinRepository
 import com.perelandrax.coinspace.domain.Coin
 import com.perelandrax.coinspace.domain.CoinMaster
@@ -34,14 +33,9 @@ class CoinsInteractor : Interactor<CoinsInteractor.CoinsPresenter, CoinsRouter>(
 
   private val parentJob = SupervisorJob()
 
-  @Inject
-  lateinit var presenter: CoinsPresenter
-
-  @Inject
-  lateinit var coinRepository: CoinRepository
-
-  @Inject
-  lateinit var coinMasterStreamSource: CoinMasterStreamSource
+  @Inject lateinit var presenter: CoinsPresenter
+  @Inject lateinit var coinRepository: CoinRepository
+  @Inject lateinit var coinMasterStreamSource: CoinMasterStreamSource
 
   override fun didBecomeActive(savedInstanceState: Bundle?) {
     super.didBecomeActive(savedInstanceState)
