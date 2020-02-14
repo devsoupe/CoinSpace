@@ -19,6 +19,8 @@ import kotlinx.android.synthetic.main.layout_coins_rib.view.*
 class CoinsView @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null, defStyle: Int = 0) :
   FrameLayout(context, attrs, defStyle), CoinsInteractor.CoinsPresenter {
 
+  private lateinit var coinListAdapter: CoinListAdapter
+
   override fun onFinishInflate() {
     super.onFinishInflate()
 
@@ -32,12 +34,16 @@ class CoinsView @JvmOverloads constructor(context: Context, attrs: AttributeSet?
 
   private fun setupRecyclerView() {
     recyclerView.layoutManager = LinearLayoutManager(context)
-    recyclerView.adapter = CoinListAdapter(R.layout.recyclerview_coin_list_item)
+    recyclerView.adapter = CoinListAdapter(R.layout.recyclerview_coin_list_item).apply { coinListAdapter = this }
     recyclerView.addItemDecoration(DividerItemDecoration(recyclerView.context, DividerItemDecoration.VERTICAL))
   }
 
   override fun onRefresh(): Observable<Unit> {
     return swipeRefreshLayout.refreshes()
+  }
+
+  override fun onSelectCoin(): Observable<Coin> {
+    return coinListAdapter.getItemClickEvent()
   }
 
   override fun showLoading() {
@@ -56,6 +62,6 @@ class CoinsView @JvmOverloads constructor(context: Context, attrs: AttributeSet?
   }
 
   override fun showCoinList(coinList: List<Coin>) {
-    (recyclerView.adapter as CoinListAdapter).setData(coinList)
+    coinListAdapter.setData(coinList)
   }
 }

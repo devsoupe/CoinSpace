@@ -15,4 +15,8 @@ data class CrytoCompareCoin(
   @field:Json(name = "SortOrder") var sortOrder: String
 )
 
-fun CrytoCompareCoin.mapToDomain(): CoinMaster = CoinMaster(this.id, this.name)
+fun CrytoCompareCoin.mapToDomain(): CoinMaster =
+  CoinMaster(
+    this.id,
+    this.name
+  )

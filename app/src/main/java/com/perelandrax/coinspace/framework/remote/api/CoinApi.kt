@@ -1,6 +1,6 @@
 package com.perelandrax.coinspace.framework.remote.api
 
-import com.perelandrax.coinspace.framework.remote.model.CrytoCompareCoins
+import com.perelandrax.coinspace.framework.remote.model.CrytoCompareCoinInfo
 import com.perelandrax.coinspace.framework.remote.model.MarketCapCoin
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
@@ -25,5 +25,5 @@ interface CoinApi {
   suspend fun getMarketCapCoinList(): List<MarketCapCoin>
 
   @GET("/data/all/coinlist")
-  suspend fun getCrytoCompareCoinList(): CrytoCompareCoins
+  suspend fun getCrytoCompareCoinList(): CrytoCompareCoinInfo
 }

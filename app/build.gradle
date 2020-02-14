@@ -37,6 +37,9 @@ dependencies {
 
   implementation project(':core')
 
+  // Backport
+  implementation 'net.sourceforge.streamsupport:streamsupport:1.7.1'
+
   // MultiDex
   implementation 'androidx.multidex:multidex:2.0.1'
 

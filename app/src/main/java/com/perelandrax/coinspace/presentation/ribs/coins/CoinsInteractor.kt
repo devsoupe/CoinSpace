@@ -1,7 +1,9 @@
 package com.perelandrax.coinspace.presentation.ribs.coins
 
+import android.widget.Toast
 import com.perelandrax.coinspace.data.CoinRepository
 import com.perelandrax.coinspace.domain.Coin
+import com.perelandrax.coinspace.domain.CoinMaster
 import com.perelandrax.coinspace.presentation.ribs.splash.masterstream.CoinMasterStreamSource
 import com.perelandrax.coinspace.utilities.Coroutines
 import com.uber.rib.core.Bundle
@@ -9,6 +11,7 @@ import com.uber.rib.core.Interactor
 import com.uber.rib.core.RibInteractor
 import io.reactivex.Observable
 import io.reactivex.rxkotlin.subscribeBy
+import java8.util.stream.StreamSupport
 import kotlinx.coroutines.*
 import javax.inject.Inject
 import kotlin.coroutines.CoroutineContext
@@ -45,39 +48,44 @@ class CoinsInteractor : Interactor<CoinsInteractor.CoinsPresenter, CoinsRouter>(
 
     presenter.showLoading()
 
-    presenter.onRefresh()
-      .subscribeBy(onNext = {
-        updateCoinList()
-      }, onError = {
-        it.printStackTrace()
-      })
+    presenter.onRefresh().subscribeBy { updateCoinList() }
+    presenter.onSelectCoin().subscribeBy { println("********* click : Coin (${it.detailId})") }
 
     updateCoinList()
   }
 
-  private fun updateCoinList() {
-    launch {
-      Coroutines.log("updateCoinList", coroutineContext)
+  private fun updateCoinList() = launch {
+    Coroutines.log("updateCoinList", coroutineContext)
 
-      val delay = async { delay(500) }
+    val delay = async { delay(500) }
 
-      runCatching { coinRepository.getCoins() }.apply {
+    runCatching { coinRepository.getCoins() }.apply {
 
-        delay.await()
+      delay.await()
 
-        onSuccess {
-          println("*********************** : CoinsInteractor : updateCoinList : ${coinMasterStreamSource.source.value?.size}")
-          presenter.showCoinList(it)
+      onSuccess { coinList ->
+        val coinMasterList = coinMasterStreamSource.source.value
+
+        coinList.forEach { coin ->
+          val detailId = StreamSupport.stream(coinMasterList)
+            .filter { coinMaster -> coin.name == coinMaster.name }
+            .findFirst()
+            .orElse(CoinMaster()).id
+
+          coin.detailId = detailId
         }
 
-        onFailure {
-          presenter.showError()
-        }
+        presenter.showCoinList(coinList)
       }
 
-      presenter.hideLoading()
+      onFailure {
+        presenter.showError()
+      }
     }
+
+    presenter.hideLoading()
   }
+
 
   override fun willResignActive() {
     super.willResignActive()
@@ -90,6 +98,7 @@ class CoinsInteractor : Interactor<CoinsInteractor.CoinsPresenter, CoinsRouter>(
   interface CoinsPresenter {
 
     fun onRefresh(): Observable<Unit>
+    fun onSelectCoin(): Observable<Coin>
 
     fun showLoading()
     fun hideLoading()
