@@ -6,6 +6,7 @@ import com.perelandrax.coinspace.presentation.ribs.navitype.NaviTypeBuilder
 import com.perelandrax.coinspace.presentation.ribs.navitype.NaviTypeRouter
 import com.perelandrax.coinspace.presentation.ribs.toolbar.ToolbarBuilder
 import com.perelandrax.coinspace.presentation.ribs.toolbar.ToolbarRouter
+import com.perelandrax.coinspace.presentation.ribslib.ScreenStack
 import com.uber.rib.core.ViewRouter
 import kotlinx.android.synthetic.main.layout_main_rib.view.*
 
@@ -15,6 +16,7 @@ import kotlinx.android.synthetic.main.layout_main_rib.view.*
  * TODO describe the possible child configurations of this scope.
  */
 class MainRouter(view: MainView, interactor: MainInteractor, component: MainBuilder.Component,
+                 private val screenStack: ScreenStack,
                  toolbarBuilder: ToolbarBuilder,
                  navigationBuilder: NavigationBuilder,
                  naviTypeBuilder: NaviTypeBuilder) :
@@ -23,6 +25,18 @@ class MainRouter(view: MainView, interactor: MainInteractor, component: MainBuil
   private var toolbarRouter: ToolbarRouter = toolbarBuilder.build(view)
   private var navigationRouter: NavigationRouter = navigationBuilder.build(view)
   private var naviTypeRouter: NaviTypeRouter = naviTypeBuilder.build()
+
+  override fun willAttach() {
+    super.willAttach()
+  }
+
+  override fun didLoad() {
+    super.didLoad()
+  }
+
+  override fun willDetach() {
+    super.willDetach()
+  }
 
   fun attachToolbar() {
     attachChild(toolbarRouter)

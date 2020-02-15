@@ -1,8 +1,9 @@
 package com.perelandrax.coinspace.presentation.ribs.splash
 
-import com.perelandrax.coinspace.presentation.ribs.main.MainBuilder
-import com.perelandrax.coinspace.presentation.ribs.main.MainRouter
-import com.uber.rib.core.ViewRouter
+import com.perelandrax.coinspace.presentation.ribs.main.MainScreen
+import com.perelandrax.coinspace.presentation.ribslib.ScreenStack
+import com.perelandrax.coinspace.presentation.ribslib.ScreenViewRouter
+import io.reactivex.disposables.CompositeDisposable
 
 /**
  * Adds and removes children of {@link SplashBuilder.SplashScope}.
@@ -10,13 +11,26 @@ import com.uber.rib.core.ViewRouter
  * TODO describe the possible child configurations of this scope.
  */
 class SplashRouter(view: SplashView, interactor: SplashInteractor, component: SplashBuilder.Component,
-                   mainBuilder: MainBuilder) :
-  ViewRouter<SplashView, SplashInteractor, SplashBuilder.Component>(view, interactor, component) {
+                   private val mainScreen: MainScreen) :
+  ScreenViewRouter<SplashView, SplashInteractor, SplashBuilder.Component>(view, interactor, component) {
 
-  private var mainRouter: MainRouter = mainBuilder.build(view)
+  private val disposable = CompositeDisposable()
 
-  fun attachMain() {
-    attachChild(mainRouter)
-    view.addView(mainRouter.view)
+  override fun willAttach() {
+    super.willAttach()
+
+    disposable.add(mainScreen.lifecycle()
+      .subscribe { event ->
+        handleScreenEvents(mainScreen.router, event)
+      })
+  }
+
+  override fun willDetach() {
+    super.willDetach()
+    disposable.clear()
+  }
+
+  fun attachMain(screenStack: ScreenStack) {
+    screenStack.pushScreen(mainScreen)
   }
 }

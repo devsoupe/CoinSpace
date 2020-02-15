@@ -8,13 +8,13 @@
   android:layout_height="wrap_content"
   android:layout_marginBottom="@dimen/view_padding"
   android:layout_marginTop="@dimen/view_padding"
-  android:animateLayoutChanges="true"
   android:background="?android:attr/selectableItemBackground"
   android:clickable="true"
   android:focusable="true"
   android:orientation="vertical"
   android:paddingLeft="@dimen/view_padding"
   android:paddingRight="@dimen/view_padding"
+  android:animateLayoutChanges="true"
   tools:background="@color/colorWhite">
 
   <ImageView

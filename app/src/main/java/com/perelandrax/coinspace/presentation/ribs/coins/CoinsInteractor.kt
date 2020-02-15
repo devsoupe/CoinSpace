@@ -1,5 +1,6 @@
 package com.perelandrax.coinspace.presentation.ribs.coins
 
+import android.annotation.SuppressLint
 import com.perelandrax.coinspace.data.CoinRepository
 import com.perelandrax.coinspace.domain.Coin
 import com.perelandrax.coinspace.domain.CoinMaster
@@ -9,6 +10,7 @@ import com.uber.rib.core.Bundle
 import com.uber.rib.core.Interactor
 import com.uber.rib.core.RibInteractor
 import io.reactivex.Observable
+import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.rxkotlin.subscribeBy
 import java8.util.stream.StreamSupport
 import kotlinx.coroutines.*
@@ -32,6 +34,7 @@ class CoinsInteractor : Interactor<CoinsInteractor.CoinsPresenter, CoinsRouter>(
   }
 
   private val parentJob = SupervisorJob()
+  private val disposables = CompositeDisposable()
 
   @Inject lateinit var presenter: CoinsPresenter
   @Inject lateinit var coinRepository: CoinRepository
@@ -42,8 +45,8 @@ class CoinsInteractor : Interactor<CoinsInteractor.CoinsPresenter, CoinsRouter>(
 
     presenter.showLoading()
 
-    presenter.onRefresh().subscribeBy { updateCoinList() }
-    presenter.onSelectCoin().subscribeBy { println("********* click : Coin (${it.detailId})") }
+    disposables.add(presenter.onRefresh().subscribeBy { updateCoinList() })
+    disposables.add(presenter.onSelectCoin().subscribeBy { routeCoinDetail() })
 
     updateCoinList()
   }
@@ -54,7 +57,6 @@ class CoinsInteractor : Interactor<CoinsInteractor.CoinsPresenter, CoinsRouter>(
     val delay = async { delay(500) }
 
     runCatching { coinRepository.getCoins() }.apply {
-
       delay.await()
 
       onSuccess { coinList ->
@@ -83,7 +85,13 @@ class CoinsInteractor : Interactor<CoinsInteractor.CoinsPresenter, CoinsRouter>(
 
   override fun willResignActive() {
     super.willResignActive()
+    
     parentJob.cancelChildren()
+    disposables.clear()
+  }
+
+  private fun routeCoinDetail() {
+    router.attachCoinDetail()
   }
 
   /**

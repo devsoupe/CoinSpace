@@ -2,6 +2,7 @@ package com.perelandrax.coinspace.presentation.ribs.coindetail
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import com.perelandrax.coinspace.R
 import com.uber.rib.core.InteractorBaseComponent
 import com.uber.rib.core.ViewBuilder
 import dagger.Binds
@@ -36,13 +37,11 @@ class CoinDetailBuilder(dependency: ParentComponent) : ViewBuilder<CoinDetailVie
   }
 
   override fun inflateView(inflater: LayoutInflater, parentViewGroup: ViewGroup): CoinDetailView? {
-    // TODO: Inflate a new view using the provided inflater, or create a new view programatically using the
-    // provided context from the parentViewGroup.
-    return null
+    return inflater.inflate(R.layout.layout_coin_detail_rib, parentViewGroup, false) as CoinDetailView
   }
 
   interface ParentComponent {
-//        val coindetailListener: CoinDetailInteractor.Listener
+
   }
 
   @dagger.Module

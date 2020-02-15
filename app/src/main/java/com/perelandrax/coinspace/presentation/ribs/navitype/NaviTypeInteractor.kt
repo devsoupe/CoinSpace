@@ -7,6 +7,7 @@ import com.uber.rib.core.Bundle
 import com.uber.rib.core.EmptyPresenter
 import com.uber.rib.core.Interactor
 import com.uber.rib.core.RibInteractor
+import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.rxkotlin.subscribeBy
 import javax.inject.Inject
 
@@ -18,12 +19,12 @@ import javax.inject.Inject
 @RibInteractor
 class NaviTypeInteractor : Interactor<EmptyPresenter, NaviTypeRouter>() {
 
-  @Inject
-  lateinit var navigationMenuEventStreamSource: NavigationMenuEventStreamSource
+  private val disposables = CompositeDisposable()
+
+  @Inject lateinit var navigationMenuEventStreamSource: NavigationMenuEventStreamSource
 
   override fun didBecomeActive(savedInstanceState: Bundle?) {
     super.didBecomeActive(savedInstanceState)
-
     handleNavigationMenuEventStreamSource()
   }
 
@@ -35,31 +36,29 @@ class NaviTypeInteractor : Interactor<EmptyPresenter, NaviTypeRouter>() {
 
   @SuppressLint("CheckResult")
   private fun handleNavigationMenuEventStreamSource() {
-    navigationMenuEventStreamSource.event
-      .subscribeBy(onNext = { event ->
+    disposables.add(navigationMenuEventStreamSource.event
+      .subscribeBy { event ->
         when (event) {
           COINS -> routeToCoins()
-          NEWS -> routeToICO()
+          NEWS -> routeToNews()
           ABOUT -> routeToAbout()
         }
-      }, onError = {
-        it.printStackTrace()
       })
   }
 
-  fun routeToCoins() {
+  private fun routeToCoins() {
     router.detachIco()
     router.detachAbout()
     router.attachCoins()
   }
 
-  fun routeToICO() {
+  private fun routeToNews() {
     router.detachCoins()
     router.detachAbout()
     router.attachIco()
   }
 
-  fun routeToAbout() {
+  private fun routeToAbout() {
     router.detachCoins()
     router.detachIco()
     router.attachAbout()

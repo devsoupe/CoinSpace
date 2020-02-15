@@ -7,6 +7,5 @@ import android.widget.FrameLayout
 /**
  * Top level view for {@link CoinDetailBuilder.CoinDetailScope}.
  */
-class CoinDetailView @JvmOverloads constructor(
-  context: Context, attrs: AttributeSet? = null, defStyle: Int = 0
-) : FrameLayout(context, attrs, defStyle), CoinDetailInteractor.CoinDetailPresenter
+class CoinDetailView @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null, defStyle: Int = 0) :
+  FrameLayout(context, attrs, defStyle), CoinDetailInteractor.CoinDetailPresenter

@@ -16,11 +16,8 @@ import javax.inject.Inject
 @RibInteractor
 class MainInteractor : Interactor<MainInteractor.MainPresenter, MainRouter>() {
 
-  @Inject
-  lateinit var presenter: MainPresenter
-
-  @Inject
-  lateinit var navigationMenuEventStreamUpdater: NavigationMenuEventStreamUpdater
+  @Inject lateinit var presenter: MainPresenter
+  @Inject lateinit var navigationMenuEventStreamUpdater: NavigationMenuEventStreamUpdater
 
   override fun didBecomeActive(savedInstanceState: Bundle?) {
     super.didBecomeActive(savedInstanceState)
@@ -30,20 +27,20 @@ class MainInteractor : Interactor<MainInteractor.MainPresenter, MainRouter>() {
     routeToNaviType()
   }
 
-  fun routeToToolbar() {
+  override fun willResignActive() {
+    super.willResignActive()
+  }
+
+  private fun routeToToolbar() {
     router.attachToolbar()
   }
 
-  fun routeToNavigation() {
+  private fun routeToNavigation() {
     router.attachNavigation()
   }
 
-  fun routeToNaviType() {
+  private fun routeToNaviType() {
     router.attachNaviType()
-  }
-
-  override fun willResignActive() {
-    super.willResignActive()
   }
 
   /**

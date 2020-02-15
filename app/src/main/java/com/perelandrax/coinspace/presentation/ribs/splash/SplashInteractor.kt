@@ -2,6 +2,7 @@ package com.perelandrax.coinspace.presentation.ribs.splash
 
 import com.perelandrax.coinspace.data.CoinRepository
 import com.perelandrax.coinspace.presentation.ribs.splash.masterstream.CoinMasterStreamUpdater
+import com.perelandrax.coinspace.presentation.ribslib.ScreenStack
 import com.perelandrax.coinspace.utilities.Coroutines
 import com.uber.rib.core.Bundle
 import com.uber.rib.core.Interactor
@@ -28,20 +29,15 @@ class SplashInteractor : Interactor<SplashInteractor.SplashPresenter, SplashRout
 
   private val parentJob = SupervisorJob()
 
-  @Inject
-  lateinit var presenter: SplashPresenter
-
-  @Inject
-  lateinit var coinRepository: CoinRepository
-
-  @Inject
-  lateinit var coinMasterStreamUpdater: CoinMasterStreamUpdater
+  @Inject lateinit var presenter: SplashPresenter
+  @Inject lateinit var screenStack: ScreenStack
+  @Inject lateinit var coinRepository: CoinRepository
+  @Inject lateinit var coinMasterStreamUpdater: CoinMasterStreamUpdater
 
   override fun didBecomeActive(savedInstanceState: Bundle?) {
     super.didBecomeActive(savedInstanceState)
 
     presenter.showLoading()
-
     getCoinMaster()
   }
 
@@ -70,13 +66,17 @@ class SplashInteractor : Interactor<SplashInteractor.SplashPresenter, SplashRout
   }
 
   private fun routeToMain() {
-    router.attachMain()
+    router.attachMain(screenStack)
   }
 
   override fun willResignActive() {
     super.willResignActive()
 
     parentJob.cancelChildren()
+  }
+
+  override fun handleBackPress(): Boolean {
+    return super.handleBackPress()
   }
 
   /**

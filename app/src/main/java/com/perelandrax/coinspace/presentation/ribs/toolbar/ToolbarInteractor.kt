@@ -7,6 +7,7 @@ import com.perelandrax.coinspace.presentation.ribs.navigation.menustream.Navigat
 import com.uber.rib.core.Bundle
 import com.uber.rib.core.Interactor
 import com.uber.rib.core.RibInteractor
+import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.rxkotlin.subscribeBy
 import javax.inject.Inject
 
@@ -18,11 +19,10 @@ import javax.inject.Inject
 @RibInteractor
 class ToolbarInteractor : Interactor<ToolbarInteractor.ToolbarPresenter, ToolbarRouter>() {
 
-  @Inject
-  lateinit var presenter: ToolbarPresenter
+  private val disposables = CompositeDisposable()
 
-  @Inject
-  lateinit var navigationMenuEventStreamSource: NavigationMenuEventStreamSource
+  @Inject lateinit var presenter: ToolbarPresenter
+  @Inject lateinit var navigationMenuEventStreamSource: NavigationMenuEventStreamSource
 
   override fun didBecomeActive(savedInstanceState: Bundle?) {
     super.didBecomeActive(savedInstanceState)
@@ -31,6 +31,7 @@ class ToolbarInteractor : Interactor<ToolbarInteractor.ToolbarPresenter, Toolbar
 
   override fun willResignActive() {
     super.willResignActive()
+    disposables.clear()
   }
 
   /**
@@ -47,11 +48,9 @@ class ToolbarInteractor : Interactor<ToolbarInteractor.ToolbarPresenter, Toolbar
 
   @SuppressLint("CheckResult")
   private fun handleNavigationMenuEventStreamSource() {
-    navigationMenuEventStreamSource.event
-      .subscribeBy(onNext = { event ->
+    disposables.add(navigationMenuEventStreamSource.event
+      .subscribeBy { event ->
         presenter.updateTitle(TitleForNavigationMenuEvent.getTitle(event))
-      }, onError = {
-        it.printStackTrace()
       })
   }
 

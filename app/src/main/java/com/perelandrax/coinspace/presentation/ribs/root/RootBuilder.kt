@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.perelandrax.coinspace.R
 import com.perelandrax.coinspace.presentation.ribs.splash.SplashBuilder
+import com.perelandrax.coinspace.presentation.ribslib.ScreenStack
 import com.uber.rib.core.InteractorBaseComponent
 import com.uber.rib.core.ViewBuilder
 import dagger.Binds
@@ -61,11 +62,16 @@ class RootBuilder(dependency: ParentComponent) :
       @RootScope
       @Provides
       @JvmStatic
-      internal fun router(component: Component, view: RootView, interactor: RootInteractor): RootRouter {
-        return RootRouter(view, interactor, component, SplashBuilder(component))
+      internal fun router(component: Component, view: RootView, interactor: RootInteractor, screenStack: ScreenStack): RootRouter {
+        return RootRouter(view, interactor, component, screenStack, SplashBuilder(component))
       }
 
-      // TODO: Create provider methods for dependencies created by this Rib. These should be static.
+      @RootScope
+      @Provides
+      @JvmStatic
+      fun screenStack(rootView: RootView): ScreenStack {
+        return ScreenStack(rootView)
+      }
     }
   }
 

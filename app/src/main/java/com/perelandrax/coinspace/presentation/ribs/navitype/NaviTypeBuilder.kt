@@ -8,6 +8,7 @@ import com.perelandrax.coinspace.presentation.ribs.main.MainView
 import com.perelandrax.coinspace.presentation.ribs.navigation.menustream.NavigationMenuEventStreamSource
 import com.perelandrax.coinspace.presentation.ribs.news.NewsBuilder
 import com.perelandrax.coinspace.presentation.ribs.splash.masterstream.CoinMasterStreamSource
+import com.perelandrax.coinspace.presentation.ribslib.ScreenStack
 import com.uber.rib.core.Builder
 import com.uber.rib.core.EmptyPresenter
 import com.uber.rib.core.InteractorBaseComponent
@@ -43,6 +44,7 @@ class NaviTypeBuilder(dependency: ParentComponent) :
 
   interface ParentComponent {
     fun context(): Context
+    fun screenStack(): ScreenStack
     fun mainView(): MainView
     fun coinRepository(): CoinRepository
     fun navigationMenuEventStreamSource(): NavigationMenuEventStreamSource

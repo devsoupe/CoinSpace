@@ -13,11 +13,13 @@ import com.perelandrax.coinspace.presentation.ribs.navigation.menustream.Navigat
 import com.perelandrax.coinspace.presentation.ribs.navitype.NaviTypeBuilder
 import com.perelandrax.coinspace.presentation.ribs.splash.masterstream.CoinMasterStreamSource
 import com.perelandrax.coinspace.presentation.ribs.toolbar.ToolbarBuilder
+import com.perelandrax.coinspace.presentation.ribslib.ScreenStack
 import com.uber.rib.core.InteractorBaseComponent
 import com.uber.rib.core.ViewBuilder
 import dagger.Binds
 import dagger.BindsInstance
 import dagger.Provides
+import kotlinx.android.synthetic.main.layout_main_rib.view.*
 import javax.inject.Qualifier
 import javax.inject.Scope
 import kotlin.annotation.AnnotationRetention.BINARY
@@ -54,6 +56,7 @@ class MainBuilder(dependency: ParentComponent) :
 
   interface ParentComponent {
     fun context(): Context
+    fun screenStack(): ScreenStack
     fun coinRepository(): CoinRepository
     fun coinMasterStreamSource(): CoinMasterStreamSource
   }
@@ -71,8 +74,9 @@ class MainBuilder(dependency: ParentComponent) :
       @MainScope
       @Provides
       @JvmStatic
-      internal fun router(component: Component, view: MainView, interactor: MainInteractor): MainRouter {
+      internal fun router(component: Component, view: MainView, interactor: MainInteractor, screenStack: ScreenStack): MainRouter {
         return MainRouter(view, interactor, component,
+          screenStack,
           ToolbarBuilder(component),
           NavigationBuilder(component),
           NaviTypeBuilder(component)
@@ -82,21 +86,21 @@ class MainBuilder(dependency: ParentComponent) :
       @MainScope
       @Provides
       @JvmStatic
-      internal fun provideNavigationListener(mainInteractor: MainInteractor): NavigationInteractor.Listener {
+      fun navigationListener(mainInteractor: MainInteractor): NavigationInteractor.Listener {
         return mainInteractor.NavigationListener()
       }
 
       @MainScope
       @Provides
       @JvmStatic
-      internal fun provideNavigationMenuEventStreamSource(stream: NavigationMenuEventStream): NavigationMenuEventStreamSource {
+      fun navigationMenuEventStreamSource(stream: NavigationMenuEventStream): NavigationMenuEventStreamSource {
         return stream
       }
 
       @MainScope
       @Provides
       @JvmStatic
-      internal fun provideNavigationMenuEventStreamUpdater(stream: NavigationMenuEventStream): NavigationMenuEventStreamUpdater {
+      fun navigationMenuEventStreamUpdater(stream: NavigationMenuEventStream): NavigationMenuEventStreamUpdater {
         return stream
       }
     }

@@ -5,7 +5,10 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.perelandrax.coinspace.R
 import com.perelandrax.coinspace.data.CoinRepository
+import com.perelandrax.coinspace.presentation.ribs.coindetail.CoinDetailBuilder
+import com.perelandrax.coinspace.presentation.ribs.coindetail.CoinDetailScreen
 import com.perelandrax.coinspace.presentation.ribs.splash.masterstream.CoinMasterStreamSource
+import com.perelandrax.coinspace.presentation.ribslib.ScreenStack
 import com.uber.rib.core.InteractorBaseComponent
 import com.uber.rib.core.ViewBuilder
 import dagger.Binds
@@ -46,6 +49,7 @@ class CoinsBuilder(dependency: ParentComponent) :
 
   interface ParentComponent {
     fun context(): Context
+    fun screenStack(): ScreenStack
     fun coinRepository(): CoinRepository
     fun coinMasterStreamSource(): CoinMasterStreamSource
   }
@@ -63,15 +67,16 @@ class CoinsBuilder(dependency: ParentComponent) :
       @CoinsScope
       @Provides
       @JvmStatic
-      internal fun router(component: Component, view: CoinsView, interactor: CoinsInteractor): CoinsRouter {
-        return CoinsRouter(view, interactor, component)
+      internal fun router(component: Component, view: CoinsView, interactor: CoinsInteractor, screenStack: ScreenStack): CoinsRouter {
+        return CoinsRouter(view, interactor, component, screenStack, CoinDetailScreen(CoinDetailBuilder(component)))
       }
     }
   }
 
   @CoinsScope
   @dagger.Component(modules = arrayOf(Module::class), dependencies = arrayOf(ParentComponent::class))
-  interface Component : InteractorBaseComponent<CoinsInteractor>, BuilderComponent {
+  interface Component : InteractorBaseComponent<CoinsInteractor>, BuilderComponent,
+    CoinDetailBuilder.ParentComponent {
 
     @dagger.Component.Builder
     interface Builder {
