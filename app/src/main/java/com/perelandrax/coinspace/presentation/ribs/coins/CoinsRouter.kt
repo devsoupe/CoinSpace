@@ -3,6 +3,10 @@ package com.perelandrax.coinspace.presentation.ribs.coins
 import com.perelandrax.coinspace.presentation.ribs.coindetail.CoinDetailScreen
 import com.perelandrax.coinspace.presentation.ribslib.ScreenStack
 import com.perelandrax.coinspace.presentation.ribslib.ScreenViewRouter
+import com.uber.rib.core.Router
+import com.uber.rib.core.RouterNavigator
+import com.uber.rib.core.RouterNavigatorFactory
+import com.uber.rib.core.RouterNavigatorState
 import io.reactivex.disposables.CompositeDisposable
 
 /**

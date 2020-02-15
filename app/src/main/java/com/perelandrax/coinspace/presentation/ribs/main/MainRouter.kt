@@ -26,18 +26,6 @@ class MainRouter(view: MainView, interactor: MainInteractor, component: MainBuil
   private var navigationRouter: NavigationRouter = navigationBuilder.build(view)
   private var naviTypeRouter: NaviTypeRouter = naviTypeBuilder.build()
 
-  override fun willAttach() {
-    super.willAttach()
-  }
-
-  override fun didLoad() {
-    super.didLoad()
-  }
-
-  override fun willDetach() {
-    super.willDetach()
-  }
-
   fun attachToolbar() {
     attachChild(toolbarRouter)
     view.toolbar.addView(toolbarRouter.view)

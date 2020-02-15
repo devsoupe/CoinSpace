@@ -85,7 +85,7 @@ class CoinsInteractor : Interactor<CoinsInteractor.CoinsPresenter, CoinsRouter>(
 
   override fun willResignActive() {
     super.willResignActive()
-    
+
     parentJob.cancelChildren()
     disposables.clear()
   }

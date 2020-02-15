@@ -1,7 +1,9 @@
 package com.perelandrax.coinspace.presentation.ribslib
 
+import android.view.View.GONE
 import android.view.ViewGroup
 import androidx.annotation.UiThread
+import androidx.core.view.get
 import com.uber.rib.core.screenstack.ScreenStackBase
 import com.uber.rib.core.screenstack.ViewProvider
 import java.util.*
@@ -42,7 +44,7 @@ class ScreenStack(private val parentViewGroup: ViewGroup) : ScreenStackBase {
 
     removeCurrentView()
     backStack.pop()
-    addCurrentView()
+//    addCurrentView()
   }
 
   override fun handleBackPress(): Boolean = handleBackPress(false)
