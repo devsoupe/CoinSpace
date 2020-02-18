@@ -46,9 +46,7 @@ class NewsBuilder(dependency: ParentComponent) :
     return inflater.inflate(R.layout.layout_news_rib, parentViewGroup, false) as NewsView
   }
 
-  interface ParentComponent {
-
-  }
+  interface ParentComponent
 
   @dagger.Module
   abstract class Module {

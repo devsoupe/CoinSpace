@@ -45,7 +45,7 @@ class SplashInteractor : Interactor<SplashInteractor.SplashPresenter, SplashRout
     launch {
       Coroutines.log("getCoinMasterData", coroutineContext)
 
-      val delay = async { delay(1500) }
+      val delay = async { delay(2000) }
 
       runCatching { coinRepository.getCoinMaster() }.apply {
 
@@ -73,10 +73,6 @@ class SplashInteractor : Interactor<SplashInteractor.SplashPresenter, SplashRout
     super.willResignActive()
 
     parentJob.cancelChildren()
-  }
-
-  override fun handleBackPress(): Boolean {
-    return super.handleBackPress()
   }
 
   /**

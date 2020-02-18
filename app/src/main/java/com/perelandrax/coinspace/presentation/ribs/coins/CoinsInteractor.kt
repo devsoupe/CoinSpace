@@ -1,6 +1,5 @@
 package com.perelandrax.coinspace.presentation.ribs.coins
 
-import android.annotation.SuppressLint
 import com.perelandrax.coinspace.data.CoinRepository
 import com.perelandrax.coinspace.domain.Coin
 import com.perelandrax.coinspace.domain.CoinMaster

@@ -27,10 +27,6 @@ class MainInteractor : Interactor<MainInteractor.MainPresenter, MainRouter>() {
     routeToNaviType()
   }
 
-  override fun willResignActive() {
-    super.willResignActive()
-  }
-
   private fun routeToToolbar() {
     router.attachToolbar()
   }

@@ -19,7 +19,6 @@ import com.uber.rib.core.ViewBuilder
 import dagger.Binds
 import dagger.BindsInstance
 import dagger.Provides
-import kotlinx.android.synthetic.main.layout_main_rib.view.*
 import javax.inject.Qualifier
 import javax.inject.Scope
 import kotlin.annotation.AnnotationRetention.BINARY

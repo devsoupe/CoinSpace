@@ -1,9 +1,7 @@
 package com.perelandrax.coinspace.presentation.ribslib
 
-import android.view.View.GONE
 import android.view.ViewGroup
 import androidx.annotation.UiThread
-import androidx.core.view.get
 import com.uber.rib.core.screenstack.ScreenStackBase
 import com.uber.rib.core.screenstack.ViewProvider
 import java.util.*
@@ -11,7 +9,7 @@ import java.util.*
 @UiThread
 class ScreenStack(private val parentViewGroup: ViewGroup) : ScreenStackBase {
 
-  private val backStack = ArrayDeque<ViewProvider>()
+  private val backStack = Stack<ViewProvider>()
   private val currentViewProvider: ViewProvider?
     get() = if (backStack.isEmpty()) null else backStack.peek()
 
@@ -28,7 +26,7 @@ class ScreenStack(private val parentViewGroup: ViewGroup) : ScreenStackBase {
   }
 
   override fun pushScreen(viewProvider: ViewProvider?, shouldAnimate: Boolean) {
-    hideCurrentView()
+//    hideCurrentView()
     backStack.push(viewProvider)
     addCurrentView()
   }

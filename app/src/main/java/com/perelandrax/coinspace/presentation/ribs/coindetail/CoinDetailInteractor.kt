@@ -20,7 +20,11 @@ class CoinDetailInteractor : Interactor<CoinDetailInteractor.CoinDetailPresenter
   /**
    * Presenter interface implemented by this RIB's view.
    */
-  interface CoinDetailPresenter
+  interface CoinDetailPresenter {
+
+    fun showLoading()
+    fun hideLoading()
+  }
 
   /**
    * Listener interface implemented by a parent RIB's interactor's inner class.

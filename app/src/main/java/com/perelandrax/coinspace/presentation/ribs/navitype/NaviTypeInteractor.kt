@@ -28,12 +28,6 @@ class NaviTypeInteractor : Interactor<EmptyPresenter, NaviTypeRouter>() {
     handleNavigationMenuEventStreamSource()
   }
 
-  override fun willResignActive() {
-    super.willResignActive()
-
-    // TODO: Perform any required clean up here, or delete this method entirely if not needed.
-  }
-
   @SuppressLint("CheckResult")
   private fun handleNavigationMenuEventStreamSource() {
     disposables.add(navigationMenuEventStreamSource.event

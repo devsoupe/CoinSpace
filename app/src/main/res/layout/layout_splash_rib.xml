@@ -10,7 +10,7 @@
   <androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorSplashBg">
+    android:background="#ffc467">
 
     <com.airbnb.lottie.LottieAnimationView
       android:id="@+id/splashLoadingView"
@@ -23,7 +23,7 @@
       app:layout_constraintTop_toTopOf="parent"
       app:lottie_autoPlay="true"
       app:lottie_enableMergePathsForKitKatAndAbove="true"
-      app:lottie_fileName="waiting_splash.json"
+      app:lottie_fileName="waiting2.json"
       app:lottie_loop="true"
       tools:visibility="visible"/>
 

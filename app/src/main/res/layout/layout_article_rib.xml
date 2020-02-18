@@ -22,7 +22,7 @@
       app:layout_constraintTop_toTopOf="parent"
       app:lottie_autoPlay="true"
       app:lottie_enableMergePathsForKitKatAndAbove="true"
-      app:lottie_fileName="waiting2.json"
+      app:lottie_fileName="waiting.json"
       app:lottie_loop="true"
       tools:visibility="visible"/>
 

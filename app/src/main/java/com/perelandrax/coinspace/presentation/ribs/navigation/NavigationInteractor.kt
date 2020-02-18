@@ -40,10 +40,6 @@ class NavigationInteractor : Interactor<NavigationInteractor.MainBottomTabPresen
       })
   }
 
-  override fun willResignActive() {
-    super.willResignActive()
-  }
-
   /**
    * Presenter interface implemented by this RIB's view.
    */

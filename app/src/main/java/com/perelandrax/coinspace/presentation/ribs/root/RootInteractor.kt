@@ -28,10 +28,6 @@ class RootInteractor : Interactor<RootInteractor.RootPresenter, RootRouter>() {
     router.attachSplash()
   }
 
-  override fun willResignActive() {
-    super.willResignActive()
-  }
-
   /**
    * Presenter interface implemented by this RIB's view.
    */

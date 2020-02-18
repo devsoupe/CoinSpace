@@ -40,9 +40,7 @@ class CoinDetailBuilder(dependency: ParentComponent) : ViewBuilder<CoinDetailVie
     return inflater.inflate(R.layout.layout_coin_detail_rib, parentViewGroup, false) as CoinDetailView
   }
 
-  interface ParentComponent {
-
-  }
+  interface ParentComponent
 
   @dagger.Module
   abstract class Module {

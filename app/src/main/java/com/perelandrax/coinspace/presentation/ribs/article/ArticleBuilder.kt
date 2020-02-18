@@ -46,9 +46,7 @@ class ArticleBuilder(dependency: ParentComponent) :
     return inflater.inflate(R.layout.layout_article_rib, parentViewGroup, false) as ArticleView
   }
 
-  interface ParentComponent {
-
-  }
+  interface ParentComponent
 
   @dagger.Module
   abstract class Module {

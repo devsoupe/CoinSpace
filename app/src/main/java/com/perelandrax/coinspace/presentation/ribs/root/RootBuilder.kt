@@ -45,9 +45,7 @@ class RootBuilder(dependency: ParentComponent) :
     return inflater.inflate(R.layout.layout_root_rib, parentViewGroup, false) as RootView
   }
 
-  interface ParentComponent {
-
-  }
+  interface ParentComponent
 
   @dagger.Module
   abstract class Module {

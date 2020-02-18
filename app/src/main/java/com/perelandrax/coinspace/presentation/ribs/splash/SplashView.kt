@@ -18,7 +18,7 @@ class SplashView @JvmOverloads constructor(context: Context, attrs: AttributeSet
   }
 
   private fun setupLoadingView() {
-    splashLoadingView.speed = 1.25f
+    splashLoadingView.speed = 1.5f
 
   }
 

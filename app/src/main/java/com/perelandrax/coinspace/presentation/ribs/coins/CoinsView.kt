@@ -29,7 +29,7 @@ class CoinsView @JvmOverloads constructor(context: Context, attrs: AttributeSet?
   }
 
   private fun setupLoadingView() {
-    coinsLoadingView.speed = 1.25f
+    coinsLoadingView.speed = 1.5f
   }
 
   private fun setupRecyclerView() {

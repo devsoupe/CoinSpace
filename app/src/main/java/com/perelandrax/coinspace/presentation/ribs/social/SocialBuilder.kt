@@ -41,9 +41,7 @@ class SocialBuilder(dependency: ParentComponent) :
     return inflater.inflate(R.layout.layout_social_rib, parentViewGroup, false) as SocialView
   }
 
-  interface ParentComponent {
-
-  }
+  interface ParentComponent
 
   @dagger.Module
   abstract class Module {

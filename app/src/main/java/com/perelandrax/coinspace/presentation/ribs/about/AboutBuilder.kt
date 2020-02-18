@@ -41,9 +41,7 @@ class AboutBuilder(dependency: ParentComponent) :
     return inflater.inflate(R.layout.layout_about_rib, parentViewGroup, false) as AboutView
   }
 
-  interface ParentComponent {
-
-  }
+  interface ParentComponent
 
   @dagger.Module
   abstract class Module {
