@@ -1,9 +1,14 @@
 package com.perelandrax.coinspace.presentation.ribslib
 
+import android.view.Gravity
 import android.view.ViewGroup
 import androidx.annotation.UiThread
+import androidx.transition.Slide
+import androidx.transition.TransitionManager
 import com.uber.rib.core.screenstack.ScreenStackBase
 import com.uber.rib.core.screenstack.ViewProvider
+import kotlinx.android.synthetic.main.layout_coins_rib.view.*
+import kotlinx.android.synthetic.main.layout_root_rib.view.*
 import java.util.*
 
 @UiThread
@@ -27,6 +32,12 @@ class ScreenStack(private val parentViewGroup: ViewGroup) : ScreenStackBase {
 
   override fun pushScreen(viewProvider: ViewProvider?, shouldAnimate: Boolean) {
 //    hideCurrentView()
+    backStack.push(viewProvider)
+    addCurrentView()
+  }
+
+  fun replaceScreen(viewProvider: ViewProvider?) {
+    removeCurrentView()
     backStack.push(viewProvider)
     addCurrentView()
   }
@@ -56,6 +67,12 @@ class ScreenStack(private val parentViewGroup: ViewGroup) : ScreenStackBase {
 
   private fun addCurrentView() {
     currentViewProvider?.let {
+
+//      val transition = Slide(Gravity.BOTTOM)
+//      parentViewGroup.container.addView(it.build                                                         View(parentViewGroup))
+//      TransitionManager.beginDelayedTransition(parentViewGroup.container, transition);
+//      it.onViewAppeared()
+
       parentViewGroup.addView(it.buildView(parentViewGroup))
       it.onViewAppeared()
     }

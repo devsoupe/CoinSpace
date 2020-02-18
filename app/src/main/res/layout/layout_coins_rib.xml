@@ -5,14 +5,11 @@
   xmlns:tools="http://schemas.android.com/tools"
   android:layout_width="match_parent"
   android:layout_height="match_parent"
-  android:background="@android:color/white"
-  android:animateLayoutChanges="true">
+  android:background="@android:color/white">
 
   <androidx.constraintlayout.widget.ConstraintLayout
-    android:id="@+id/rooView"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:animateLayoutChanges="true">
+    android:layout_height="match_parent">
 
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
       android:id="@+id/swipeRefreshLayout"

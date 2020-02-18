@@ -2,8 +2,10 @@ package com.perelandrax.coinspace.presentation.ribs.root
 
 import com.perelandrax.coinspace.presentation.ribs.splash.SplashBuilder
 import com.perelandrax.coinspace.presentation.ribs.splash.SplashRouter
+import com.perelandrax.coinspace.presentation.ribs.splash.SplashScreen
 import com.perelandrax.coinspace.presentation.ribslib.ScreenStack
-import com.uber.rib.core.ViewRouter
+import com.perelandrax.coinspace.presentation.ribslib.ScreenViewRouter
+import io.reactivex.disposables.CompositeDisposable
 
 /**
  * Adds and removes children of {@link RootBuilder.RootScope}.
@@ -13,16 +15,30 @@ import com.uber.rib.core.ViewRouter
 class RootRouter(view: RootView, interactor: RootInteractor, component: RootBuilder.Component,
                  private val screenStack: ScreenStack,
                  splashBuilder: SplashBuilder) :
-  ViewRouter<RootView, RootInteractor, RootBuilder.Component>(view, interactor, component) {
+  ScreenViewRouter<RootView, RootInteractor, RootBuilder.Component>(view, interactor, component) {
 
-  private var splashRouter: SplashRouter = splashBuilder.build(view)
+  private val disposables = CompositeDisposable()
+  private var splashScreen = SplashScreen(splashBuilder)
+
+  override fun willAttach() {
+    super.willAttach()
+
+    disposables.add(splashScreen.lifecycle()
+      .subscribe { event ->
+        handleScreenEvents(splashScreen.router, event)
+      })
+  }
+
+  override fun willDetach() {
+    super.willDetach()
+    disposables.clear()
+  }
 
   fun dispatchBackPress(): Boolean {
     return screenStack.handleBackPress()
   }
 
   fun attachSplash() {
-    attachChild(splashRouter)
-    view.addView(splashRouter.view)
+    screenStack.pushScreen(splashScreen)
   }
 }

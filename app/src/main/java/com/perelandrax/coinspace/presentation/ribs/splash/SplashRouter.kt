@@ -31,6 +31,7 @@ class SplashRouter(view: SplashView, interactor: SplashInteractor, component: Sp
   }
 
   fun attachMain(screenStack: ScreenStack) {
-    screenStack.pushScreen(mainScreen)
+    screenStack.replaceScreen(mainScreen)
+//    screenStack.pushScreen(mainScreen)
   }
 }
