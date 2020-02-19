@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<objectAnimator
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  android:interpolator="@android:anim/accelerate_decelerate_interpolator"
+  android:duration="@integer/slide_animation_duration"
+  android:propertyName="xFraction"
+  android:valueFrom="-0.2"
+  android:valueTo="0"
+  android:valueType="floatType"/>
+
+<!--<?xml version="1.0" encoding="utf-8"?>-->
+<!--<set xmlns:android="http://schemas.android.com/apk/res/android">-->
+<!--  <translate android:fromXDelta="-20%p" android:toXDelta="0"-->
+<!--             android:interpolator="@android:anim/accelerate_decelerate_interpolator"-->
+<!--             android:duration="@integer/slide_animation_duration"/>-->
+<!--</set>-->

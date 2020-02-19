@@ -8,4 +8,11 @@ import android.widget.FrameLayout
  * Top level view for {@link RootBuilder.RootScope}.
  */
 class RootView @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null, defStyle: Int = 0) :
-  FrameLayout(context, attrs, defStyle), RootInteractor.RootPresenter
+  FrameLayout(context, attrs, defStyle), RootInteractor.RootPresenter {
+
+  override fun onFinishInflate() {
+    super.onFinishInflate()
+
+    println("[CoinSpace] RootView : onFinishInflate")
+  }
+}

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<set xmlns:android="http://schemas.android.com/apk/res/android"
+     android:ordering="together">
+
+  <objectAnimator
+    android:interpolator="@android:anim/accelerate_decelerate_interpolator"
+    android:duration="@integer/slide_animation_duration"
+    android:propertyName="xFraction"
+    android:valueFrom="1"
+    android:valueTo="0"
+    android:valueType="floatType"/>
+
+<!--  <objectAnimator-->
+<!--    android:interpolator="@android:anim/accelerate_decelerate_interpolator"-->
+<!--    android:duration="@integer/slide_animation_duration"-->
+<!--    android:propertyName="alpha"-->
+<!--    android:valueFrom="0.5"-->
+<!--    android:valueTo="1"-->
+<!--    android:valueType="floatType"/>-->
+
+</set>
+
+  <!--<?xml version="1.0" encoding="utf-8"?>-->
+  <!--<set xmlns:android="http://schemas.android.com/apk/res/android">-->
+  <!--  <translate android:fromXDelta="100%p" android:toXDelta="0"-->
+  <!--             android:interpolator="@android:anim/accelerate_decelerate_interpolator"-->
+  <!--             android:duration="@integer/slide_animation_duration"/>-->
+  <!--</set>-->

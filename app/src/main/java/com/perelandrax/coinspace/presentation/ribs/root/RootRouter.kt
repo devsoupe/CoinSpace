@@ -1,7 +1,6 @@
 package com.perelandrax.coinspace.presentation.ribs.root
 
 import com.perelandrax.coinspace.presentation.ribs.splash.SplashBuilder
-import com.perelandrax.coinspace.presentation.ribs.splash.SplashRouter
 import com.perelandrax.coinspace.presentation.ribs.splash.SplashScreen
 import com.perelandrax.coinspace.presentation.ribslib.ScreenStack
 import com.perelandrax.coinspace.presentation.ribslib.ScreenViewRouter
@@ -39,6 +38,6 @@ class RootRouter(view: RootView, interactor: RootInteractor, component: RootBuil
   }
 
   fun attachSplash() {
-    screenStack.pushScreen(splashScreen)
+    screenStack.replaceScreen(splashScreen)
   }
 }

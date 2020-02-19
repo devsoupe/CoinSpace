@@ -22,9 +22,9 @@ class MainInteractor : Interactor<MainInteractor.MainPresenter, MainRouter>() {
   override fun didBecomeActive(savedInstanceState: Bundle?) {
     super.didBecomeActive(savedInstanceState)
 
-//    routeToToolbar()
-//    routeToNavigation()
-//    routeToNaviType()
+    routeToToolbar()
+    routeToNavigation()
+    routeToNaviType()
   }
 
   private fun routeToToolbar() {

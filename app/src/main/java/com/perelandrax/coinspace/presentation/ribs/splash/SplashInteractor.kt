@@ -61,7 +61,7 @@ class SplashInteractor : Interactor<SplashInteractor.SplashPresenter, SplashRout
         }
       }
 
-      presenter.hideLoading()
+//      presenter.hideLoading()
     }
   }
 

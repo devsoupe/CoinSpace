@@ -6,10 +6,8 @@ import com.perelandrax.coinspace.presentation.ribs.navitype.NaviTypeBuilder
 import com.perelandrax.coinspace.presentation.ribs.navitype.NaviTypeRouter
 import com.perelandrax.coinspace.presentation.ribs.toolbar.ToolbarBuilder
 import com.perelandrax.coinspace.presentation.ribs.toolbar.ToolbarRouter
-import com.perelandrax.coinspace.presentation.ribslib.ScreenStack
-import com.uber.rib.core.ViewRouter
+import com.perelandrax.coinspace.presentation.ribslib.ScreenViewRouter
 import kotlinx.android.synthetic.main.layout_main_rib.view.*
-import kotlinx.android.synthetic.main.layout_root_rib.view.*
 
 /**
  * Adds and removes children of {@link MainBuilder.MainScope}.
@@ -17,11 +15,10 @@ import kotlinx.android.synthetic.main.layout_root_rib.view.*
  * TODO describe the possible child configurations of this scope.
  */
 class MainRouter(view: MainView, interactor: MainInteractor, component: MainBuilder.Component,
-                 private val screenStack: ScreenStack,
                  toolbarBuilder: ToolbarBuilder,
                  navigationBuilder: NavigationBuilder,
                  naviTypeBuilder: NaviTypeBuilder) :
-  ViewRouter<MainView, MainInteractor, MainBuilder.Component>(view, interactor, component) {
+  ScreenViewRouter<MainView, MainInteractor, MainBuilder.Component>(view, interactor, component) {
 
   private var toolbarRouter: ToolbarRouter = toolbarBuilder.build(view)
   private var navigationRouter: NavigationRouter = navigationBuilder.build(view)

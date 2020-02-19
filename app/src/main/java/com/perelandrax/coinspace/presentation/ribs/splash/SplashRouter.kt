@@ -1,5 +1,6 @@
 package com.perelandrax.coinspace.presentation.ribs.splash
 
+import com.perelandrax.coinspace.R
 import com.perelandrax.coinspace.presentation.ribs.main.MainScreen
 import com.perelandrax.coinspace.presentation.ribslib.ScreenStack
 import com.perelandrax.coinspace.presentation.ribslib.ScreenViewRouter
@@ -31,7 +32,6 @@ class SplashRouter(view: SplashView, interactor: SplashInteractor, component: Sp
   }
 
   fun attachMain(screenStack: ScreenStack) {
-    screenStack.replaceScreen(mainScreen)
-//    screenStack.pushScreen(mainScreen)
+    screenStack.replaceScreen(mainScreen, R.anim.slide_to_left, R.anim.slide_from_right)
   }
 }
