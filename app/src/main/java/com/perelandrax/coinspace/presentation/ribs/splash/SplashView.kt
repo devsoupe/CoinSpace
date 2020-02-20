@@ -4,6 +4,7 @@ import android.content.Context
 import android.util.AttributeSet
 import android.view.View
 import android.widget.FrameLayout
+import com.orhanobut.logger.Logger
 import kotlinx.android.synthetic.main.layout_splash_rib.view.*
 
 /**
@@ -14,12 +15,13 @@ class SplashView @JvmOverloads constructor(context: Context, attrs: AttributeSet
 
   override fun onFinishInflate() {
     super.onFinishInflate()
+    Logger.t("RIBS").i("onFinishInflate")
+
     setupLoadingView()
   }
 
   private fun setupLoadingView() {
     splashLoadingView.speed = 1.5f
-
   }
 
   override fun showLoading() {

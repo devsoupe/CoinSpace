@@ -1,5 +1,6 @@
 package com.perelandrax.coinspace.presentation.ribs.splash
 
+import com.orhanobut.logger.Logger
 import com.perelandrax.coinspace.data.CoinRepository
 import com.perelandrax.coinspace.presentation.ribs.splash.masterstream.CoinMasterStreamUpdater
 import com.perelandrax.coinspace.presentation.ribslib.ScreenStack
@@ -36,6 +37,7 @@ class SplashInteractor : Interactor<SplashInteractor.SplashPresenter, SplashRout
 
   override fun didBecomeActive(savedInstanceState: Bundle?) {
     super.didBecomeActive(savedInstanceState)
+    Logger.t("RIBS").i("didBecomeActive")
 
     presenter.showLoading()
     getCoinMaster()
@@ -71,6 +73,7 @@ class SplashInteractor : Interactor<SplashInteractor.SplashPresenter, SplashRout
 
   override fun willResignActive() {
     super.willResignActive()
+    Logger.t("RIBS").i("willResignActive")
 
     parentJob.cancelChildren()
   }

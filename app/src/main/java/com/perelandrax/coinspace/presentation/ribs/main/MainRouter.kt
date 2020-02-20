@@ -1,5 +1,6 @@
 package com.perelandrax.coinspace.presentation.ribs.main
 
+import com.orhanobut.logger.Logger
 import com.perelandrax.coinspace.presentation.ribs.navigation.NavigationBuilder
 import com.perelandrax.coinspace.presentation.ribs.navigation.NavigationRouter
 import com.perelandrax.coinspace.presentation.ribs.navitype.NaviTypeBuilder
@@ -23,6 +24,16 @@ class MainRouter(view: MainView, interactor: MainInteractor, component: MainBuil
   private var toolbarRouter: ToolbarRouter = toolbarBuilder.build(view)
   private var navigationRouter: NavigationRouter = navigationBuilder.build(view)
   private var naviTypeRouter: NaviTypeRouter = naviTypeBuilder.build()
+
+  override fun willAttach() {
+    super.willAttach()
+    Logger.t("RIBS").i("willAttach")
+  }
+
+  override fun willDetach() {
+    super.willDetach()
+    Logger.t("RIBS").i("willDetach")
+  }
 
   fun attachToolbar() {
     attachChild(toolbarRouter)

@@ -3,6 +3,7 @@ package com.perelandrax.coinspace.presentation.ribs.root
 import android.content.Context
 import android.util.AttributeSet
 import android.widget.FrameLayout
+import com.orhanobut.logger.Logger
 
 /**
  * Top level view for {@link RootBuilder.RootScope}.
@@ -12,7 +13,6 @@ class RootView @JvmOverloads constructor(context: Context, attrs: AttributeSet? 
 
   override fun onFinishInflate() {
     super.onFinishInflate()
-
-    println("[CoinSpace] RootView : onFinishInflate")
+    Logger.t("RIBS").i("onFinishInflate")
   }
 }

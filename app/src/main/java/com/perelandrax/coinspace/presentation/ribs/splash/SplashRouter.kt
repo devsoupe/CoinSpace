@@ -1,6 +1,6 @@
 package com.perelandrax.coinspace.presentation.ribs.splash
 
-import com.perelandrax.coinspace.R
+import com.orhanobut.logger.Logger
 import com.perelandrax.coinspace.presentation.ribs.main.MainScreen
 import com.perelandrax.coinspace.presentation.ribslib.ScreenStack
 import com.perelandrax.coinspace.presentation.ribslib.ScreenViewRouter
@@ -19,19 +19,24 @@ class SplashRouter(view: SplashView, interactor: SplashInteractor, component: Sp
 
   override fun willAttach() {
     super.willAttach()
+    Logger.t("RIBS").i("willAttach")
 
     disposable.add(mainScreen.lifecycle()
       .subscribe { event ->
+        Logger.t("RIBS_LIFECYCLE").i("[mainScreen] : $event")
+
         handleScreenEvents(mainScreen.router, event)
       })
   }
 
   override fun willDetach() {
     super.willDetach()
+    Logger.t("RIBS").i("willDetach")
+
     disposable.clear()
   }
 
   fun attachMain(screenStack: ScreenStack) {
-    screenStack.replaceScreen(mainScreen, R.anim.slide_to_left, R.anim.slide_from_right)
+    screenStack.replace(mainScreen)
   }
 }

@@ -1,5 +1,6 @@
 package com.perelandrax.coinspace.presentation.ribs.root
 
+import com.orhanobut.logger.Logger
 import com.perelandrax.coinspace.presentation.ribs.splash.SplashBuilder
 import com.perelandrax.coinspace.presentation.ribs.splash.SplashScreen
 import com.perelandrax.coinspace.presentation.ribslib.ScreenStack
@@ -21,23 +22,28 @@ class RootRouter(view: RootView, interactor: RootInteractor, component: RootBuil
 
   override fun willAttach() {
     super.willAttach()
+    Logger.t("RIBS").i("willAttach")
 
     disposables.add(splashScreen.lifecycle()
       .subscribe { event ->
+        Logger.t("RIBS_LIFECYCLE").i("[splashScreen] : $event")
+
         handleScreenEvents(splashScreen.router, event)
       })
   }
 
   override fun willDetach() {
     super.willDetach()
+    Logger.t("RIBS").i("willDetach")
+
     disposables.clear()
   }
 
   fun dispatchBackPress(): Boolean {
-    return screenStack.handleBackPress()
+    return screenStack.back()
   }
 
   fun attachSplash() {
-    screenStack.replaceScreen(splashScreen)
+    screenStack.replace(splashScreen)
   }
 }
