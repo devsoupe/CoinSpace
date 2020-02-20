@@ -7,6 +7,7 @@ import android.widget.FrameLayout
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.jakewharton.rxbinding2.support.v4.widget.refreshes
+import com.orhanobut.logger.Logger
 import com.perelandrax.coinspace.R
 import com.perelandrax.coinspace.domain.Coin
 import com.perelandrax.coinspace.presentation.ribs.coins.coinlist.CoinListAdapter
@@ -23,6 +24,7 @@ class CoinsView @JvmOverloads constructor(context: Context, attrs: AttributeSet?
 
   override fun onFinishInflate() {
     super.onFinishInflate()
+    Logger.t("RIBS").i("onFinishInflate")
 
     setupRecyclerView()
     setupLoadingView()

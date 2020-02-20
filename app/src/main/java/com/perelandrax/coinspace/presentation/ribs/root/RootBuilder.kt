@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import com.perelandrax.coinspace.R
 import com.perelandrax.coinspace.presentation.ribs.splash.SplashBuilder
 import com.perelandrax.coinspace.presentation.ribslib.ScreenStack
+import com.perelandrax.coinspace.presentation.ribslib.ScreenStackHelper
 import com.uber.rib.core.InteractorBaseComponent
 import com.uber.rib.core.ViewBuilder
 import dagger.Binds
@@ -68,7 +69,7 @@ class RootBuilder(dependency: ParentComponent) :
       @Provides
       @JvmStatic
       fun screenStack(rootView: RootView): ScreenStack {
-        return ScreenStack(rootView)
+        return ScreenStackHelper(rootView)
       }
     }
   }

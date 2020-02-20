@@ -1,5 +1,6 @@
 package com.perelandrax.coinspace.presentation.ribs.main
 
+import com.orhanobut.logger.Logger
 import com.perelandrax.coinspace.presentation.ribs.navigation.NavigationInteractor
 import com.perelandrax.coinspace.presentation.ribs.navigation.menustream.NavigationMenuEvent.*
 import com.perelandrax.coinspace.presentation.ribs.navigation.menustream.NavigationMenuEventStreamUpdater
@@ -21,6 +22,7 @@ class MainInteractor : Interactor<MainInteractor.MainPresenter, MainRouter>() {
 
   override fun didBecomeActive(savedInstanceState: Bundle?) {
     super.didBecomeActive(savedInstanceState)
+    Logger.t("RIBS").i("didBecomeActive")
 
     routeToToolbar()
     routeToNavigation()
@@ -37,6 +39,11 @@ class MainInteractor : Interactor<MainInteractor.MainPresenter, MainRouter>() {
 
   private fun routeToNaviType() {
     router.attachNaviType()
+  }
+
+  override fun willResignActive() {
+    super.willResignActive()
+    Logger.t("RIBS").i("willResignActive")
   }
 
   /**

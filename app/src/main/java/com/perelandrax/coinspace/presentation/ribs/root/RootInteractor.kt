@@ -1,5 +1,6 @@
 package com.perelandrax.coinspace.presentation.ribs.root
 
+import com.orhanobut.logger.Logger
 import com.uber.rib.core.Bundle
 import com.uber.rib.core.Interactor
 import com.uber.rib.core.RibInteractor
@@ -17,7 +18,14 @@ class RootInteractor : Interactor<RootInteractor.RootPresenter, RootRouter>() {
 
   override fun didBecomeActive(savedInstanceState: Bundle?) {
     super.didBecomeActive(savedInstanceState)
+    Logger.t("RIBS").i("didBecomeActive")
+
     routeToSplash()
+  }
+
+  override fun willResignActive() {
+    super.willResignActive()
+    Logger.t("RIBS").i("willResignActive")
   }
 
   override fun handleBackPress(): Boolean {

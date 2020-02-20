@@ -73,9 +73,8 @@ class MainBuilder(dependency: ParentComponent) :
       @MainScope
       @Provides
       @JvmStatic
-      internal fun router(component: Component, view: MainView, interactor: MainInteractor, screenStack: ScreenStack): MainRouter {
+      internal fun router(component: Component, view: MainView, interactor: MainInteractor): MainRouter {
         return MainRouter(view, interactor, component,
-          screenStack,
           ToolbarBuilder(component),
           NavigationBuilder(component),
           NaviTypeBuilder(component)

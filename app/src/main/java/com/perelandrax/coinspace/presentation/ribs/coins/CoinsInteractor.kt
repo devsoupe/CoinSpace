@@ -1,5 +1,6 @@
 package com.perelandrax.coinspace.presentation.ribs.coins
 
+import com.orhanobut.logger.Logger
 import com.perelandrax.coinspace.data.CoinRepository
 import com.perelandrax.coinspace.domain.Coin
 import com.perelandrax.coinspace.domain.CoinMaster
@@ -41,6 +42,7 @@ class CoinsInteractor : Interactor<CoinsInteractor.CoinsPresenter, CoinsRouter>(
 
   override fun didBecomeActive(savedInstanceState: Bundle?) {
     super.didBecomeActive(savedInstanceState)
+    Logger.t("RIBS").i("didBecomeActive")
 
     presenter.showLoading()
 
@@ -84,6 +86,7 @@ class CoinsInteractor : Interactor<CoinsInteractor.CoinsPresenter, CoinsRouter>(
 
   override fun willResignActive() {
     super.willResignActive()
+    Logger.t("RIBS").i("willResignActive")
 
     parentJob.cancelChildren()
     disposables.clear()
