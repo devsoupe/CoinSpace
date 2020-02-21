@@ -13,7 +13,7 @@
 
     <View
       android:id="@+id/bg_dominant"
-      android:layout_width="match_parent"
+      android:layout_width="0dp"
       android:layout_height="180dp"
       android:background="@color/colorPrimaryDark"
       app:layout_constraintTop_toTopOf="parent"
@@ -21,8 +21,8 @@
       app:layout_constraintRight_toRightOf="parent"/>
 
     <ScrollView
-      android:layout_width="match_parent"
-      android:layout_height="match_parent"
+      android:layout_width="0dp"
+      android:layout_height="0dp"
       android:layout_marginBottom="@dimen/padding_16dp"
       android:paddingLeft="@dimen/padding_16dp"
       android:paddingRight="@dimen/padding_16dp"
@@ -33,14 +33,16 @@
       app:layout_constraintRight_toRightOf="parent"
       app:layout_constraintBottom_toBottomOf="parent">
 
-      <FrameLayout
+      <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
         <androidx.cardview.widget.CardView
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
-          android:layout_gravity="center_horizontal"
+          app:layout_constraintTop_toTopOf="parent"
+          app:layout_constraintLeft_toLeftOf="parent"
+          app:layout_constraintRight_toRightOf="parent"
           app:cardElevation="4dp"
           app:cardUseCompatPadding="true">
 
@@ -53,107 +55,106 @@
 
         </androidx.cardview.widget.CardView>
 
-        <LinearLayout
-          android:id="@+id/details_layout"
-          android:layout_width="match_parent"
-          android:layout_height="match_parent"
-          android:orientation="vertical"
-          android:paddingTop="48dp"
-          android:visibility="gone"
-          tools:visibility="visible">
+<!--        <LinearLayout-->
+<!--          android:id="@+id/details_layout"-->
+<!--          android:layout_width="match_parent"-->
+<!--          android:layout_height="match_parent"-->
+<!--          android:orientation="vertical"-->
+<!--          android:paddingTop="48dp"-->
+<!--          android:visibility="gone"-->
+<!--          tools:visibility="visible">-->
 
-          <include layout="@layout/coin_details_info"/>
+<!--          <include layout="@layout/layout_coin_detail_info"/>-->
 
-          <Space
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/padding_16dp"/>
+<!--          <Space-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="@dimen/padding_16dp"/>-->
 
-          <include layout="@layout/coin_details_features"/>
+<!--                    <include layout="@layout/layout_coin_detail_features"/>-->
 
-          <Space
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/padding_16dp"/>
+<!--          <Space-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="@dimen/padding_16dp"/>-->
 
-          <androidx.cardview.widget.CardView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:cardUseCompatPadding="true">
+          <!--          <androidx.cardview.widget.CardView-->
+          <!--            android:layout_width="match_parent"-->
+          <!--            android:layout_height="wrap_content"-->
+          <!--            app:cardUseCompatPadding="true">-->
 
-            <RelativeLayout
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content"
-              android:background="@color/colorPrimary"
-              android:gravity="center_horizontal"
-              android:orientation="vertical">
+          <!--            <RelativeLayout-->
+          <!--              android:layout_width="match_parent"-->
+          <!--              android:layout_height="wrap_content"-->
+          <!--              android:background="@color/colorPrimary"-->
+          <!--              android:gravity="center_horizontal"-->
+          <!--              android:orientation="vertical">-->
 
-              <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:layout_margin="@dimen/padding_8dp"
-                android:text="Total coin supply: "
-                android:textAllCaps="true"
-                android:textColor="@color/colorWhite"
-                android:textStyle="bold"/>
+          <!--              <TextView-->
+          <!--                android:layout_width="match_parent"-->
+          <!--                android:layout_height="wrap_content"-->
+          <!--                android:layout_alignParentLeft="true"-->
+          <!--                android:layout_margin="@dimen/padding_8dp"-->
+          <!--                android:text="Total coin supply: "-->
+          <!--                android:textAllCaps="true"-->
+          <!--                android:textColor="@color/colorWhite"-->
+          <!--                android:textStyle="bold"/>-->
 
-              <TextView
-                android:id="@+id/txt_coin_supply"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:layout_gravity="start"
-                android:layout_margin="@dimen/padding_8dp"
-                android:textColor="@color/colorWhite"
-                android:textStyle="bold"
-                tools:text="Bitcoin"/>
+          <!--              <TextView-->
+          <!--                android:id="@+id/txt_coin_supply"-->
+          <!--                android:layout_width="wrap_content"-->
+          <!--                android:layout_height="wrap_content"-->
+          <!--                android:layout_alignParentRight="true"-->
+          <!--                android:layout_gravity="start"-->
+          <!--                android:layout_margin="@dimen/padding_8dp"-->
+          <!--                android:textColor="@color/colorWhite"-->
+          <!--                android:textStyle="bold"-->
+          <!--                tools:text="Bitcoin"/>-->
 
-            </RelativeLayout>
+          <!--            </RelativeLayout>-->
 
-          </androidx.cardview.widget.CardView>
+          <!--          </androidx.cardview.widget.CardView>-->
 
-          <androidx.cardview.widget.CardView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:cardUseCompatPadding="true">
+          <!--          <androidx.cardview.widget.CardView-->
+          <!--            android:layout_width="match_parent"-->
+          <!--            android:layout_height="wrap_content"-->
+          <!--            app:cardUseCompatPadding="true">-->
 
-            <RelativeLayout
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content"
-              android:background="@color/colorPrimary"
-              android:gravity="center_horizontal"
-              android:orientation="vertical">
+          <!--            <RelativeLayout-->
+          <!--              android:layout_width="match_parent"-->
+          <!--              android:layout_height="wrap_content"-->
+          <!--              android:background="@color/colorPrimary"-->
+          <!--              android:gravity="center_horizontal"-->
+          <!--              android:orientation="vertical">-->
 
-              <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:layout_margin="@dimen/padding_8dp"
-                android:text="Start date: "
-                android:textAllCaps="true"
-                android:textColor="@color/colorWhite"
-                android:textStyle="bold"/>
+          <!--              <TextView-->
+          <!--                android:layout_width="match_parent"-->
+          <!--                android:layout_height="wrap_content"-->
+          <!--                android:layout_alignParentLeft="true"-->
+          <!--                android:layout_margin="@dimen/padding_8dp"-->
+          <!--                android:text="Start date: "-->
+          <!--                android:textAllCaps="true"-->
+          <!--                android:textColor="@color/colorWhite"-->
+          <!--                android:textStyle="bold"/>-->
 
-              <TextView
-                android:id="@+id/txt_start_date"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:layout_gravity="start"
-                android:layout_margin="@dimen/padding_8dp"
-                android:textColor="@color/colorWhite"
-                android:textStyle="bold"
-                tools:text="Bitcoin"/>
+          <!--              <TextView-->
+          <!--                android:id="@+id/txt_start_date"-->
+          <!--                android:layout_width="wrap_content"-->
+          <!--                android:layout_height="wrap_content"-->
+          <!--                android:layout_alignParentRight="true"-->
+          <!--                android:layout_gravity="start"-->
+          <!--                android:layout_margin="@dimen/padding_8dp"-->
+          <!--                android:textColor="@color/colorWhite"-->
+          <!--                android:textStyle="bold"-->
+          <!--                tools:text="Bitcoin"/>-->
 
-            </RelativeLayout>
+          <!--            </RelativeLayout>-->
 
-          </androidx.cardview.widget.CardView>
+          <!--          </androidx.cardview.widget.CardView>-->
 
-        </LinearLayout>
+<!--        </LinearLayout>-->
 
-      </FrameLayout>
+<!--      </androidx.constraintlayout.widget.ConstraintLayout>-->
 
     </ScrollView>
-
     <com.airbnb.lottie.LottieAnimationView
       android:id="@+id/coinDetailLoadingView"
       android:layout_width="240dp"
