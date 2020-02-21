@@ -47,7 +47,7 @@ class CoinsInteractor : Interactor<CoinsInteractor.CoinsPresenter, CoinsRouter>(
     presenter.showLoading()
 
     disposables.add(presenter.onRefresh().subscribeBy { updateCoinList() })
-    disposables.add(presenter.onSelectCoin().subscribeBy { routeCoinDetail() })
+    disposables.add(presenter.onSelectCoin().subscribeBy { routeCoinDetail(it.detailId) })
 
     updateCoinList()
   }
@@ -92,8 +92,8 @@ class CoinsInteractor : Interactor<CoinsInteractor.CoinsPresenter, CoinsRouter>(
     disposables.clear()
   }
 
-  private fun routeCoinDetail() {
-    router.attachCoinDetail()
+  private fun routeCoinDetail(coinId: String) {
+    router.attachCoinDetail(coinId)
   }
 
   /**

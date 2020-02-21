@@ -37,7 +37,8 @@ class CoinsRouter(view: CoinsView, interactor: CoinsInteractor, component: Coins
     disposables.clear()
   }
 
-  fun attachCoinDetail() {
+  fun attachCoinDetail(coinId: String) {
+    coinDetailScreen.coinId = coinId
     screenStack.push(coinDetailScreen)
   }
 }

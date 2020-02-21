@@ -2,6 +2,7 @@ package com.perelandrax.coinspace.framework.remote
 
 import com.perelandrax.coinspace.data.CoinDataSource
 import com.perelandrax.coinspace.domain.Coin
+import com.perelandrax.coinspace.domain.CoinDetail
 import com.perelandrax.coinspace.domain.CoinMaster
 import com.perelandrax.coinspace.framework.remote.api.CoinApi
 import com.perelandrax.coinspace.framework.remote.model.mapToDomain
@@ -35,5 +36,27 @@ class RemoteCoinDataSource(private val okHttpClient: OkHttpClient) : CoinDataSou
         add(it.mapToDomain())
       }
     }
+  }
+
+  override suspend fun getCoinDetail(coinId: String): CoinDetail {
+//    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    return CoinDetail(
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      ""
+    )
   }
 }

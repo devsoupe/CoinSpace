@@ -3,6 +3,7 @@ package com.perelandrax.coinspace.presentation.ribs.coindetail
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.perelandrax.coinspace.R
+import com.perelandrax.coinspace.data.CoinRepository
 import com.uber.rib.core.InteractorBaseComponent
 import com.uber.rib.core.ViewBuilder
 import dagger.Binds
@@ -25,13 +26,14 @@ class CoinDetailBuilder(dependency: ParentComponent) : ViewBuilder<CoinDetailVie
    * @param parentViewGroup parent view group that this router's view will be added to.
    * @return a new [CoinDetailRouter].
    */
-  fun build(parentViewGroup: ViewGroup): CoinDetailRouter {
+  fun build(parentViewGroup: ViewGroup, coinId: String): CoinDetailRouter {
     val view = createView(parentViewGroup)
     val interactor = CoinDetailInteractor()
     val component = DaggerCoinDetailBuilder_Component.builder()
       .parentComponent(dependency)
       .view(view)
       .interactor(interactor)
+      .coinId(coinId)
       .build()
     return component.coindetailRouter()
   }
@@ -40,7 +42,9 @@ class CoinDetailBuilder(dependency: ParentComponent) : ViewBuilder<CoinDetailVie
     return inflater.inflate(R.layout.layout_coin_detail_rib, parentViewGroup, false) as CoinDetailView
   }
 
-  interface ParentComponent
+  interface ParentComponent {
+    fun coinRepository(): CoinRepository
+  }
 
   @dagger.Module
   abstract class Module {
@@ -75,6 +79,9 @@ class CoinDetailBuilder(dependency: ParentComponent) : ViewBuilder<CoinDetailVie
 
       @BindsInstance
       fun view(view: CoinDetailView): Builder
+
+      @BindsInstance
+      fun coinId(coinId: String): Builder
 
       fun parentComponent(component: ParentComponent): Builder
 
