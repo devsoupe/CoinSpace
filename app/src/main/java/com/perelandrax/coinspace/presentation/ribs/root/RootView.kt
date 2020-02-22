@@ -13,6 +13,6 @@ class RootView @JvmOverloads constructor(context: Context, attrs: AttributeSet? 
 
   override fun onFinishInflate() {
     super.onFinishInflate()
-    Logger.t("RIBS").i("onFinishInflate")
+    Logger.i("onFinishInflate")
   }
 }

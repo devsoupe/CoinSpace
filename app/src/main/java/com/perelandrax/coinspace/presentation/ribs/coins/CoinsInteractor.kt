@@ -42,7 +42,7 @@ class CoinsInteractor : Interactor<CoinsInteractor.CoinsPresenter, CoinsRouter>(
 
   override fun didBecomeActive(savedInstanceState: Bundle?) {
     super.didBecomeActive(savedInstanceState)
-    Logger.t("RIBS").i("didBecomeActive")
+    Logger.i("didBecomeActive")
 
     presenter.showLoading()
 
@@ -86,7 +86,7 @@ class CoinsInteractor : Interactor<CoinsInteractor.CoinsPresenter, CoinsRouter>(
 
   override fun willResignActive() {
     super.willResignActive()
-    Logger.t("RIBS").i("willResignActive")
+    Logger.i("willResignActive")
 
     parentJob.cancelChildren()
     disposables.clear()

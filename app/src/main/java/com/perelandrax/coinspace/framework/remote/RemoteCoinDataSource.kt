@@ -1,10 +1,12 @@
 package com.perelandrax.coinspace.framework.remote
 
+import com.orhanobut.logger.Logger
 import com.perelandrax.coinspace.data.CoinDataSource
 import com.perelandrax.coinspace.domain.Coin
 import com.perelandrax.coinspace.domain.CoinDetail
 import com.perelandrax.coinspace.domain.CoinMaster
 import com.perelandrax.coinspace.framework.remote.api.CoinApi
+import com.perelandrax.coinspace.framework.remote.model.crytocompare.mapToDomain
 import com.perelandrax.coinspace.framework.remote.model.mapToDomain
 import okhttp3.OkHttpClient
 
@@ -39,24 +41,29 @@ class RemoteCoinDataSource(private val okHttpClient: OkHttpClient) : CoinDataSou
   }
 
   override suspend fun getCoinDetail(coinId: String): CoinDetail {
-//    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    return CoinDetail(
-      "",
-      "",
-      "",
-      "",
-      "",
-      "",
-      "",
-      "",
-      "",
-      "",
-      "",
-      "",
-      "",
-      "",
-      "",
-      ""
-    )
+    val coinApi = CoinApi.create(CRYPTO_COMPARE, okHttpClient)
+
+    return coinApi.getCoinSnapshotFull(coinId).run {
+      Logger.d(this.data.general.imageUrl)
+
+      CoinDetail(
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        ""
+      )
+    }
   }
 }

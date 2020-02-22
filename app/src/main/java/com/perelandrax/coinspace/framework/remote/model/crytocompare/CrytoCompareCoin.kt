@@ -1,4 +1,4 @@
-package com.perelandrax.coinspace.framework.remote.model
+package com.perelandrax.coinspace.framework.remote.model.crytocompare
 
 import com.perelandrax.coinspace.domain.CoinMaster
 import com.squareup.moshi.Json

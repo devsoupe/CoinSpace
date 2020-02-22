@@ -1,5 +1,6 @@
-package com.perelandrax.coinspace.framework.remote.model
+package com.perelandrax.coinspace.framework.remote.model.crytocompare
 
+import com.perelandrax.coinspace.framework.remote.model.crytocompare.CrytoCompareCoin
 import com.squareup.moshi.Json
 
 data class CrytoCompareCoinInfo(

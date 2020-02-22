@@ -42,7 +42,7 @@ class CoinDetailInteractor : Interactor<CoinDetailInteractor.CoinDetailPresenter
 
   override fun didBecomeActive(savedInstanceState: Bundle?) {
     super.didBecomeActive(savedInstanceState)
-    Logger.t("RIBS").i("didBecomeActive")
+    Logger.i("didBecomeActive")
 
     presenter.showLoading()
     updateCoinDetail()
@@ -53,12 +53,12 @@ class CoinDetailInteractor : Interactor<CoinDetailInteractor.CoinDetailPresenter
 
     val delay = async { delay(500) }
 
-    Logger.t("DEBUG").d("coidId : $coidId")
+    Logger.d("coidId : $coidId")
 
     runCatching { coinRepository.getCoinDetail(coidId) }.apply {
-//      delay.await()
-//
-//      onSuccess { coinList ->
+      delay.await()
+
+      onSuccess { coinDetail ->
 //        val coinMasterList = coinMasterStreamSource.source.value
 //
 //        coinList.forEach { coin ->
@@ -70,12 +70,15 @@ class CoinDetailInteractor : Interactor<CoinDetailInteractor.CoinDetailPresenter
 //          coin.detailId = detailId
 //        }
 //
-//        presenter.showCoinList(coinList)
-//      }
-//
-//      onFailure {
-//        presenter.showError()
-//      }
+        presenter.showCoinDetail()
+      }
+
+      onFailure {
+        it.printStackTrace()
+//        Logger.e("[CoinDetailInteractor : updateCoinDetail] \n$it.message!!")
+
+        presenter.showError()
+      }
     }
 
     presenter.hideLoading()
@@ -91,6 +94,9 @@ class CoinDetailInteractor : Interactor<CoinDetailInteractor.CoinDetailPresenter
 
     fun showLoading()
     fun hideLoading()
+
+    fun showError()
+    fun showCoinDetail()
   }
 
   /**

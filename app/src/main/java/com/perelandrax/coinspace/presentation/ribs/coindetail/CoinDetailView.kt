@@ -32,4 +32,12 @@ class CoinDetailView @JvmOverloads constructor(context: Context, attrs: Attribut
     coinDetailLoadingView.visibility = View.GONE
     coinDetailLoadingView.cancelAnimation()
   }
+
+  override fun showError() {
+
+  }
+
+  override fun showCoinDetail() {
+
+  }
 }

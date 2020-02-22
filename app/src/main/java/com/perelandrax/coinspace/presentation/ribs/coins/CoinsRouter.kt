@@ -20,11 +20,11 @@ class CoinsRouter(view: CoinsView, interactor: CoinsInteractor, component: Coins
 
   override fun willAttach() {
     super.willAttach()
-    Logger.t("RIBS").i("willAttach")
+    Logger.i("willAttach")
 
     disposables.add(coinDetailScreen.lifecycle()
       .subscribe { event ->
-        Logger.t("RIBS_LIFECYCLE").i("[coinDetailScreen] : $event")
+        Logger.i("[coinDetailScreen] : $event")
 
         handleScreenEvents(coinDetailScreen.router, event)
       })
@@ -32,7 +32,7 @@ class CoinsRouter(view: CoinsView, interactor: CoinsInteractor, component: Coins
 
   override fun willDetach() {
     super.willDetach()
-    Logger.t("RIBS").i("willDetach")
+    Logger.i("willDetach")
 
     disposables.clear()
   }
