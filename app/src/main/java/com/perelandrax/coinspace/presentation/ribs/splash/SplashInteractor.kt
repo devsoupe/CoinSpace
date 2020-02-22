@@ -2,6 +2,7 @@ package com.perelandrax.coinspace.presentation.ribs.splash
 
 import com.orhanobut.logger.Logger
 import com.perelandrax.coinspace.data.CoinRepository
+import com.perelandrax.coinspace.domain.CoinMaster
 import com.perelandrax.coinspace.presentation.ribs.splash.masterstream.CoinMasterStreamUpdater
 import com.perelandrax.coinspace.presentation.ribslib.ScreenStack
 import com.perelandrax.coinspace.utilities.Coroutines
@@ -47,27 +48,17 @@ class SplashInteractor : Interactor<SplashInteractor.SplashPresenter, SplashRout
     launch {
       Coroutines.log("getCoinMasterData", coroutineContext)
 
-      val delay = async { delay(2000) }
-
       runCatching { coinRepository.getCoinMaster() }.apply {
-
-        delay.await()
-
-        onSuccess {
-          coinMasterStreamUpdater.updateSource(it)
-          routeToMain()
-        }
-
-        onFailure {
-          presenter.showError()
-        }
+        onSuccess(::updateCoinMasterAndRouteToMain)
+        onFailure(presenter::showError)
       }
 
-//      presenter.hideLoading()
+      presenter.hideLoading()
     }
   }
 
-  private fun routeToMain() {
+  private fun updateCoinMasterAndRouteToMain(coinMasters: List<CoinMaster>) {
+    coinMasterStreamUpdater.updateSource(coinMasters)
     router.attachMain(screenStack)
   }
 
@@ -89,7 +80,7 @@ class SplashInteractor : Interactor<SplashInteractor.SplashPresenter, SplashRout
     fun showLoading()
     fun hideLoading()
 
-    fun showError()
+    fun showError(throwable: Throwable)
   }
 
   /**

@@ -59,7 +59,7 @@ class CoinsView @JvmOverloads constructor(context: Context, attrs: AttributeSet?
     swipeRefreshLayout.isRefreshing = false
   }
 
-  override fun showError() {
+  override fun showError(throwable: Throwable) {
 
   }
 

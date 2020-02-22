@@ -1,13 +1,13 @@
 package com.perelandrax.coinspace.domain
 
 data class Coin(
-  val id: String,
-  val imageUrl: String,
-  val name: String,
-  val coinName: String,
-  val percentage: String,
-  val price: String,
-  val volume: String,
-  val sortOrder: String,
-  var detailId: String = ""
+  val id: String? = null,
+  val imageUrl: String? = null,
+  val name: String? = null,
+  val coinName: String? = null,
+  val percentage: String? = null,
+  val price: String? = null,
+  val volume: String? = null,
+  val sortOrder: String? = null,
+  var detailId: String? = null
 )

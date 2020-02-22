@@ -47,7 +47,7 @@ class CoinsInteractor : Interactor<CoinsInteractor.CoinsPresenter, CoinsRouter>(
     presenter.showLoading()
 
     disposables.add(presenter.onRefresh().subscribeBy { updateCoinList() })
-    disposables.add(presenter.onSelectCoin().subscribeBy { routeCoinDetail(it.detailId) })
+    disposables.add(presenter.onSelectCoin().subscribeBy { coin -> coin?.detailId?.let { routeCoinDetail(it) } })
 
     updateCoinList()
   }
@@ -55,34 +55,28 @@ class CoinsInteractor : Interactor<CoinsInteractor.CoinsPresenter, CoinsRouter>(
   private fun updateCoinList() = launch {
     Coroutines.log("updateCoinList", coroutineContext)
 
-    val delay = async { delay(500) }
-
     runCatching { coinRepository.getCoins() }.apply {
-      delay.await()
-
-      onSuccess { coinList ->
-        val coinMasterList = coinMasterStreamSource.source.value
-
-        coinList.forEach { coin ->
-          val detailId = StreamSupport.stream(coinMasterList)
-            .filter { coinMaster -> coin.name == coinMaster.name }
-            .findFirst()
-            .orElse(CoinMaster()).id
-
-          coin.detailId = detailId
-        }
-
-        presenter.showCoinList(coinList)
-      }
-
-      onFailure {
-        presenter.showError()
-      }
+      onSuccess { presenter.showCoinList(mergedCoinListByDetailId(it)) }
+      onFailure(presenter::showError)
     }
 
     presenter.hideLoading()
   }
 
+  private fun mergedCoinListByDetailId(coinList: List<Coin>): List<Coin> {
+    val coinMasterList = coinMasterStreamSource.source.value
+
+    coinList.forEach { coin ->
+      val detailId = StreamSupport.stream(coinMasterList)
+        .filter { coinMaster -> coin.name == coinMaster.name }
+        .findFirst()
+        .orElse(CoinMaster()).id
+
+      coin.detailId = detailId
+    }
+
+    return coinList
+  }
 
   override fun willResignActive() {
     super.willResignActive()
@@ -107,7 +101,7 @@ class CoinsInteractor : Interactor<CoinsInteractor.CoinsPresenter, CoinsRouter>(
     fun showLoading()
     fun hideLoading()
 
-    fun showError()
+    fun showError(throwable: Throwable)
     fun showCoinList(coinList: List<Coin>)
   }
 

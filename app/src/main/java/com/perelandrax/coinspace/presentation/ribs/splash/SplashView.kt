@@ -34,7 +34,7 @@ class SplashView @JvmOverloads constructor(context: Context, attrs: AttributeSet
     splashLoadingView.cancelAnimation()
   }
 
-  override fun showError() {
+  override fun showError(throwable: Throwable) {
 
   }
 }

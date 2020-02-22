@@ -3,6 +3,7 @@ package com.perelandrax.coinspace.presentation.ribs.coindetail
 import com.orhanobut.logger.Logger
 import com.perelandrax.coinspace.data.CoinRepository
 import com.perelandrax.coinspace.domain.CoinMaster
+import com.perelandrax.coinspace.domain.coindetail.CoinDetail
 import com.perelandrax.coinspace.utilities.Coroutines
 import com.uber.rib.core.Bundle
 import com.uber.rib.core.Interactor
@@ -37,8 +38,7 @@ class CoinDetailInteractor : Interactor<CoinDetailInteractor.CoinDetailPresenter
   @Inject lateinit var coinRepository: CoinRepository
   @Inject lateinit var coidId: String
 
-//  @Inject
-//  lateinit var listener: Listener
+//  @Inject lateinit var listener: Listener
 
   override fun didBecomeActive(savedInstanceState: Bundle?) {
     super.didBecomeActive(savedInstanceState)
@@ -53,32 +53,11 @@ class CoinDetailInteractor : Interactor<CoinDetailInteractor.CoinDetailPresenter
 
     val delay = async { delay(500) }
 
-    Logger.d("coidId : $coidId")
-
-    runCatching { coinRepository.getCoinDetail(coidId) }.apply {
+    runCatching { coinRepository.getCoinDetail(this, coidId) }.apply {
       delay.await()
 
-      onSuccess { coinDetail ->
-//        val coinMasterList = coinMasterStreamSource.source.value
-//
-//        coinList.forEach { coin ->
-//          val detailId = StreamSupport.stream(coinMasterList)
-//            .filter { coinMaster -> coin.name == coinMaster.name }
-//            .findFirst()
-//            .orElse(CoinMaster()).id
-//
-//          coin.detailId = detailId
-//        }
-//
-        presenter.showCoinDetail()
-      }
-
-      onFailure {
-        it.printStackTrace()
-//        Logger.e("[CoinDetailInteractor : updateCoinDetail] \n$it.message!!")
-
-        presenter.showError()
-      }
+      onSuccess(presenter::showCoinDetail)
+      onFailure(presenter::showError)
     }
 
     presenter.hideLoading()
@@ -95,8 +74,8 @@ class CoinDetailInteractor : Interactor<CoinDetailInteractor.CoinDetailPresenter
     fun showLoading()
     fun hideLoading()
 
-    fun showError()
-    fun showCoinDetail()
+    fun showError(throwable: Throwable)
+    fun showCoinDetail(coinDetail: CoinDetail)
   }
 
   /**

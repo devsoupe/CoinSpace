@@ -3,6 +3,7 @@ package com.perelandrax.coinspace.framework.remote.api
 import com.perelandrax.coinspace.framework.remote.model.coinsnapshot.CoinSnapshotFull
 import com.perelandrax.coinspace.framework.remote.model.crytocompare.CrytoCompareCoinInfo
 import com.perelandrax.coinspace.framework.remote.model.MarketCapCoin
+import com.perelandrax.coinspace.framework.remote.model.socialstats.SocialStats
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
@@ -31,4 +32,7 @@ interface CoinApi {
 
   @GET("/api/data/coinsnapshotfullbyid")
   suspend fun getCoinSnapshotFull(@Query("id") id: String): CoinSnapshotFull
+
+  @GET("/api/data/socialstats")
+  suspend fun getSocialStats(@Query("id") id: String): SocialStats
 }
