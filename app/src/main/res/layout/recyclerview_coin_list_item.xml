@@ -26,15 +26,16 @@
 
   <TextView
     android:id="@+id/symbolTextView"
-    android:layout_width="wrap_content"
+    android:layout_width="0dp"
     android:layout_height="wrap_content"
     android:layout_marginLeft="16dp"
-    android:layout_marginStart="16dp"
     android:fontFamily="@font/orbitron"
     android:textColor="@color/colorPrimaryDark"
     android:textSize="18sp"
+    android:singleLine="true"
     app:layout_constraintBottom_toTopOf="@+id/nameTextView"
-    app:layout_constraintStart_toEndOf="@+id/coinLogoImageView"
+    app:layout_constraintLeft_toRightOf="@+id/coinLogoImageView"
+    app:layout_constraintRight_toLeftOf="@+id/volumeTextView"
     app:layout_constraintTop_toTopOf="@+id/coinLogoImageView"
     tools:text="BTC"/>
 
@@ -42,13 +43,13 @@
     android:id="@+id/nameTextView"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:layout_marginLeft="16dp"
-    android:layout_marginStart="16dp"
+    android:layout_marginLeft="@dimen/padding_16dp"
+    android:layout_marginRight="@dimen/padding_8dp"
     android:fontFamily="@font/orbitron"
     android:textColor="@color/colorTextSecondary"
     android:textSize="14sp"
     app:layout_constraintBottom_toBottomOf="@+id/coinLogoImageView"
-    app:layout_constraintStart_toEndOf="@+id/coinLogoImageView"
+    app:layout_constraintLeft_toRightOf="@+id/coinLogoImageView"
     app:layout_constraintTop_toBottomOf="@+id/symbolTextView"
     tools:text="Bitcoin"/>
 
@@ -60,7 +61,7 @@
     android:textColor="@color/colorPercentage"
     android:textSize="16sp"
     app:layout_constraintBottom_toTopOf="@+id/priceTextView"
-    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintRight_toRightOf="parent"
     app:layout_constraintTop_toTopOf="parent"
     tools:text="0.0%"/>
 
@@ -71,7 +72,7 @@
     android:textColor="@color/colorPrimaryDark"
     android:textSize="12sp"
     app:layout_constraintBottom_toTopOf="@+id/volumeTextView"
-    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintRight_toRightOf="parent"
     app:layout_constraintTop_toBottomOf="@+id/percentTextView"
     tools:text="$0.0"/>
 
@@ -82,7 +83,7 @@
     android:textColor="@color/colorTextSecondary"
     android:textSize="12sp"
     app:layout_constraintBottom_toBottomOf="parent"
-    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintRight_toRightOf="parent"
     app:layout_constraintTop_toBottomOf="@+id/priceTextView"
     tools:text="VOL: 0.0"/>
 

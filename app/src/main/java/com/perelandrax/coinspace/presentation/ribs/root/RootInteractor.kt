@@ -18,14 +18,11 @@ class RootInteractor : Interactor<RootInteractor.RootPresenter, RootRouter>() {
 
   override fun didBecomeActive(savedInstanceState: Bundle?) {
     super.didBecomeActive(savedInstanceState)
-    Logger.i("didBecomeActive")
-
     routeToSplash()
   }
 
   override fun willResignActive() {
     super.willResignActive()
-    Logger.i("willResignActive")
   }
 
   override fun handleBackPress(): Boolean {

@@ -36,31 +36,18 @@ class CoinDetailInteractor : Interactor<CoinDetailInteractor.CoinDetailPresenter
 
   @Inject lateinit var presenter: CoinDetailPresenter
   @Inject lateinit var coinRepository: CoinRepository
-  @Inject lateinit var coidId: String
+  @Inject lateinit var coinDetail: CoinDetail
 
 //  @Inject lateinit var listener: Listener
 
   override fun didBecomeActive(savedInstanceState: Bundle?) {
     super.didBecomeActive(savedInstanceState)
-    Logger.i("didBecomeActive")
 
-    presenter.showLoading()
     updateCoinDetail()
   }
 
-  private fun updateCoinDetail() = launch {
-    Coroutines.log("updateCoinDetail", coroutineContext)
-
-    val delay = async { delay(500) }
-
-    runCatching { coinRepository.getCoinDetail(this, coidId) }.apply {
-      delay.await()
-
-      onSuccess(presenter::showCoinDetail)
-      onFailure(presenter::showError)
-    }
-
-    presenter.hideLoading()
+  private fun updateCoinDetail() {
+    presenter.showCoinDetail(coinDetail)
   }
 
   /**

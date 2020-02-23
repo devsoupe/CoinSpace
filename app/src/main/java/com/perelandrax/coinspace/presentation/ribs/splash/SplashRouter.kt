@@ -19,20 +19,15 @@ class SplashRouter(view: SplashView, interactor: SplashInteractor, component: Sp
 
   override fun willAttach() {
     super.willAttach()
-    Logger.i("willAttach")
 
     disposable.add(mainScreen.lifecycle()
       .subscribe { event ->
-        Logger.i("[mainScreen] : $event")
-
         handleScreenEvents(mainScreen.router, event)
       })
   }
 
   override fun willDetach() {
     super.willDetach()
-    Logger.i("willDetach")
-
     disposable.clear()
   }
 

@@ -2,7 +2,6 @@
 <com.perelandrax.coinspace.presentation.ribs.coins.CoinsView
   xmlns:android="http://schemas.android.com/apk/res/android"
   xmlns:app="http://schemas.android.com/apk/res-auto"
-  xmlns:tools="http://schemas.android.com/tools"
   android:layout_width="match_parent"
   android:layout_height="match_parent"
   android:background="@color/colorWhite">
@@ -16,8 +15,8 @@
       android:layout_width="0dp"
       android:layout_height="0dp"
       app:layout_constraintBottom_toBottomOf="parent"
-      app:layout_constraintEnd_toEndOf="parent"
-      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintRight_toRightOf="parent"
+      app:layout_constraintLeft_toLeftOf="parent"
       app:layout_constraintTop_toTopOf="parent">
 
       <androidx.recyclerview.widget.RecyclerView
@@ -28,20 +27,16 @@
 
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
-    <com.airbnb.lottie.LottieAnimationView
-      android:id="@+id/coinsLoadingView"
-      android:layout_width="240dp"
-      android:layout_height="240dp"
+    <include
+      layout="@layout/layout_loading_bar"
+      android:id="@+id/loadingLayout"
+      android:layout_width="0dp"
+      android:layout_height="0dp"
       android:visibility="gone"
+      app:layout_constraintTop_toTopOf="parent"
       app:layout_constraintBottom_toBottomOf="parent"
       app:layout_constraintLeft_toLeftOf="parent"
-      app:layout_constraintRight_toRightOf="parent"
-      app:layout_constraintTop_toTopOf="parent"
-      app:lottie_autoPlay="true"
-      app:lottie_enableMergePathsForKitKatAndAbove="true"
-      app:lottie_fileName="waiting.json"
-      app:lottie_loop="true"
-      tools:visibility="visible"/>
+      app:layout_constraintRight_toRightOf="parent"/>
 
   </androidx.constraintlayout.widget.ConstraintLayout>
 

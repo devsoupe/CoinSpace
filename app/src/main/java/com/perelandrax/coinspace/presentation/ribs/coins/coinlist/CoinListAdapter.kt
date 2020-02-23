@@ -13,6 +13,7 @@ import com.perelandrax.coinspace.domain.Coin
 import io.reactivex.Observable
 import io.reactivex.subjects.PublishSubject
 import kotlinx.android.synthetic.main.recyclerview_coin_list_item.view.*
+import java.util.concurrent.TimeUnit
 
 class CoinListAdapter(private val resId: Int) :
   RecyclerView.Adapter<CoinListAdapter.ViewHolder>() {
@@ -69,6 +70,7 @@ class CoinListAdapter(private val resId: Int) :
       percentTextView.setTextColor(percentTextColor)
 
       RxView.clicks(itemLayout)
+        .throttleFirst(1000, TimeUnit.MILLISECONDS)
         .map { item }
         .subscribe(itemClickSubject)
     }

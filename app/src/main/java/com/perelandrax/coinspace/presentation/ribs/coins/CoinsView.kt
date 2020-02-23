@@ -6,6 +6,7 @@ import android.view.View
 import android.widget.FrameLayout
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.jakewharton.rxbinding2.support.v4.widget.refreshes
 import com.orhanobut.logger.Logger
 import com.perelandrax.coinspace.R
@@ -13,6 +14,8 @@ import com.perelandrax.coinspace.domain.Coin
 import com.perelandrax.coinspace.presentation.ribs.coins.coinlist.CoinListAdapter
 import io.reactivex.Observable
 import kotlinx.android.synthetic.main.layout_coins_rib.view.*
+import kotlinx.android.synthetic.main.layout_loading_bar.view.*
+import java.util.concurrent.TimeUnit
 
 /**
  * Top level view for {@link CoinsBuilder.CoinsScope}.
@@ -24,14 +27,13 @@ class CoinsView @JvmOverloads constructor(context: Context, attrs: AttributeSet?
 
   override fun onFinishInflate() {
     super.onFinishInflate()
-    Logger.i("onFinishInflate")
 
     setupRecyclerView()
     setupLoadingView()
   }
 
   private fun setupLoadingView() {
-    coinsLoadingView.speed = 1.5f
+    loadingView.speed = 1.5f
   }
 
   private fun setupRecyclerView() {
@@ -49,13 +51,13 @@ class CoinsView @JvmOverloads constructor(context: Context, attrs: AttributeSet?
   }
 
   override fun showLoading() {
-    coinsLoadingView.visibility = View.VISIBLE
-    coinsLoadingView.playAnimation()
+    loadingLayout.visibility = View.VISIBLE
+    loadingView.playAnimation()
   }
 
   override fun hideLoading() {
-    coinsLoadingView.visibility = View.GONE
-    coinsLoadingView.cancelAnimation()
+    loadingLayout.visibility = View.GONE
+    loadingView.cancelAnimation()
     swipeRefreshLayout.isRefreshing = false
   }
 

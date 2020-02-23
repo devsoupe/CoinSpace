@@ -11,7 +11,6 @@ data class CoinDetail(
   var totalCoinSupply: String? = null,
   var startDate: String? = null,
   var website: String? = null,
-  var sponsorImageUrl: String? = null,
   var icoStatus: String? = null,
   var icoDescription: String? = null,
   var icoTokenSupply: String? = null,

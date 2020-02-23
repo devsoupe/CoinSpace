@@ -1,6 +1,7 @@
 package com.perelandrax.coinspace.presentation.ribs.coins
 
 import com.orhanobut.logger.Logger
+import com.perelandrax.coinspace.domain.coindetail.CoinDetail
 import com.perelandrax.coinspace.presentation.ribs.coindetail.CoinDetailScreen
 import com.perelandrax.coinspace.presentation.ribslib.ScreenStack
 import com.perelandrax.coinspace.presentation.ribslib.ScreenViewRouter
@@ -20,25 +21,20 @@ class CoinsRouter(view: CoinsView, interactor: CoinsInteractor, component: Coins
 
   override fun willAttach() {
     super.willAttach()
-    Logger.i("willAttach")
 
     disposables.add(coinDetailScreen.lifecycle()
       .subscribe { event ->
-        Logger.i("[coinDetailScreen] : $event")
-
         handleScreenEvents(coinDetailScreen.router, event)
       })
   }
 
   override fun willDetach() {
     super.willDetach()
-    Logger.i("willDetach")
-
     disposables.clear()
   }
 
-  fun attachCoinDetail(coinId: String) {
-    coinDetailScreen.coinId = coinId
+  fun attachCoinDetail(coinDetail: CoinDetail) {
+    coinDetailScreen.coinDetail = coinDetail
     screenStack.push(coinDetailScreen)
   }
 }

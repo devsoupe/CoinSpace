@@ -62,27 +62,10 @@
       android:text="WEBSITE"
       android:textColor="@color/colorWhite"
       android:layout_marginTop="@dimen/padding_16dp"
+      android:layout_marginLeft="@dimen/padding_8dp"
+      android:layout_marginRight="@dimen/padding_8dp"
       app:layout_constraintTop_toBottomOf="@+id/guideBg"
       app:layout_constraintLeft_toLeftOf="parent"
-      app:layout_constraintRight_toLeftOf="@+id/guideBgSpace1"/>
-
-    <Space
-      android:id="@+id/guideBgSpace1"
-      android:layout_width="@dimen/padding_8dp"
-      android:layout_height="32dp"
-      app:layout_constraintTop_toTopOf="@+id/websiteButton"
-      app:layout_constraintLeft_toRightOf="@+id/websiteButton"
-      app:layout_constraintRight_toLeftOf="@+id/twitterButton"/>
-
-    <Button
-      android:id="@+id/twitterButton"
-      android:layout_width="0dp"
-      android:layout_height="32dp"
-      android:background="@color/colorPrimary"
-      android:text="TWITTER"
-      android:textColor="@color/colorWhite"
-      app:layout_constraintTop_toTopOf="@id/websiteButton"
-      app:layout_constraintLeft_toRightOf="@id/guideBgSpace1"
       app:layout_constraintRight_toRightOf="parent"/>
 
     <TextView
@@ -94,7 +77,7 @@
       android:layout_marginTop="@dimen/padding_16dp"
       android:textColor="@color/colorPrimaryDark"
       android:textSize="14sp"
-      app:layout_constraintTop_toBottomOf="@id/guideBgSpace1"
+      app:layout_constraintTop_toBottomOf="@id/websiteButton"
       app:layout_constraintLeft_toLeftOf="parent"
       app:layout_constraintRight_toRightOf="parent"
       tools:text="Bitcoin"/>

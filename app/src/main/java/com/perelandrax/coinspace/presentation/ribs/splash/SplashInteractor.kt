@@ -38,7 +38,6 @@ class SplashInteractor : Interactor<SplashInteractor.SplashPresenter, SplashRout
 
   override fun didBecomeActive(savedInstanceState: Bundle?) {
     super.didBecomeActive(savedInstanceState)
-    Logger.i("didBecomeActive")
 
     presenter.showLoading()
     getCoinMaster()
@@ -64,8 +63,6 @@ class SplashInteractor : Interactor<SplashInteractor.SplashPresenter, SplashRout
 
   override fun willResignActive() {
     super.willResignActive()
-    Logger.i("willResignActive")
-
     parentJob.cancelChildren()
   }
 

@@ -14,6 +14,5 @@ class MainView @JvmOverloads constructor(context: Context, attrs: AttributeSet? 
 
   override fun onFinishInflate() {
     super.onFinishInflate()
-    Logger.i("onFinishInflate")
   }
 }

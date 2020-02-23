@@ -60,13 +60,13 @@ class CoinDetailView @JvmOverloads constructor(context: Context, attrs: Attribut
     coinSupplyTextView.text = coinDetail.totalCoinSupply
     startDateTextView.text = coinDetail.startDate
 
-    if (coinDetail.website.isNullOrEmpty()) {
-      websiteButton.visibility = View.GONE
-    }
-
-    if (coinDetail.twitterObj?.link.isNullOrEmpty()) {
-      twitterButton.visibility = View.GONE
-    }
+//    if (coinDetail.website.isNullOrEmpty()) {
+//      websiteButton.visibility = View.GONE
+//    }
+//
+//    if (coinDetail.twitterObj?.link.isNullOrEmpty()) {
+//      twitterButton.visibility = View.GONE
+//    }
 
     try {
       Glide.with(context)
@@ -79,7 +79,7 @@ class CoinDetailView @JvmOverloads constructor(context: Context, attrs: Attribut
           }
         })
     } catch (e: Exception) {
-      // No implementation
+      
     }
   }
 

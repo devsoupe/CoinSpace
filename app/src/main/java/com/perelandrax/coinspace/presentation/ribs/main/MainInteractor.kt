@@ -22,7 +22,6 @@ class MainInteractor : Interactor<MainInteractor.MainPresenter, MainRouter>() {
 
   override fun didBecomeActive(savedInstanceState: Bundle?) {
     super.didBecomeActive(savedInstanceState)
-    Logger.i("didBecomeActive")
 
     routeToToolbar()
     routeToNavigation()
@@ -43,7 +42,6 @@ class MainInteractor : Interactor<MainInteractor.MainPresenter, MainRouter>() {
 
   override fun willResignActive() {
     super.willResignActive()
-    Logger.i("willResignActive")
   }
 
   /**

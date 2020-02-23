@@ -14,6 +14,7 @@ import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.rxkotlin.subscribeBy
 import java8.util.stream.StreamSupport
 import kotlinx.coroutines.*
+import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 import kotlin.coroutines.CoroutineContext
 
@@ -42,7 +43,6 @@ class CoinsInteractor : Interactor<CoinsInteractor.CoinsPresenter, CoinsRouter>(
 
   override fun didBecomeActive(savedInstanceState: Bundle?) {
     super.didBecomeActive(savedInstanceState)
-    Logger.i("didBecomeActive")
 
     presenter.showLoading()
 
@@ -80,14 +80,22 @@ class CoinsInteractor : Interactor<CoinsInteractor.CoinsPresenter, CoinsRouter>(
 
   override fun willResignActive() {
     super.willResignActive()
-    Logger.i("willResignActive")
 
     parentJob.cancelChildren()
     disposables.clear()
   }
 
-  private fun routeCoinDetail(coinId: String) {
-    router.attachCoinDetail(coinId)
+  private fun routeCoinDetail(coinId: String) = launch {
+    Coroutines.log("updateCoinList", coroutineContext)
+
+    presenter.showLoading()
+
+    runCatching { coinRepository.getCoinDetail(this, coinId) }.apply {
+      onSuccess(router::attachCoinDetail)
+      onFailure(presenter::showError)
+    }
+
+    presenter.hideLoading()
   }
 
   /**

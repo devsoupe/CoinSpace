@@ -22,20 +22,15 @@ class RootRouter(view: RootView, interactor: RootInteractor, component: RootBuil
 
   override fun willAttach() {
     super.willAttach()
-    Logger.i("willAttach")
 
     disposables.add(splashScreen.lifecycle()
       .subscribe { event ->
-        Logger.i("[splashScreen] : $event")
-
         handleScreenEvents(splashScreen.router, event)
       })
   }
 
   override fun willDetach() {
     super.willDetach()
-    Logger.i("willDetach")
-
     disposables.clear()
   }
 

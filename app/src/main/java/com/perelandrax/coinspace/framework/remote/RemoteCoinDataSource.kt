@@ -1,16 +1,20 @@
 package com.perelandrax.coinspace.framework.remote
 
+import com.orhanobut.logger.Logger
 import com.perelandrax.coinspace.data.CoinDataSource
 import com.perelandrax.coinspace.domain.Coin
-import com.perelandrax.coinspace.domain.coindetail.CoinDetail
 import com.perelandrax.coinspace.domain.CoinMaster
+import com.perelandrax.coinspace.domain.coindetail.CoinDetail
 import com.perelandrax.coinspace.framework.remote.api.CoinApi
 import com.perelandrax.coinspace.framework.remote.model.crytocompare.mapToDomain
 import com.perelandrax.coinspace.framework.remote.model.mapToDomain
 import com.perelandrax.coinspace.framework.remote.model.socialstats.mapToDomain
+import com.squareup.moshi.JsonAdapter
+import com.squareup.moshi.Moshi
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.async
 import okhttp3.OkHttpClient
+
 
 class RemoteCoinDataSource(private val okHttpClient: OkHttpClient) : CoinDataSource {
 
@@ -56,7 +60,12 @@ class RemoteCoinDataSource(private val okHttpClient: OkHttpClient) : CoinDataSou
     val ico = snapShotFull.data.ico
     val socialStatsRepo = socialStats.data?.codeRepository
 
-    CoinDetail(
+//    var moshi1 = Moshi.Builder().build()
+//    val jsonAdapter1: JsonAdapter<CoinSnapshotFull> = moshi1.adapter(CoinSnapshotFull::class.java)
+//    val json1: String = jsonAdapter1.toJson(snapShotFull)
+//    Logger.json(json1)
+
+    val coinDetail = CoinDetail(
       general.id,
       general.name,
       general.symbol,
@@ -66,8 +75,7 @@ class RemoteCoinDataSource(private val okHttpClient: OkHttpClient) : CoinDataSou
       baseUrl + general.imageUrl,
       general.totalCoinSupply,
       general.startDate,
-      if (!general.affiliateUrl.isNullOrEmpty() && general.affiliateUrl!!.contains("http")) general.affiliateUrl else "",
-      baseUrl + general.sponsor?.imageUrl,
+      general.website,
       ico.status,
       ico.description,
       ico.icoTokenSupply,
@@ -78,5 +86,12 @@ class RemoteCoinDataSource(private val okHttpClient: OkHttpClient) : CoinDataSou
       socialStats.data?.facebook.mapToDomain()
 //      if (!socialStatsRepo?.codeList.orEmpty().isEmpty()) socialStatsRepo?.codeList?.get(0) else CodeList()
     )
+
+    var moshi1 = Moshi.Builder().build()
+    val jsonAdapter1: JsonAdapter<CoinDetail> = moshi1.adapter(CoinDetail::class.java)
+    val json1: String = jsonAdapter1.toJson(coinDetail)
+    Logger.json(json1)
+
+    coinDetail
   }
 }

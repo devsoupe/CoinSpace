@@ -27,12 +27,10 @@ class MainRouter(view: MainView, interactor: MainInteractor, component: MainBuil
 
   override fun willAttach() {
     super.willAttach()
-    Logger.i("willAttach")
   }
 
   override fun willDetach() {
     super.willDetach()
-    Logger.i("willDetach")
   }
 
   fun attachToolbar() {
