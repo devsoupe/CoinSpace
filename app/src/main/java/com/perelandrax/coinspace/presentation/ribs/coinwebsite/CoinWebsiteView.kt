@@ -52,7 +52,6 @@ class CoinWebsiteView @JvmOverloads constructor(context: Context, attrs: Attribu
   }
 
   override fun showWebsite(url: String) {
-    Logger.i("showWebsite : $url")
     webview.loadUrl(url)
   }
 
@@ -60,7 +59,6 @@ class CoinWebsiteView @JvmOverloads constructor(context: Context, attrs: Attribu
 
     override fun shouldOverrideUrlLoading(view: WebView?, url: String?): Boolean {
       showLoading()
-      Logger.i("shouldOverrideUrlLoading : $url")
       view?.loadUrl(url)
       return true
     }
