@@ -2,6 +2,7 @@ package com.perelandrax.coinspace.presentation.ribs.coindetail
 
 import android.content.Context
 import android.graphics.Bitmap
+import android.graphics.Color
 import android.text.Html
 import android.util.AttributeSet
 import android.view.View
@@ -13,6 +14,7 @@ import com.bumptech.glide.request.transition.Transition
 import com.jakewharton.rxbinding2.view.clicks
 import com.orhanobut.logger.Logger
 import com.perelandrax.coinspace.R
+import com.perelandrax.coinspace.domain.CoinWebsite
 import com.perelandrax.coinspace.domain.coindetail.CoinDetail
 import com.perelandrax.coinspace.presentation.ribslib.AnimationFrameLayout
 import io.reactivex.Observable
@@ -29,6 +31,9 @@ import java.util.concurrent.TimeUnit
 class CoinDetailView @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null, defStyle: Int = 0) :
   AnimationFrameLayout(context, attrs, defStyle), CoinDetailInteractor.CoinDetailPresenter {
 
+  private lateinit var coinDetail: CoinDetail
+  private var coinColor = Color.LTGRAY
+
   override fun onFinishInflate() {
     super.onFinishInflate()
     setupLoadingView()
@@ -38,9 +43,10 @@ class CoinDetailView @JvmOverloads constructor(context: Context, attrs: Attribut
     loadingView.speed = 1.25f
   }
 
-  override fun onNavigateWebsite(): Observable<Unit> {
+  override fun onNavigateWebsite(): Observable<CoinWebsite> {
     return websiteButton.clicks()
       .throttleFirst(1000, TimeUnit.MILLISECONDS)
+      .map { CoinWebsite("${coinDetail.symbol} (${coinDetail.name})", coinColor, coinDetail.website) }
   }
 
   override fun showLoading() {
@@ -58,8 +64,9 @@ class CoinDetailView @JvmOverloads constructor(context: Context, attrs: Attribut
   }
 
   override fun showCoinDetail(coinDetail: CoinDetail) {
-    coinDetailLayout.visibility = View.VISIBLE
+    this.coinDetail = coinDetail
 
+    coinDetailLayout.visibility = View.VISIBLE
     symbolTextView.text = coinDetail.symbol
     nameTextView.text = coinDetail.name
     descriptionTextView.text = Html.fromHtml(coinDetail.description)
@@ -82,7 +89,7 @@ class CoinDetailView @JvmOverloads constructor(context: Context, attrs: Attribut
         .into(object : SimpleTarget<Bitmap>(96, 96) {
           override fun onResourceReady(resource: Bitmap, transition: Transition<in Bitmap>?) {
             coinLogoImageView.setImageBitmap(resource)
-            bg_dominant.setBackgroundColor(getDominantColor(resource))
+            dominantBgView.setBackgroundColor(getDominantColor(resource).apply { coinColor = this })
           }
         })
     } catch (e: Exception) {

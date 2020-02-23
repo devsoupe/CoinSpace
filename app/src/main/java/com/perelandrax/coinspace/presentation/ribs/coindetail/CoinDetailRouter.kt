@@ -1,5 +1,6 @@
 package com.perelandrax.coinspace.presentation.ribs.coindetail
 
+import com.perelandrax.coinspace.domain.CoinWebsite
 import com.perelandrax.coinspace.presentation.ribs.coinwebsite.CoinWebsiteScreen
 import com.perelandrax.coinspace.presentation.ribslib.ScreenStack
 import com.perelandrax.coinspace.presentation.ribslib.ScreenViewRouter
@@ -31,7 +32,8 @@ class CoinDetailRouter(view: CoinDetailView, interactor: CoinDetailInteractor, c
     disposables.clear()
   }
 
-  fun attachCoinWebsite() {
+  fun attachCoinWebsite(coinWebsite: CoinWebsite) {
+    coinWebsiteScreen.coinWebsite = coinWebsite
     screenStack.present(coinWebsiteScreen)
   }
 }

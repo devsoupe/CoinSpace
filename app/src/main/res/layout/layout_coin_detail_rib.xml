@@ -12,7 +12,7 @@
     android:layout_height="match_parent">
 
     <View
-      android:id="@+id/bg_dominant"
+      android:id="@+id/dominantBgView"
       android:layout_width="0dp"
       android:layout_height="180dp"
       android:background="@color/colorPrimaryDark"

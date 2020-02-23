@@ -1,5 +1,6 @@
 package com.perelandrax.coinspace.presentation.ribs.coinwebsite
 
+import com.perelandrax.coinspace.domain.CoinWebsite
 import com.uber.rib.core.Bundle
 import com.uber.rib.core.Interactor
 import com.uber.rib.core.RibInteractor
@@ -14,12 +15,15 @@ import javax.inject.Inject
 class CoinWebsiteInteractor : Interactor<CoinWebsiteInteractor.CoinWebsitePresenter, CoinWebsiteRouter>() {
 
   @Inject lateinit var presenter: CoinWebsitePresenter
+  @Inject lateinit var coinWebsite: CoinWebsite
 //  @Inject lateinit var listener: Listener
 
   override fun didBecomeActive(savedInstanceState: Bundle?) {
     super.didBecomeActive(savedInstanceState)
 
-    // TODO: Add attachment logic here (RxSubscriptions, etc.).
+    presenter.updateTitle(coinWebsite.title)
+    presenter.updateToolbarColor(coinWebsite.titleColor)
+    presenter.showWebsite(coinWebsite.url)
   }
 
   override fun willResignActive() {
@@ -31,7 +35,12 @@ class CoinWebsiteInteractor : Interactor<CoinWebsiteInteractor.CoinWebsitePresen
   /**
    * Presenter interface implemented by this RIB's view.
    */
-  interface CoinWebsitePresenter
+  interface CoinWebsitePresenter {
+
+    fun updateTitle(title: String)
+    fun updateToolbarColor(color: Int)
+    fun showWebsite(url: String)
+  }
 
   /**
    * Listener interface implemented by a parent RIB's interactor's inner class.

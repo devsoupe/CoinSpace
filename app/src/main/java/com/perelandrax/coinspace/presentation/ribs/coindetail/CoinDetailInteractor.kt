@@ -1,6 +1,8 @@
 package com.perelandrax.coinspace.presentation.ribs.coindetail
 
 import com.perelandrax.coinspace.data.CoinRepository
+import com.perelandrax.coinspace.domain.Coin
+import com.perelandrax.coinspace.domain.CoinWebsite
 import com.perelandrax.coinspace.domain.coindetail.CoinDetail
 import com.uber.rib.core.Bundle
 import com.uber.rib.core.Interactor
@@ -51,11 +53,11 @@ class CoinDetailInteractor : Interactor<CoinDetailInteractor.CoinDetailPresenter
   }
 
   private fun handlePresenterEvent() {
-    presenter.onNavigateWebsite().subscribe { routeCoinWebsite() }
+    presenter.onNavigateWebsite().subscribe { routeCoinWebsite(it) }
   }
 
-  private fun routeCoinWebsite() {
-    router.attachCoinWebsite()
+  private fun routeCoinWebsite(coinWebsite: CoinWebsite) {
+    router.attachCoinWebsite(coinWebsite)
   }
 
   /**
@@ -66,7 +68,7 @@ class CoinDetailInteractor : Interactor<CoinDetailInteractor.CoinDetailPresenter
    */
   interface CoinDetailPresenter {
 
-    fun onNavigateWebsite(): Observable<Unit>
+    fun onNavigateWebsite(): Observable<CoinWebsite>
 
     fun showLoading()
     fun hideLoading()

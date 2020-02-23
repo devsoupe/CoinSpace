@@ -65,7 +65,7 @@ class RemoteCoinDataSource(private val okHttpClient: OkHttpClient) : CoinDataSou
 //    val json1: String = jsonAdapter1.toJson(snapShotFull)
 //    Logger.json(json1)
 
-    val coinDetail = CoinDetail(
+    CoinDetail(
       general.id,
       general.name,
       general.symbol,
@@ -75,7 +75,7 @@ class RemoteCoinDataSource(private val okHttpClient: OkHttpClient) : CoinDataSou
       baseUrl + general.imageUrl,
       general.totalCoinSupply,
       general.startDate,
-      general.website,
+      general.website.split(" ")[1].replace("'", "").replace("href=", ""),
       ico.status,
       ico.description,
       ico.icoTokenSupply,
@@ -87,11 +87,11 @@ class RemoteCoinDataSource(private val okHttpClient: OkHttpClient) : CoinDataSou
 //      if (!socialStatsRepo?.codeList.orEmpty().isEmpty()) socialStatsRepo?.codeList?.get(0) else CodeList()
     )
 
-    var moshi1 = Moshi.Builder().build()
-    val jsonAdapter1: JsonAdapter<CoinDetail> = moshi1.adapter(CoinDetail::class.java)
-    val json1: String = jsonAdapter1.toJson(coinDetail)
-    Logger.json(json1)
-
-    coinDetail
+//    var moshi1 = Moshi.Builder().build()
+//    val jsonAdapter1: JsonAdapter<CoinDetail> = moshi1.adapter(CoinDetail::class.java)
+//    val json1: String = jsonAdapter1.toJson(coinDetail)
+//    Logger.json(json1)
+//
+//    coinDetail
   }
 }

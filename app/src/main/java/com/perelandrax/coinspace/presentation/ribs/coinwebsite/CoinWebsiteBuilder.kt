@@ -3,6 +3,9 @@ package com.perelandrax.coinspace.presentation.ribs.coinwebsite
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.perelandrax.coinspace.R
+import com.perelandrax.coinspace.domain.CoinWebsite
+import com.perelandrax.coinspace.domain.coindetail.CoinDetail
+import com.perelandrax.coinspace.presentation.ribs.coindetail.CoinDetailBuilder
 import com.perelandrax.coinspace.presentation.ribs.coindetail.CoinDetailView
 import com.uber.rib.core.InteractorBaseComponent
 import com.uber.rib.core.ViewBuilder
@@ -27,13 +30,14 @@ class CoinWebsiteBuilder(dependency: ParentComponent) :
    * @param parentViewGroup parent view group that this router's view will be added to.
    * @return a new [CoinWebsiteRouter].
    */
-  fun build(parentViewGroup: ViewGroup): CoinWebsiteRouter {
+  fun build(parentViewGroup: ViewGroup, coinWebsite: CoinWebsite): CoinWebsiteRouter {
     val view = createView(parentViewGroup)
     val interactor = CoinWebsiteInteractor()
     val component = DaggerCoinWebsiteBuilder_Component.builder()
       .parentComponent(dependency)
       .view(view)
       .interactor(interactor)
+      .coinWebsite(coinWebsite)
       .build()
     return component.coinwebsiteRouter()
   }
@@ -78,6 +82,9 @@ class CoinWebsiteBuilder(dependency: ParentComponent) :
 
       @BindsInstance
       fun view(view: CoinWebsiteView): Builder
+
+      @BindsInstance
+      fun coinWebsite(coinWebsite: CoinWebsite): CoinWebsiteBuilder.Component.Builder
 
       fun parentComponent(component: ParentComponent): Builder
 
