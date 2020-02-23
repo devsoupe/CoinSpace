@@ -42,7 +42,6 @@ class CoinDetailInteractor : Interactor<CoinDetailInteractor.CoinDetailPresenter
 
   override fun didBecomeActive(savedInstanceState: Bundle?) {
     super.didBecomeActive(savedInstanceState)
-
     updateCoinDetail()
   }
 

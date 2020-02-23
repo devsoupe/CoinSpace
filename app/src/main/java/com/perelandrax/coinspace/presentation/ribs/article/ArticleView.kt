@@ -5,6 +5,7 @@ import android.util.AttributeSet
 import android.view.View
 import android.widget.FrameLayout
 import kotlinx.android.synthetic.main.layout_article_rib.view.*
+import kotlinx.android.synthetic.main.layout_loading_bar.view.*
 
 /**
  * Top level view for {@link ArticleBuilder.ArticleScope}.
@@ -18,8 +19,16 @@ class ArticleView @JvmOverloads constructor(context: Context, attrs: AttributeSe
   }
 
   private fun setupLoadingView() {
-    articleLoadingView.speed = 1.25f
-    articleLoadingView.visibility = View.VISIBLE
-    articleLoadingView.playAnimation()
+    loadingView.speed = 1.25f
+  }
+
+  override fun showLoading() {
+    loadingLayout.visibility = View.VISIBLE
+    loadingView.playAnimation()
+  }
+
+  override fun hideLoading() {
+    loadingLayout.visibility = View.GONE
+    loadingView.cancelAnimation()
   }
 }

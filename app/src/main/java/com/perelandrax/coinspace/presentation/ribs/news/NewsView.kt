@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.FrameLayout
 import androidx.viewpager.widget.PagerAdapter
 import com.perelandrax.coinspace.presentation.ribs.news.tablayout.TabLayoutView
+import kotlinx.android.synthetic.main.layout_loading_bar.view.*
 import kotlinx.android.synthetic.main.layout_news_rib.view.*
 
 /**
@@ -23,7 +24,7 @@ class NewsView @JvmOverloads constructor(context: Context, attrs: AttributeSet? 
   }
 
   private fun setupLoadingView() {
-    newsLoadingView.speed = 1.25f
+    loadingView.speed = 1.25f
   }
 
   override fun setupTabLayoutViews(tabLayoutViews: List<TabLayoutView>) {

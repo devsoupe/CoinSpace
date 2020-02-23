@@ -17,6 +17,7 @@ import com.perelandrax.coinspace.presentation.ribslib.ObjectAnimatorFrameLayout
 import kotlinx.android.synthetic.main.layout_coin_detail_features.view.*
 import kotlinx.android.synthetic.main.layout_coin_detail_info.view.*
 import kotlinx.android.synthetic.main.layout_coin_detail_rib.view.*
+import kotlinx.android.synthetic.main.layout_loading_bar.view.*
 import java.util.*
 
 
@@ -28,22 +29,21 @@ class CoinDetailView @JvmOverloads constructor(context: Context, attrs: Attribut
 
   override fun onFinishInflate() {
     super.onFinishInflate()
-
     setupLoadingView()
   }
 
   private fun setupLoadingView() {
-    coinDetailLoadingView.speed = 1.25f
+    loadingView.speed = 1.25f
   }
 
   override fun showLoading() {
-    coinDetailLoadingView.visibility = View.VISIBLE
-    coinDetailLoadingView.playAnimation()
+    loadingLayout.visibility = View.VISIBLE
+    loadingView.playAnimation()
   }
 
   override fun hideLoading() {
-    coinDetailLoadingView.visibility = View.GONE
-    coinDetailLoadingView.cancelAnimation()
+    loadingLayout.visibility = View.GONE
+    loadingView.cancelAnimation()
   }
 
   override fun showError(throwable: Throwable) {
