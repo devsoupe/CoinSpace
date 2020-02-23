@@ -14,7 +14,7 @@
     android:elevation="4dp">
 
     <TextView
-      android:id="@+id/toolbar_title"
+      android:id="@+id/titleToolbar"
       android:layout_width="match_parent"
       android:layout_height="match_parent"
       android:fontFamily="@font/digitalt"

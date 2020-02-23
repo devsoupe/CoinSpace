@@ -1,6 +1,5 @@
 package com.perelandrax.coinspace.presentation.ribs.coins
 
-import com.orhanobut.logger.Logger
 import com.perelandrax.coinspace.domain.coindetail.CoinDetail
 import com.perelandrax.coinspace.presentation.ribs.coindetail.CoinDetailScreen
 import com.perelandrax.coinspace.presentation.ribslib.ScreenStack

@@ -1,6 +1,5 @@
 package com.perelandrax.coinspace.presentation.ribs.coins
 
-import com.orhanobut.logger.Logger
 import com.perelandrax.coinspace.data.CoinRepository
 import com.perelandrax.coinspace.domain.Coin
 import com.perelandrax.coinspace.domain.CoinMaster
@@ -14,7 +13,6 @@ import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.rxkotlin.subscribeBy
 import java8.util.stream.StreamSupport
 import kotlinx.coroutines.*
-import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 import kotlin.coroutines.CoroutineContext
 
@@ -46,8 +44,8 @@ class CoinsInteractor : Interactor<CoinsInteractor.CoinsPresenter, CoinsRouter>(
 
     presenter.showLoading()
 
-    disposables.add(presenter.onRefresh().subscribeBy { updateCoinList() })
-    disposables.add(presenter.onSelectCoin().subscribeBy { coin -> coin?.detailId?.let { routeCoinDetail(it) } })
+    disposables.add(presenter.onRefreshCoinList().subscribeBy { updateCoinList() })
+    disposables.add(presenter.onNavigateCoinDetail().subscribeBy { coin -> coin?.detailId?.let { routeCoinDetail(it) } })
 
     updateCoinList()
   }
@@ -103,8 +101,8 @@ class CoinsInteractor : Interactor<CoinsInteractor.CoinsPresenter, CoinsRouter>(
    */
   interface CoinsPresenter {
 
-    fun onRefresh(): Observable<Unit>
-    fun onSelectCoin(): Observable<Coin>
+    fun onRefreshCoinList(): Observable<Unit>
+    fun onNavigateCoinDetail(): Observable<Coin>
 
     fun showLoading()
     fun hideLoading()

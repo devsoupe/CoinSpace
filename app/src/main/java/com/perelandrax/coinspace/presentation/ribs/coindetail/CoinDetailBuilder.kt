@@ -5,6 +5,9 @@ import android.view.ViewGroup
 import com.perelandrax.coinspace.R
 import com.perelandrax.coinspace.data.CoinRepository
 import com.perelandrax.coinspace.domain.coindetail.CoinDetail
+import com.perelandrax.coinspace.presentation.ribs.coinwebsite.CoinWebsiteBuilder
+import com.perelandrax.coinspace.presentation.ribs.coinwebsite.CoinWebsiteScreen
+import com.perelandrax.coinspace.presentation.ribslib.ScreenStack
 import com.uber.rib.core.InteractorBaseComponent
 import com.uber.rib.core.ViewBuilder
 import dagger.Binds
@@ -44,6 +47,7 @@ class CoinDetailBuilder(dependency: ParentComponent) : ViewBuilder<CoinDetailVie
   }
 
   interface ParentComponent {
+    fun screenStack(): ScreenStack
     fun coinRepository(): CoinRepository
   }
 
@@ -60,8 +64,8 @@ class CoinDetailBuilder(dependency: ParentComponent) : ViewBuilder<CoinDetailVie
       @CoinDetailScope
       @Provides
       @JvmStatic
-      internal fun router(component: Component, view: CoinDetailView, interactor: CoinDetailInteractor): CoinDetailRouter {
-        return CoinDetailRouter(view, interactor, component)
+      internal fun router(component: Component, view: CoinDetailView, interactor: CoinDetailInteractor, screenStack: ScreenStack): CoinDetailRouter {
+        return CoinDetailRouter(view, interactor, component, screenStack, CoinWebsiteScreen(CoinWebsiteBuilder(component)))
       }
 
       // TODO: Create provider methods for dependencies created by this Rib. These should be static.
@@ -70,7 +74,8 @@ class CoinDetailBuilder(dependency: ParentComponent) : ViewBuilder<CoinDetailVie
 
   @CoinDetailScope
   @dagger.Component(modules = arrayOf(Module::class), dependencies = arrayOf(ParentComponent::class))
-  interface Component : InteractorBaseComponent<CoinDetailInteractor>, BuilderComponent {
+  interface Component : InteractorBaseComponent<CoinDetailInteractor>, BuilderComponent,
+    CoinWebsiteBuilder.ParentComponent {
 
     @dagger.Component.Builder
     interface Builder {

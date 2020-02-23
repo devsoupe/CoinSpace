@@ -42,11 +42,11 @@ class CoinsView @JvmOverloads constructor(context: Context, attrs: AttributeSet?
     recyclerView.addItemDecoration(DividerItemDecoration(recyclerView.context, DividerItemDecoration.VERTICAL))
   }
 
-  override fun onRefresh(): Observable<Unit> {
+  override fun onRefreshCoinList(): Observable<Unit> {
     return swipeRefreshLayout.refreshes()
   }
 
-  override fun onSelectCoin(): Observable<Coin> {
+  override fun onNavigateCoinDetail(): Observable<Coin> {
     return coinListAdapter.getItemClickEvent()
   }
 

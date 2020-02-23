@@ -22,6 +22,6 @@ class ToolbarView @JvmOverloads constructor(context: Context, attrs: AttributeSe
   }
 
   override fun updateTitle(title: String) {
-    toolbar_title.text = title
+    titleToolbar.text = title
   }
 }

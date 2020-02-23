@@ -10,22 +10,24 @@ import androidx.palette.graphics.Palette
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.target.SimpleTarget
 import com.bumptech.glide.request.transition.Transition
+import com.jakewharton.rxbinding2.view.clicks
 import com.orhanobut.logger.Logger
 import com.perelandrax.coinspace.R
 import com.perelandrax.coinspace.domain.coindetail.CoinDetail
-import com.perelandrax.coinspace.presentation.ribslib.ObjectAnimatorFrameLayout
+import com.perelandrax.coinspace.presentation.ribslib.AnimationFrameLayout
+import io.reactivex.Observable
 import kotlinx.android.synthetic.main.layout_coin_detail_features.view.*
 import kotlinx.android.synthetic.main.layout_coin_detail_info.view.*
 import kotlinx.android.synthetic.main.layout_coin_detail_rib.view.*
 import kotlinx.android.synthetic.main.layout_loading_bar.view.*
 import java.util.*
-
+import java.util.concurrent.TimeUnit
 
 /**
  * Top level view for {@link CoinDetailBuilder.CoinDetailScope}.
  */
 class CoinDetailView @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null, defStyle: Int = 0) :
-  ObjectAnimatorFrameLayout(context, attrs, defStyle), CoinDetailInteractor.CoinDetailPresenter {
+  AnimationFrameLayout(context, attrs, defStyle), CoinDetailInteractor.CoinDetailPresenter {
 
   override fun onFinishInflate() {
     super.onFinishInflate()
@@ -34,6 +36,11 @@ class CoinDetailView @JvmOverloads constructor(context: Context, attrs: Attribut
 
   private fun setupLoadingView() {
     loadingView.speed = 1.25f
+  }
+
+  override fun onNavigateWebsite(): Observable<Unit> {
+    return websiteButton.clicks()
+      .throttleFirst(1000, TimeUnit.MILLISECONDS)
   }
 
   override fun showLoading() {

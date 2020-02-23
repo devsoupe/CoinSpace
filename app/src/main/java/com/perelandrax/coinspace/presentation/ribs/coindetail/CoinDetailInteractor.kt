@@ -1,17 +1,16 @@
 package com.perelandrax.coinspace.presentation.ribs.coindetail
 
-import com.orhanobut.logger.Logger
 import com.perelandrax.coinspace.data.CoinRepository
-import com.perelandrax.coinspace.domain.CoinMaster
 import com.perelandrax.coinspace.domain.coindetail.CoinDetail
-import com.perelandrax.coinspace.utilities.Coroutines
 import com.uber.rib.core.Bundle
 import com.uber.rib.core.Interactor
 import com.uber.rib.core.RibInteractor
+import io.reactivex.Observable
 import io.reactivex.disposables.CompositeDisposable
-import io.reactivex.rxkotlin.subscribeBy
-import java8.util.stream.StreamSupport
-import kotlinx.coroutines.*
+import kotlinx.coroutines.CoroutineExceptionHandler
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.SupervisorJob
 import javax.inject.Inject
 import kotlin.coroutines.CoroutineContext
 
@@ -42,11 +41,21 @@ class CoinDetailInteractor : Interactor<CoinDetailInteractor.CoinDetailPresenter
 
   override fun didBecomeActive(savedInstanceState: Bundle?) {
     super.didBecomeActive(savedInstanceState)
+
     updateCoinDetail()
+    handlePresenterEvent()
   }
 
   private fun updateCoinDetail() {
     presenter.showCoinDetail(coinDetail)
+  }
+
+  private fun handlePresenterEvent() {
+    presenter.onNavigateWebsite().subscribe { routeCoinWebsite() }
+  }
+
+  private fun routeCoinWebsite() {
+    router.attachCoinWebsite()
   }
 
   /**
@@ -56,6 +65,8 @@ class CoinDetailInteractor : Interactor<CoinDetailInteractor.CoinDetailPresenter
    * Presenter interface implemented by this RIB's view.
    */
   interface CoinDetailPresenter {
+
+    fun onNavigateWebsite(): Observable<Unit>
 
     fun showLoading()
     fun hideLoading()
