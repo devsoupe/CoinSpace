@@ -2,8 +2,8 @@ package com.perelandrax.coinspace.presentation.ribs.coindetail
 
 import com.perelandrax.coinspace.domain.CoinWebsite
 import com.perelandrax.coinspace.presentation.ribs.coinwebsite.CoinWebsiteScreen
-import com.perelandrax.coinspace.presentation.ribslib.ScreenStack
-import com.perelandrax.coinspace.presentation.ribslib.ScreenViewRouter
+import com.perelandrax.coinspace.presentation.screenstack.ScreenStack
+import com.perelandrax.coinspace.presentation.screenstack.ScreenViewRouter
 import io.reactivex.disposables.CompositeDisposable
 
 /**

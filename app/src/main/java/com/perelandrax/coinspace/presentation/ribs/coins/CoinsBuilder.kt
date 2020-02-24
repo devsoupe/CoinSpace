@@ -8,7 +8,7 @@ import com.perelandrax.coinspace.data.CoinRepository
 import com.perelandrax.coinspace.presentation.ribs.coindetail.CoinDetailBuilder
 import com.perelandrax.coinspace.presentation.ribs.coindetail.CoinDetailScreen
 import com.perelandrax.coinspace.presentation.ribs.splash.masterstream.CoinMasterStreamSource
-import com.perelandrax.coinspace.presentation.ribslib.ScreenStack
+import com.perelandrax.coinspace.presentation.screenstack.ScreenStack
 import com.uber.rib.core.InteractorBaseComponent
 import com.uber.rib.core.ViewBuilder
 import dagger.Binds

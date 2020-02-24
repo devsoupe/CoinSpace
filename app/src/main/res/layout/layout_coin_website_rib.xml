@@ -29,7 +29,8 @@
         android:gravity="left|center_vertical"
         android:text="Website Name"
         android:textColor="@color/colorWhite"
-        android:textSize="34sp"
+        android:textSize="30sp"
+        android:singleLine="true"
         tools:text="Website Name"/>
 
     </androidx.appcompat.widget.Toolbar>

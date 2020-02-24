@@ -2,8 +2,8 @@ package com.perelandrax.coinspace.presentation.ribs.coins
 
 import com.perelandrax.coinspace.domain.coindetail.CoinDetail
 import com.perelandrax.coinspace.presentation.ribs.coindetail.CoinDetailScreen
-import com.perelandrax.coinspace.presentation.ribslib.ScreenStack
-import com.perelandrax.coinspace.presentation.ribslib.ScreenViewRouter
+import com.perelandrax.coinspace.presentation.screenstack.ScreenStack
+import com.perelandrax.coinspace.presentation.screenstack.ScreenViewRouter
 import io.reactivex.disposables.CompositeDisposable
 
 /**
@@ -32,8 +32,8 @@ class CoinsRouter(view: CoinsView, interactor: CoinsInteractor, component: Coins
     disposables.clear()
   }
 
-  fun attachCoinDetail(coinDetail: CoinDetail) {
-    coinDetailScreen.coinDetail = coinDetail
+  fun attachCoinDetail(coinId: String) {
+    coinDetailScreen.coinId = coinId
     screenStack.push(coinDetailScreen)
   }
 }

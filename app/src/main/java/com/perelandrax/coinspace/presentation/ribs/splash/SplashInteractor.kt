@@ -1,10 +1,9 @@
 package com.perelandrax.coinspace.presentation.ribs.splash
 
-import com.orhanobut.logger.Logger
 import com.perelandrax.coinspace.data.CoinRepository
 import com.perelandrax.coinspace.domain.CoinMaster
 import com.perelandrax.coinspace.presentation.ribs.splash.masterstream.CoinMasterStreamUpdater
-import com.perelandrax.coinspace.presentation.ribslib.ScreenStack
+import com.perelandrax.coinspace.presentation.screenstack.ScreenStack
 import com.perelandrax.coinspace.utilities.Coroutines
 import com.uber.rib.core.Bundle
 import com.uber.rib.core.Interactor

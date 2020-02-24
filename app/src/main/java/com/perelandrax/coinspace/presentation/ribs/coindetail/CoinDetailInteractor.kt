@@ -1,18 +1,15 @@
 package com.perelandrax.coinspace.presentation.ribs.coindetail
 
 import com.perelandrax.coinspace.data.CoinRepository
-import com.perelandrax.coinspace.domain.Coin
 import com.perelandrax.coinspace.domain.CoinWebsite
 import com.perelandrax.coinspace.domain.coindetail.CoinDetail
+import com.perelandrax.coinspace.utilities.Coroutines
 import com.uber.rib.core.Bundle
 import com.uber.rib.core.Interactor
 import com.uber.rib.core.RibInteractor
 import io.reactivex.Observable
 import io.reactivex.disposables.CompositeDisposable
-import kotlinx.coroutines.CoroutineExceptionHandler
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.SupervisorJob
+import kotlinx.coroutines.*
 import javax.inject.Inject
 import kotlin.coroutines.CoroutineContext
 
@@ -37,23 +34,34 @@ class CoinDetailInteractor : Interactor<CoinDetailInteractor.CoinDetailPresenter
 
   @Inject lateinit var presenter: CoinDetailPresenter
   @Inject lateinit var coinRepository: CoinRepository
-  @Inject lateinit var coinDetail: CoinDetail
-
-//  @Inject lateinit var listener: Listener
+  @Inject lateinit var coidId: String
 
   override fun didBecomeActive(savedInstanceState: Bundle?) {
     super.didBecomeActive(savedInstanceState)
 
+    subscribePresenterEvent()
     updateCoinDetail()
-    handlePresenterEvent()
   }
 
-  private fun updateCoinDetail() {
-    presenter.showCoinDetail(coinDetail)
-  }
-
-  private fun handlePresenterEvent() {
+  private fun subscribePresenterEvent() {
     presenter.onNavigateWebsite().subscribe { routeCoinWebsite(it) }
+  }
+
+  private fun updateCoinDetail() = launch {
+    Coroutines.log("updateCoinDetail", coroutineContext)
+
+    presenter.showLoading()
+
+    val delay = async { delay(1000) }
+
+    runCatching { coinRepository.getCoinDetail(this, coidId) }.apply {
+      delay.await()
+
+      onSuccess(presenter::showCoinDetail)
+      onFailure(presenter::showError)
+    }
+
+    presenter.hideLoading()
   }
 
   private fun routeCoinWebsite(coinWebsite: CoinWebsite) {

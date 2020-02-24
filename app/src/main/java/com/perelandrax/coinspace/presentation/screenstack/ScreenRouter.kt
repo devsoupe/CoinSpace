@@ -1,14 +1,12 @@
-package com.perelandrax.coinspace.presentation.ribslib
+package com.perelandrax.coinspace.presentation.screenstack
 
-import android.view.View
 import com.uber.rib.core.Interactor
 import com.uber.rib.core.InteractorBaseComponent
 import com.uber.rib.core.Router
-import com.uber.rib.core.ViewRouter
 import com.uber.rib.core.screenstack.lifecycle.ScreenStackEvent
 
-open class ScreenViewRouter<V : View?, I : Interactor<*, *>?, C : InteractorBaseComponent<*>?>(view: V, interactor: I, component: C) :
-  ViewRouter<V, I, C>(view, interactor, component) {
+open class ScreenRouter<I : Interactor<*, *>?, C : InteractorBaseComponent<*>?>(interactor: I, component: C) :
+  Router<I, C>(interactor, component) {
 
   protected fun handleScreenEvents(router: Router<*, *>?, event: ScreenStackEvent?) {
     when (event) {

@@ -5,8 +5,7 @@ import android.util.AttributeSet
 import android.view.View
 import android.webkit.WebView
 import android.webkit.WebViewClient
-import com.orhanobut.logger.Logger
-import com.perelandrax.coinspace.presentation.ribslib.AnimationFrameLayout
+import com.perelandrax.coinspace.presentation.screenstack.AnimationFrameLayout
 import kotlinx.android.synthetic.main.layout_coin_website_rib.view.*
 import kotlinx.android.synthetic.main.layout_coin_website_rib.view.loadingLayout
 import kotlinx.android.synthetic.main.layout_loading_bar.view.*

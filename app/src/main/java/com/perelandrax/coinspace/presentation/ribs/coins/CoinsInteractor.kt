@@ -53,7 +53,11 @@ class CoinsInteractor : Interactor<CoinsInteractor.CoinsPresenter, CoinsRouter>(
   private fun updateCoinList() = launch {
     Coroutines.log("updateCoinList", coroutineContext)
 
+    val delay = async { delay(1000) }
+
     runCatching { coinRepository.getCoins() }.apply {
+      delay.await()
+
       onSuccess { presenter.showCoinList(mergedCoinListByDetailId(it)) }
       onFailure(presenter::showError)
     }
@@ -83,17 +87,8 @@ class CoinsInteractor : Interactor<CoinsInteractor.CoinsPresenter, CoinsRouter>(
     disposables.clear()
   }
 
-  private fun routeCoinDetail(coinId: String) = launch {
-    Coroutines.log("updateCoinList", coroutineContext)
-
-    presenter.showLoading()
-
-    runCatching { coinRepository.getCoinDetail(this, coinId) }.apply {
-      onSuccess(router::attachCoinDetail)
-      onFailure(presenter::showError)
-    }
-
-    presenter.hideLoading()
+  private fun routeCoinDetail(coinId: String) {
+    router.attachCoinDetail(coinId)
   }
 
   /**

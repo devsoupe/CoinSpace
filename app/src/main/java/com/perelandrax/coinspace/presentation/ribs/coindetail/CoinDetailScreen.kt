@@ -8,10 +8,10 @@ import com.uber.rib.core.screenstack.ViewProvider
 class CoinDetailScreen(private val builder: CoinDetailBuilder) : ViewProvider() {
 
   lateinit var router: CoinDetailRouter
-  lateinit var coinDetail: CoinDetail
+  lateinit var coinId: String
 
   override fun buildView(parentView: ViewGroup): View {
-    router = builder.build(parentView, coinDetail)
+    router = builder.build(parentView, coinId)
     return router.view
   }
 }

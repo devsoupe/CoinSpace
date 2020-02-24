@@ -1,9 +1,8 @@
 package com.perelandrax.coinspace.presentation.ribs.splash
 
-import com.orhanobut.logger.Logger
 import com.perelandrax.coinspace.presentation.ribs.main.MainScreen
-import com.perelandrax.coinspace.presentation.ribslib.ScreenStack
-import com.perelandrax.coinspace.presentation.ribslib.ScreenViewRouter
+import com.perelandrax.coinspace.presentation.screenstack.ScreenStack
+import com.perelandrax.coinspace.presentation.screenstack.ScreenViewRouter
 import io.reactivex.disposables.CompositeDisposable
 
 /**

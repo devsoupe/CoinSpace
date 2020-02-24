@@ -1,4 +1,4 @@
-package com.perelandrax.coinspace.presentation.ribslib
+package com.perelandrax.coinspace.presentation.screenstack
 
 import android.content.Context
 import android.util.AttributeSet

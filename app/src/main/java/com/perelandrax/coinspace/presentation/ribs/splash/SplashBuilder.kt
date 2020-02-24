@@ -11,7 +11,7 @@ import com.perelandrax.coinspace.presentation.ribs.main.MainScreen
 import com.perelandrax.coinspace.presentation.ribs.splash.masterstream.CoinMasterStream
 import com.perelandrax.coinspace.presentation.ribs.splash.masterstream.CoinMasterStreamSource
 import com.perelandrax.coinspace.presentation.ribs.splash.masterstream.CoinMasterStreamUpdater
-import com.perelandrax.coinspace.presentation.ribslib.ScreenStack
+import com.perelandrax.coinspace.presentation.screenstack.ScreenStack
 import com.uber.rib.core.InteractorBaseComponent
 import com.uber.rib.core.ViewBuilder
 import dagger.Binds

@@ -5,8 +5,8 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.perelandrax.coinspace.R
 import com.perelandrax.coinspace.presentation.ribs.splash.SplashBuilder
-import com.perelandrax.coinspace.presentation.ribslib.ScreenStack
-import com.perelandrax.coinspace.presentation.ribslib.ScreenStackHelper
+import com.perelandrax.coinspace.presentation.screenstack.ScreenStack
+import com.perelandrax.coinspace.presentation.screenstack.ScreenStackHelper
 import com.uber.rib.core.InteractorBaseComponent
 import com.uber.rib.core.ViewBuilder
 import dagger.Binds

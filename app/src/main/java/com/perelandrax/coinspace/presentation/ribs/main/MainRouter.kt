@@ -1,13 +1,12 @@
 package com.perelandrax.coinspace.presentation.ribs.main
 
-import com.orhanobut.logger.Logger
 import com.perelandrax.coinspace.presentation.ribs.navigation.NavigationBuilder
 import com.perelandrax.coinspace.presentation.ribs.navigation.NavigationRouter
 import com.perelandrax.coinspace.presentation.ribs.navitype.NaviTypeBuilder
 import com.perelandrax.coinspace.presentation.ribs.navitype.NaviTypeRouter
 import com.perelandrax.coinspace.presentation.ribs.toolbar.ToolbarBuilder
 import com.perelandrax.coinspace.presentation.ribs.toolbar.ToolbarRouter
-import com.perelandrax.coinspace.presentation.ribslib.ScreenViewRouter
+import com.perelandrax.coinspace.presentation.screenstack.ScreenViewRouter
 import kotlinx.android.synthetic.main.layout_main_rib.view.*
 
 /**

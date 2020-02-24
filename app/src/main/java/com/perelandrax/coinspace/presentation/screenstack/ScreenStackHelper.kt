@@ -1,4 +1,4 @@
-package com.perelandrax.coinspace.presentation.ribslib
+package com.perelandrax.coinspace.presentation.screenstack
 
 import android.animation.Animator
 import android.animation.AnimatorInflater
@@ -6,15 +6,15 @@ import android.animation.AnimatorSet
 import android.view.ViewGroup
 import androidx.annotation.UiThread
 import com.perelandrax.coinspace.R
-import com.perelandrax.coinspace.presentation.ribslib.ScreenProvider.*
+import com.perelandrax.coinspace.presentation.screenstack.ScreenProvider.ViewType
 import com.uber.rib.core.screenstack.ScreenStackBase
 import com.uber.rib.core.screenstack.ViewProvider
-import java.util.*
+import java.util.concurrent.LinkedBlockingDeque
 
 @UiThread
 class ScreenStackHelper(private val parentViewGroup: ViewGroup) : ScreenStackBase, ScreenStack {
 
-  private val backStack = Stack<ScreenProvider>()
+  private val backStack = LinkedBlockingDeque<ScreenProvider>()
   private val screenProvider: ScreenProvider?
     get() = if (backStack.isEmpty()) null else backStack.peek()
 
@@ -92,9 +92,9 @@ class ScreenStackHelper(private val parentViewGroup: ViewGroup) : ScreenStackBas
     animatorSet.start()
 
     animatorSet.addListener(object : Animator.AnimatorListener {
-      override fun onAnimationStart(animation: Animator?) { }
-      override fun onAnimationCancel(animation: Animator?) { }
-      override fun onAnimationRepeat(animation: Animator?) { }
+      override fun onAnimationStart(animation: Animator?) {}
+      override fun onAnimationCancel(animation: Animator?) {}
+      override fun onAnimationRepeat(animation: Animator?) {}
       override fun onAnimationEnd(animation: Animator?) {
         parentViewGroup.removeView(outView)
       }
@@ -159,9 +159,9 @@ class ScreenStackHelper(private val parentViewGroup: ViewGroup) : ScreenStackBas
     animation.start()
 
     animation.addListener(object : Animator.AnimatorListener {
-      override fun onAnimationStart(animation: Animator?) { }
-      override fun onAnimationCancel(animation: Animator?) { }
-      override fun onAnimationRepeat(animation: Animator?) { }
+      override fun onAnimationStart(animation: Animator?) {}
+      override fun onAnimationCancel(animation: Animator?) {}
+      override fun onAnimationRepeat(animation: Animator?) {}
       override fun onAnimationEnd(animation: Animator?) {
         parentViewGroup.removeView(view)
       }

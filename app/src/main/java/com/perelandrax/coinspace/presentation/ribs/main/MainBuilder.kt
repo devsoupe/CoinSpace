@@ -13,7 +13,7 @@ import com.perelandrax.coinspace.presentation.ribs.navigation.menustream.Navigat
 import com.perelandrax.coinspace.presentation.ribs.navitype.NaviTypeBuilder
 import com.perelandrax.coinspace.presentation.ribs.splash.masterstream.CoinMasterStreamSource
 import com.perelandrax.coinspace.presentation.ribs.toolbar.ToolbarBuilder
-import com.perelandrax.coinspace.presentation.ribslib.ScreenStack
+import com.perelandrax.coinspace.presentation.screenstack.ScreenStack
 import com.uber.rib.core.InteractorBaseComponent
 import com.uber.rib.core.ViewBuilder
 import dagger.Binds
