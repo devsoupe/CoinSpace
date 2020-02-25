@@ -156,8 +156,6 @@ class ScreenStackHelper(private val parentViewGroup: ViewGroup) : ScreenStackBas
     val animation = AnimatorInflater.loadAnimator(parentViewGroup.context, R.animator.fade_out)
 
     animation.setTarget(view)
-    animation.start()
-
     animation.addListener(object : Animator.AnimatorListener {
       override fun onAnimationStart(animation: Animator?) {}
       override fun onAnimationCancel(animation: Animator?) {}
@@ -167,6 +165,8 @@ class ScreenStackHelper(private val parentViewGroup: ViewGroup) : ScreenStackBas
       }
     })
 
+    animation.start()
+
     screenProvider?.let {
       it.viewProvider.onViewHidden()
     }
@@ -175,12 +175,20 @@ class ScreenStackHelper(private val parentViewGroup: ViewGroup) : ScreenStackBas
   private fun addCurrentView() {
     screenProvider?.let {
       val view = it.viewProvider.buildView(parentViewGroup)
-      AnimatorInflater.loadAnimator(parentViewGroup.context, R.animator.fade_in).apply {
-        setTarget(view)
-      }.start()
+      val animation = AnimatorInflater.loadAnimator(parentViewGroup.context, R.animator.fade_in)
+
+      animation.setTarget(view)
+      animation.addListener(object : Animator.AnimatorListener {
+        override fun onAnimationRepeat(animation: Animator?) {}
+        override fun onAnimationCancel(animation: Animator?) {}
+        override fun onAnimationStart(animation: Animator?) {}
+        override fun onAnimationEnd(animation: Animator?) {
+          it.viewProvider.onViewAppeared()
+        }
+      })
+      animation.start()
 
       parentViewGroup.addView(view)
-      it.viewProvider.onViewAppeared()
     }
   }
 
@@ -199,10 +207,17 @@ class ScreenStackHelper(private val parentViewGroup: ViewGroup) : ScreenStackBas
       outAnimation.setTarget(outView)
 
       animatorSet.playTogether(outAnimation, inAnimation)
+      animatorSet.addListener(object : Animator.AnimatorListener {
+        override fun onAnimationRepeat(animation: Animator?) {}
+        override fun onAnimationCancel(animation: Animator?) {}
+        override fun onAnimationStart(animation: Animator?) {}
+        override fun onAnimationEnd(animation: Animator?) {
+          it.viewProvider.onViewAppeared()
+        }
+      })
       animatorSet.start()
 
       parentViewGroup.addView(inView)
-      it.viewProvider.onViewAppeared()
     }
   }
 }

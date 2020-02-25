@@ -26,7 +26,7 @@ class CoinsInteractor : Interactor<CoinsInteractor.CoinsPresenter, CoinsRouter>(
   CoroutineScope {
 
   override val coroutineContext: CoroutineContext
-    get() = Dispatchers.Main + parentJob + coroutineExceptionHandler
+    get() = Dispatchers.IO + parentJob + coroutineExceptionHandler
 
   private val coroutineExceptionHandler = CoroutineExceptionHandler { _, throwable ->
     throwable.printStackTrace()
@@ -50,19 +50,14 @@ class CoinsInteractor : Interactor<CoinsInteractor.CoinsPresenter, CoinsRouter>(
     updateCoinList()
   }
 
-  private fun updateCoinList() = launch {
-    Coroutines.log("updateCoinList", coroutineContext)
-
-    val delay = async { delay(1000) }
-
+  private fun updateCoinList() = launch(coroutineContext) {
     runCatching { coinRepository.getCoins() }.apply {
-      delay.await()
-
-      onSuccess { presenter.showCoinList(mergedCoinListByDetailId(it)) }
-      onFailure(presenter::showError)
+      withContext(Dispatchers.Main) {
+        onSuccess { presenter.showCoinList(mergedCoinListByDetailId(it)) }
+        onFailure(presenter::showError)
+        presenter.hideLoading()
+      }
     }
-
-    presenter.hideLoading()
   }
 
   private fun mergedCoinListByDetailId(coinList: List<Coin>): List<Coin> {
@@ -111,3 +106,4 @@ class CoinsInteractor : Interactor<CoinsInteractor.CoinsPresenter, CoinsRouter>(
    */
   interface Listener
 }
+

@@ -1,19 +1,21 @@
 package com.perelandrax.coinspace.presentation.ribs.coindetail
 
+import android.animation.ObjectAnimator
 import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.Color
 import android.graphics.drawable.Drawable
 import android.text.Html
 import android.util.AttributeSet
-import android.view.Gravity
 import android.view.View
 import androidx.core.content.ContextCompat
 import androidx.palette.graphics.Palette
-import androidx.transition.*
+import androidx.transition.AutoTransition
+import androidx.transition.Fade
+import androidx.transition.TransitionManager
+import androidx.vectordrawable.graphics.drawable.ArgbEvaluator
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.target.CustomTarget
-import com.bumptech.glide.request.target.SimpleTarget
 import com.bumptech.glide.request.transition.Transition
 import com.jakewharton.rxbinding2.view.clicks
 import com.orhanobut.logger.Logger
@@ -71,21 +73,21 @@ class CoinDetailView @JvmOverloads constructor(context: Context, attrs: Attribut
   override fun showCoinDetail(coinDetail: CoinDetail) {
     this.coinDetail = coinDetail
 
-    TransitionManager.beginDelayedTransition(coinDetailFeaturesLayout, AutoTransition())
+    TransitionManager.beginDelayedTransition(coinDetailLayout, AutoTransition())
 
     nameTextView.text = coinDetail.name
     symbolTextView.text = coinDetail.symbol
 
-    TransitionManager.beginDelayedTransition(coinDetailInfoLayout, AutoTransition())
-
     descriptionTextView.text = Html.fromHtml(coinDetail.description)
+
+    Logger.i("${coinDetail.features}")
+
     featuresTextView.text = Html.fromHtml(coinDetail.features)
     coinSupplyTextView.text = coinDetail.totalCoinSupply
     startDateTextView.text = coinDetail.startDate
 
-    if (coinDetail.website.isNotEmpty()) {
-      websiteCardView.visibility = View.VISIBLE
-    }
+    websiteCardView.visibility = if (coinDetail.website?.isNotEmpty() == true) View.VISIBLE else View.GONE
+    coinDetailFeaturesLayout.visibility = if (coinDetail.features?.isNotEmpty() == true) View.VISIBLE else View.GONE
 
     Glide.with(context)
       .asBitmap()
@@ -95,7 +97,12 @@ class CoinDetailView @JvmOverloads constructor(context: Context, attrs: Attribut
         override fun onLoadCleared(placeholder: Drawable?) { }
         override fun onResourceReady(resource: Bitmap, transition: Transition<in Bitmap>?) {
           coinLogoImageView.setImageBitmap(resource)
-          dominantBgView.setBackgroundColor(getDominantColor(resource).apply { coinColor = this })
+
+          ObjectAnimator.ofObject(dominantBgView, "backgroundColor", ArgbEvaluator(), R.color.colorPrimary,
+            getDominantColor(resource).apply { coinColor = this })
+            .setDuration(300L)
+            .start()
+
           websiteButton.setBackgroundColor(coinColor)
         }
       })

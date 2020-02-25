@@ -23,6 +23,9 @@ class CoinDetailInteractor : Interactor<CoinDetailInteractor.CoinDetailPresenter
   CoroutineScope {
 
   override val coroutineContext: CoroutineContext
+    get() = Dispatchers.IO + parentJob + coroutineExceptionHandler
+
+  val coroutineContextUI: CoroutineContext
     get() = Dispatchers.Main + parentJob + coroutineExceptionHandler
 
   private val coroutineExceptionHandler = CoroutineExceptionHandler { _, throwable ->
@@ -39,6 +42,8 @@ class CoinDetailInteractor : Interactor<CoinDetailInteractor.CoinDetailPresenter
   override fun didBecomeActive(savedInstanceState: Bundle?) {
     super.didBecomeActive(savedInstanceState)
 
+    presenter.showLoading()
+
     subscribePresenterEvent()
     updateCoinDetail()
   }
@@ -48,20 +53,13 @@ class CoinDetailInteractor : Interactor<CoinDetailInteractor.CoinDetailPresenter
   }
 
   private fun updateCoinDetail() = launch {
-    Coroutines.log("updateCoinDetail", coroutineContext)
-
-    presenter.showLoading()
-
-    val delay = async { delay(1000) }
-
     runCatching { coinRepository.getCoinDetail(this, coidId) }.apply {
-      delay.await()
-
-      onSuccess(presenter::showCoinDetail)
-      onFailure(presenter::showError)
+      withContext(Dispatchers.Main) {
+        onSuccess(presenter::showCoinDetail)
+        onFailure(presenter::showError)
+        presenter.hideLoading()
+      }
     }
-
-    presenter.hideLoading()
   }
 
   private fun routeCoinWebsite(coinWebsite: CoinWebsite) {

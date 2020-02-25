@@ -1,5 +1,6 @@
 package com.perelandrax.coinspace.presentation.ribs.coinwebsite
 
+import com.perelandrax.coinspace.R
 import com.perelandrax.coinspace.domain.CoinWebsite
 import com.uber.rib.core.Bundle
 import com.uber.rib.core.Interactor
@@ -21,9 +22,9 @@ class CoinWebsiteInteractor : Interactor<CoinWebsiteInteractor.CoinWebsitePresen
   override fun didBecomeActive(savedInstanceState: Bundle?) {
     super.didBecomeActive(savedInstanceState)
 
-    presenter.updateTitle(coinWebsite.title)
-    presenter.updateToolbarColor(coinWebsite.titleColor)
-    presenter.showWebsite(coinWebsite.url)
+    presenter.updateTitle(coinWebsite?.title ?: "")
+    presenter.updateToolbarColor(coinWebsite?.titleColor ?: R.color.colorPrimary)
+    presenter.showWebsite(coinWebsite?.url ?: "")
   }
 
   override fun willResignActive() {

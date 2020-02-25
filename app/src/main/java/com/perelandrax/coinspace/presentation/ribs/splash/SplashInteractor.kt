@@ -44,7 +44,7 @@ class SplashInteractor : Interactor<SplashInteractor.SplashPresenter, SplashRout
 
   private fun getCoinMaster() {
     launch {
-      Coroutines.log("getCoinMasterData", coroutineContext)
+//      Coroutines.log("getCoinMasterData", coroutineContext)
 
       runCatching { coinRepository.getCoinMaster() }.apply {
         onSuccess(::updateCoinMasterAndRouteToMain)

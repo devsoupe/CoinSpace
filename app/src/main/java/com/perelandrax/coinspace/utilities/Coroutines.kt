@@ -1,6 +1,7 @@
 package com.perelandrax.coinspace.utilities
 
 import com.orhanobut.logger.Logger
+import kotlinx.coroutines.CoroutineScope
 import kotlin.coroutines.CoroutineContext
 
 class Coroutines {
