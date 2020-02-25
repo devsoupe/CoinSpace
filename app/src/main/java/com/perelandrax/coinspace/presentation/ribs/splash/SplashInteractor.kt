@@ -22,7 +22,7 @@ class SplashInteractor : Interactor<SplashInteractor.SplashPresenter, SplashRout
   CoroutineScope {
 
   override val coroutineContext: CoroutineContext
-    get() = Dispatchers.Main + parentJob + coroutineExceptionHandler
+    get() = Dispatchers.IO + parentJob + coroutineExceptionHandler
 
   private val coroutineExceptionHandler = CoroutineExceptionHandler { _, throwable ->
     throwable.printStackTrace()
@@ -44,11 +44,11 @@ class SplashInteractor : Interactor<SplashInteractor.SplashPresenter, SplashRout
 
   private fun getCoinMaster() {
     launch {
-//      Coroutines.log("getCoinMasterData", coroutineContext)
-
       runCatching { coinRepository.getCoinMaster() }.apply {
-        onSuccess(::updateCoinMasterAndRouteToMain)
-        onFailure(presenter::showError)
+        withContext(Dispatchers.Main) {
+          onSuccess(::updateCoinMasterAndRouteToMain)
+          onFailure(presenter::showError)
+        }
       }
 
       presenter.hideLoading()
