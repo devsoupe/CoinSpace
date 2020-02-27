@@ -2,15 +2,15 @@ package com.perelandrax.coinspace.presentation.ribs.splash
 
 import com.perelandrax.coinspace.data.CoinRepository
 import com.perelandrax.coinspace.domain.CoinMaster
+import com.perelandrax.coinspace.interactors.GetCoinMaster
+import com.perelandrax.coinspace.presentation.coroutine.CoroutineScopeProvider
 import com.perelandrax.coinspace.presentation.ribs.splash.masterstream.CoinMasterStreamUpdater
 import com.perelandrax.coinspace.presentation.screenstack.ScreenStack
-import com.perelandrax.coinspace.utilities.Coroutines
 import com.uber.rib.core.Bundle
 import com.uber.rib.core.Interactor
 import com.uber.rib.core.RibInteractor
 import kotlinx.coroutines.*
 import javax.inject.Inject
-import kotlin.coroutines.CoroutineContext
 
 /**
  * Coordinates Business Logic for [SplashScope].
@@ -19,21 +19,13 @@ import kotlin.coroutines.CoroutineContext
  */
 @RibInteractor
 class SplashInteractor : Interactor<SplashInteractor.SplashPresenter, SplashRouter>(),
-  CoroutineScope {
-
-  override val coroutineContext: CoroutineContext
-    get() = Dispatchers.IO + parentJob + coroutineExceptionHandler
-
-  private val coroutineExceptionHandler = CoroutineExceptionHandler { _, throwable ->
-    throwable.printStackTrace()
-  }
-
-  private val parentJob = SupervisorJob()
+  CoroutineScopeProvider {
 
   @Inject lateinit var presenter: SplashPresenter
   @Inject lateinit var screenStack: ScreenStack
   @Inject lateinit var coinRepository: CoinRepository
   @Inject lateinit var coinMasterStreamUpdater: CoinMasterStreamUpdater
+  @Inject lateinit var getCoinMaster: GetCoinMaster
 
   override fun didBecomeActive(savedInstanceState: Bundle?) {
     super.didBecomeActive(savedInstanceState)
@@ -42,16 +34,13 @@ class SplashInteractor : Interactor<SplashInteractor.SplashPresenter, SplashRout
     getCoinMaster()
   }
 
-  private fun getCoinMaster() {
-    launch {
-      runCatching { coinRepository.getCoinMaster() }.apply {
-        withContext(Dispatchers.Main) {
-          onSuccess(::updateCoinMasterAndRouteToMain)
-          onFailure(presenter::showError)
-        }
+  private fun getCoinMaster() = launch {
+    runCatching { getCoinMaster.invoke() }.apply {
+      dispatchUi {
+        onSuccess(::updateCoinMasterAndRouteToMain)
+        onFailure(presenter::showError)
+        presenter.hideLoading()
       }
-
-      presenter.hideLoading()
     }
   }
 

@@ -5,7 +5,9 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.perelandrax.coinspace.R
 import com.perelandrax.coinspace.data.CoinRepository
+import com.perelandrax.coinspace.domain.CoinMaster
 import com.perelandrax.coinspace.framework.remote.RemoteCoinDataSource
+import com.perelandrax.coinspace.interactors.GetCoinMaster
 import com.perelandrax.coinspace.presentation.ribs.main.MainBuilder
 import com.perelandrax.coinspace.presentation.ribs.main.MainScreen
 import com.perelandrax.coinspace.presentation.ribs.splash.masterstream.CoinMasterStream
@@ -115,6 +117,13 @@ class SplashBuilder(dependency: ParentComponent) :
       @JvmStatic
       fun coinMasterStreamUpdater(stream: CoinMasterStream): CoinMasterStreamUpdater {
         return stream
+      }
+
+      @SplashScope
+      @Provides
+      @JvmStatic
+      fun getCoinMaster(coinRepository: CoinRepository): GetCoinMaster {
+        return GetCoinMaster(coinRepository)
       }
     }
   }

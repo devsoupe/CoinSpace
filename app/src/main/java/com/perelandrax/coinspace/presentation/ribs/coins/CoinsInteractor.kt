@@ -3,6 +3,8 @@ package com.perelandrax.coinspace.presentation.ribs.coins
 import com.perelandrax.coinspace.data.CoinRepository
 import com.perelandrax.coinspace.domain.Coin
 import com.perelandrax.coinspace.domain.CoinMaster
+import com.perelandrax.coinspace.interactors.GetCoins
+import com.perelandrax.coinspace.presentation.coroutine.CoroutineScopeProvider
 import com.perelandrax.coinspace.presentation.ribs.splash.masterstream.CoinMasterStreamSource
 import com.perelandrax.coinspace.utilities.Coroutines
 import com.uber.rib.core.Bundle
@@ -23,36 +25,34 @@ import kotlin.coroutines.CoroutineContext
  */
 @RibInteractor
 class CoinsInteractor : Interactor<CoinsInteractor.CoinsPresenter, CoinsRouter>(),
-  CoroutineScope {
-
-  override val coroutineContext: CoroutineContext
-    get() = Dispatchers.IO + parentJob + coroutineExceptionHandler
-
-  private val coroutineExceptionHandler = CoroutineExceptionHandler { _, throwable ->
-    throwable.printStackTrace()
-  }
-
-  private val parentJob = SupervisorJob()
-  private val disposables = CompositeDisposable()
+  CoroutineScopeProvider {
 
   @Inject lateinit var presenter: CoinsPresenter
   @Inject lateinit var coinRepository: CoinRepository
   @Inject lateinit var coinMasterStreamSource: CoinMasterStreamSource
+  @Inject lateinit var getCoins: GetCoins
+
+  private val disposables = CompositeDisposable()
 
   override fun didBecomeActive(savedInstanceState: Bundle?) {
     super.didBecomeActive(savedInstanceState)
 
     presenter.showLoading()
 
-    disposables.add(presenter.onRefreshCoinList().subscribeBy { updateCoinList() })
-    disposables.add(presenter.onNavigateCoinDetail().subscribeBy { coin -> coin?.detailId?.let { routeCoinDetail(it) } })
+    disposables.add(presenter.onRefreshCoinList().subscribeBy {
+      updateCoinList()
+    })
+
+    disposables.add(presenter.onNavigateCoinDetail().subscribeBy {
+      coin -> coin?.detailId?.let { routeCoinDetail(it) }
+    })
 
     updateCoinList()
   }
 
-  private fun updateCoinList() = launch(coroutineContext) {
-    runCatching { coinRepository.getCoins() }.apply {
-      withContext(Dispatchers.Main) {
+  private fun updateCoinList() = launch {
+    runCatching { getCoins.invoke() }.apply {
+      dispatchUi {
         onSuccess { presenter.showCoinList(mergedCoinListByDetailId(it)) }
         onFailure(presenter::showError)
         presenter.hideLoading()

@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.perelandrax.coinspace.R
 import com.perelandrax.coinspace.data.CoinRepository
+import com.perelandrax.coinspace.interactors.GetCoins
 import com.perelandrax.coinspace.presentation.ribs.coindetail.CoinDetailBuilder
 import com.perelandrax.coinspace.presentation.ribs.coindetail.CoinDetailScreen
 import com.perelandrax.coinspace.presentation.ribs.splash.masterstream.CoinMasterStreamSource
@@ -69,6 +70,13 @@ class CoinsBuilder(dependency: ParentComponent) :
       @JvmStatic
       internal fun router(component: Component, view: CoinsView, interactor: CoinsInteractor, screenStack: ScreenStack): CoinsRouter {
         return CoinsRouter(view, interactor, component, screenStack, CoinDetailScreen(CoinDetailBuilder(component)))
+      }
+
+      @CoinsScope
+      @Provides
+      @JvmStatic
+      fun getCoins(coinRepository: CoinRepository): GetCoins {
+        return GetCoins(coinRepository)
       }
     }
   }
