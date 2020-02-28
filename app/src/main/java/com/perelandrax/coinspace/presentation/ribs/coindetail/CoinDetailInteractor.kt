@@ -3,6 +3,8 @@ package com.perelandrax.coinspace.presentation.ribs.coindetail
 import com.perelandrax.coinspace.data.CoinRepository
 import com.perelandrax.coinspace.domain.CoinWebsite
 import com.perelandrax.coinspace.domain.coindetail.CoinDetail
+import com.perelandrax.coinspace.interactors.GetCoinDetail
+import com.perelandrax.coinspace.presentation.coroutine.CoroutineScopeProvider
 import com.perelandrax.coinspace.utilities.Coroutines
 import com.uber.rib.core.Bundle
 import com.uber.rib.core.Interactor
@@ -20,24 +22,13 @@ import kotlin.coroutines.CoroutineContext
  */
 @RibInteractor
 class CoinDetailInteractor : Interactor<CoinDetailInteractor.CoinDetailPresenter, CoinDetailRouter>(),
-  CoroutineScope {
-
-  override val coroutineContext: CoroutineContext
-    get() = Dispatchers.IO + parentJob + coroutineExceptionHandler
-
-  val coroutineContextUI: CoroutineContext
-    get() = Dispatchers.Main + parentJob + coroutineExceptionHandler
-
-  private val coroutineExceptionHandler = CoroutineExceptionHandler { _, throwable ->
-    throwable.printStackTrace()
-  }
-
-  private val parentJob = SupervisorJob()
-  private val disposables = CompositeDisposable()
+  CoroutineScopeProvider {
 
   @Inject lateinit var presenter: CoinDetailPresenter
   @Inject lateinit var coinRepository: CoinRepository
   @Inject lateinit var coidId: String
+
+  private val disposables = CompositeDisposable()
 
   override fun didBecomeActive(savedInstanceState: Bundle?) {
     super.didBecomeActive(savedInstanceState)
@@ -53,8 +44,8 @@ class CoinDetailInteractor : Interactor<CoinDetailInteractor.CoinDetailPresenter
   }
 
   private fun updateCoinDetail() = launch {
-    runCatching { coinRepository.getCoinDetail(this, coidId) }.apply {
-      withContext(Dispatchers.Main) {
+    runCatching { GetCoinDetail(this, coidId, coinRepository).invoke() }.apply {
+      dispatchUi {
         onSuccess(presenter::showCoinDetail)
         onFailure(presenter::showError)
         presenter.hideLoading()

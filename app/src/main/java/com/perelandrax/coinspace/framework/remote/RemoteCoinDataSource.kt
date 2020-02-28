@@ -1,6 +1,5 @@
 package com.perelandrax.coinspace.framework.remote
 
-import com.orhanobut.logger.Logger
 import com.perelandrax.coinspace.data.CoinDataSource
 import com.perelandrax.coinspace.domain.Coin
 import com.perelandrax.coinspace.domain.CoinMaster
@@ -9,12 +8,9 @@ import com.perelandrax.coinspace.framework.remote.api.CoinApi
 import com.perelandrax.coinspace.framework.remote.model.crytocompare.mapToDomain
 import com.perelandrax.coinspace.framework.remote.model.mapToDomain
 import com.perelandrax.coinspace.framework.remote.model.socialstats.mapToDomain
-import com.squareup.moshi.JsonAdapter
-import com.squareup.moshi.Moshi
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.async
 import okhttp3.OkHttpClient
-
 
 class RemoteCoinDataSource(private val okHttpClient: OkHttpClient) : CoinDataSource {
 
@@ -58,7 +54,7 @@ class RemoteCoinDataSource(private val okHttpClient: OkHttpClient) : CoinDataSou
     val baseUrl = snapShotFull.data.seo.baseImageUrl
     val general = snapShotFull.data.general
     val ico = snapShotFull.data.ico
-    val socialStatsRepo = socialStats.data?.codeRepository
+//    val socialStatsRepo = socialStats.data?.codeRepository
 
 //    var moshi1 = Moshi.Builder().build()
 //    val jsonAdapter1: JsonAdapter<CoinSnapshotFull> = moshi1.adapter(CoinSnapshotFull::class.java)
