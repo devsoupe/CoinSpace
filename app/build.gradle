@@ -4,17 +4,20 @@ apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 
 android {
-  compileSdkVersion 29
-  buildToolsVersion "29.0.2"
+  compileSdkVersion 28
+  buildToolsVersion "28.0.0"
 
   defaultConfig {
     applicationId "com.perelandrax.coinspace"
     minSdkVersion 16
-    targetSdkVersion 29
+    targetSdkVersion 28
     versionCode 1
     versionName "1.0"
     multiDexEnabled true
     testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+    renderscriptTargetApi 28
+    renderscriptSupportModeEnabled true
   }
 
   buildTypes {
@@ -100,6 +103,10 @@ dependencies {
   implementation 'com.airbnb.android:lottie:3.3.1'
   implementation 'com.facebook.stetho:stetho:1.5.1'
   implementation 'com.orhanobut:logger:2.2.0'
+
+  // BlurView
+  implementation 'com.eightbitlab:supportrenderscriptblur:1.0.2'
+  implementation 'com.eightbitlab:blurview:1.6.3'
 
   // Test Assertions
   testImplementation 'com.google.truth:truth:1.0'

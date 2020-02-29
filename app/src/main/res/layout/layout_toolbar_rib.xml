@@ -1,29 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.perelandrax.coinspace.presentation.ribs.toolbar.ToolbarView
-  xmlns:android="http://schemas.android.com/apk/res/android"
+<com.perelandrax.coinspace.presentation.ribs.toolbar.ToolbarView xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
   xmlns:tools="http://schemas.android.com/tools"
   android:layout_width="match_parent"
   android:layout_height="wrap_content"
-  android:background="@color/colorWhite">
+  android:animateLayoutChanges="true">
 
-  <androidx.appcompat.widget.Toolbar
-    android:id="@+id/toolbar"
+  <eightbitlab.com.blurview.BlurView
+    android:id="@+id/blurView"
     android:layout_width="match_parent"
-    android:layout_height="?attr/actionBarSize"
-    android:background="?attr/colorPrimary"
-    android:elevation="4dp">
+    android:layout_height="wrap_content"
+    android:elevation="8dp"
+    android:outlineProvider="none"
+    app:blurOverlayColor="@color/colorOverlay"
+    tools:targetApi="lollipop">
 
-    <TextView
-      android:id="@+id/titleToolbar"
+    <androidx.appcompat.widget.Toolbar
+      android:id="@+id/toolbar"
       android:layout_width="match_parent"
-      android:layout_height="match_parent"
-      android:fontFamily="@font/digitalt"
-      android:gravity="left|center_vertical"
-      android:text=""
-      android:textColor="@color/colorWhite"
-      android:textSize="38sp"
-      tools:text="@string/app_name"/>
+      android:layout_height="?attr/actionBarSize"
+      android:background="@android:color/transparent"
+      android:elevation="4dp">
 
-  </androidx.appcompat.widget.Toolbar>
+      <TextView
+        android:id="@+id/titleToolbar"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fontFamily="@font/digitalt"
+        android:gravity="left|center_vertical"
+        android:text=""
+        android:textColor="@color/colorWhite"
+        android:textSize="38sp"
+        tools:text="@string/app_name" />
+
+    </androidx.appcompat.widget.Toolbar>
+
+  </eightbitlab.com.blurview.BlurView>
 
 </com.perelandrax.coinspace.presentation.ribs.toolbar.ToolbarView>

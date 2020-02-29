@@ -4,17 +4,15 @@
   <color name="colorPrimaryDark">#000000</color>
   <color name="colorAccent">#ec2e4a</color>
   <color name="colorTransparentButtonText">#00b8d4</color>
-
   <color name="colorSplashBg">#6ba8ff</color>
-
   <color name="colorProgress">#f2f4f5</color>
   <color name="colorBg">#f2f4f5</color>
   <color name="colorWhite">#ffffff</color>
-
-  <color name="dividerColor">#d7d7d7</color>
-
   <color name="colorTextSecondary">#8f8f8f</color>
   <color name="colorPercentage">#00c853</color>
   <color name="colorPercentageNegative">#c62828</color>
   <color name="colorTab">#424242</color>
+  <color name="colorDivider">#d7d7d7</color>
+  <color name="colorOverlay">#c0000000</color>
+<!--  <color name="colorOverlay">#88ff0000</color>-->
 </resources>

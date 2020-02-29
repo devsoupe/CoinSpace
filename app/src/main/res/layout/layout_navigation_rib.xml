@@ -2,20 +2,42 @@
 <com.perelandrax.coinspace.presentation.ribs.navigation.NavigationView
   xmlns:android="http://schemas.android.com/apk/res/android"
   xmlns:app="http://schemas.android.com/apk/res-auto"
+  xmlns:tools="http://schemas.android.com/tools"
+  android:id="@+id/navigationLayout"
   android:layout_width="match_parent"
   android:layout_height="wrap_content"
-  android:background="@color/colorWhite">
+  android:background="@android:color/transparent">
 
-  <com.google.android.material.bottomnavigation.BottomNavigationView
-    android:id="@+id/navigation"
+  <eightbitlab.com.blurview.BlurView
+    android:id="@+id/blurView"
     android:layout_width="match_parent"
-    android:layout_height="?attr/actionBarSize"
-    android:background="@color/colorPrimary"
-    app:labelVisibilityMode="unlabeled"
-    app:itemBackground="@color/colorPrimary"
-    app:itemIconTint="@drawable/selector"
-    app:itemTextColor="@drawable/selector"
-    app:itemIconSize="@dimen/bottom_navigation_icon_size"
-    app:menu="@menu/navigation_menu"/>
+    android:layout_height="wrap_content"
+    android:elevation="8dp"
+    android:outlineProvider="bounds"
+    app:blurOverlayColor="@color/colorOverlay">
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+      android:id="@+id/navigation"
+      android:layout_width="match_parent"
+      android:layout_height="?attr/actionBarSize"
+      android:background="@android:color/transparent"
+      app:itemBackground="@android:color/transparent"
+      app:elevation="0dp"
+      app:labelVisibilityMode="unlabeled"
+      app:itemIconTint="@drawable/selector"
+      app:itemTextColor="@drawable/selector"
+      app:itemIconSize="@dimen/bottom_navigation_icon_size"
+      app:menu="@menu/navigation_menu"/>
+
+<!--    android:background="@android:color/transparent"-->
+<!--    app:itemBackground="@android:color/transparent"-->
+
+<!--    <com.google.android.material.tabs.TabLayout-->
+<!--      android:id="@+id/tabLayout"-->
+<!--      android:layout_width="match_parent"-->
+<!--      android:layout_height="?attr/actionBarSize"-->
+<!--      android:background="@android:color/transparent"/>-->
+
+  </eightbitlab.com.blurview.BlurView>
 
 </com.perelandrax.coinspace.presentation.ribs.navigation.NavigationView>

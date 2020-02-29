@@ -4,6 +4,7 @@
   xmlns:tools="http://schemas.android.com/tools"
   android:layout_width="match_parent"
   android:layout_height="wrap_content"
+  android:animateLayoutChanges="true"
   app:cardElevation="1dp"
   app:cardUseCompatPadding="true">
 
@@ -40,7 +41,7 @@
       android:id="@+id/nameTextView"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
-      android:textColor="@color/dividerColor"
+      android:textColor="@color/colorDivider"
       android:textSize="16sp"
       app:layout_constraintTop_toBottomOf="@+id/symbolTextView"
       app:layout_constraintLeft_toLeftOf="parent"

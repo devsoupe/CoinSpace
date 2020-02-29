@@ -5,7 +5,6 @@ import com.perelandrax.coinspace.domain.CoinWebsite
 import com.perelandrax.coinspace.domain.coindetail.CoinDetail
 import com.perelandrax.coinspace.interactors.GetCoinDetail
 import com.perelandrax.coinspace.presentation.coroutine.CoroutineScopeProvider
-import com.perelandrax.coinspace.utilities.Coroutines
 import com.uber.rib.core.Bundle
 import com.uber.rib.core.Interactor
 import com.uber.rib.core.RibInteractor
@@ -13,7 +12,6 @@ import io.reactivex.Observable
 import io.reactivex.disposables.CompositeDisposable
 import kotlinx.coroutines.*
 import javax.inject.Inject
-import kotlin.coroutines.CoroutineContext
 
 /**
  * Coordinates Business Logic for [CoinDetailScope].
@@ -26,7 +24,7 @@ class CoinDetailInteractor : Interactor<CoinDetailInteractor.CoinDetailPresenter
 
   @Inject lateinit var presenter: CoinDetailPresenter
   @Inject lateinit var coinRepository: CoinRepository
-  @Inject lateinit var coidId: String
+  @Inject lateinit var getCoinDetail: GetCoinDetail
 
   private val disposables = CompositeDisposable()
 
@@ -44,7 +42,7 @@ class CoinDetailInteractor : Interactor<CoinDetailInteractor.CoinDetailPresenter
   }
 
   private fun updateCoinDetail() = launch {
-    runCatching { GetCoinDetail(this, coidId, coinRepository).invoke() }.apply {
+    runCatching { getCoinDetail.invoke() }.apply {
       dispatchUi {
         onSuccess(presenter::showCoinDetail)
         onFailure(presenter::showError)

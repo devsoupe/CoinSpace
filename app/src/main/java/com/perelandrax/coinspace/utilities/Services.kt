@@ -14,7 +14,6 @@ import java.util.concurrent.atomic.AtomicBoolean
 class Services {
 
   companion object {
-
     val ACTION_BAR_SERVICE = "com.perelandrax.coinspace.action_bar"
     val OPTIONS_MENU_SERVICE = "com.perelandrax.coinspace.options_menu"
 

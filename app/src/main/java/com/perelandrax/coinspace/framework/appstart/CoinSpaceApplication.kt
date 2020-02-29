@@ -1,11 +1,13 @@
 package com.perelandrax.coinspace.framework.appstart
 
 import android.app.Application
+import com.eightbitlab.supportrenderscriptblur.SupportRenderScriptBlur
 import com.orhanobut.logger.AndroidLogAdapter
 import com.orhanobut.logger.FormatStrategy
 import com.orhanobut.logger.Logger
 import com.orhanobut.logger.PrettyFormatStrategy
 import com.perelandrax.coinspace.BuildConfig
+import eightbitlab.com.blurview.BlurAlgorithm
 
 class CoinSpaceApplication : Application() {
 
@@ -13,9 +15,10 @@ class CoinSpaceApplication : Application() {
     super.onCreate()
 
     setupLogger()
+//    setupBlurView()
   }
 
-  fun setupLogger() {
+  private fun setupLogger() {
     val formatStrategy: FormatStrategy = PrettyFormatStrategy.newBuilder()
       .methodCount(0)
       .methodOffset(0)
@@ -27,4 +30,8 @@ class CoinSpaceApplication : Application() {
       }
     })
   }
+
+//  private fun setupBlurView() {
+//    blurAlgorithm(SupportRenderScriptBlur(this))
+//  }
 }

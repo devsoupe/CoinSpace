@@ -6,7 +6,6 @@ import kotlin.coroutines.CoroutineContext
 interface CoroutineScopeProvider : CoroutineScope {
 
   companion object {
-
     val jobContainer = HashMap<Any, CompletableJob>()
   }
 

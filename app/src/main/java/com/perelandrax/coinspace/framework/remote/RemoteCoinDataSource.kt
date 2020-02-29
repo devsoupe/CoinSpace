@@ -15,7 +15,6 @@ import okhttp3.OkHttpClient
 class RemoteCoinDataSource(private val okHttpClient: OkHttpClient) : CoinDataSource {
 
   companion object {
-
     private const val COIN_MARKET_CAP = "https://api.coinmarketcap.com/"
     private const val CRYPTO_COMPARE = "https://www.cryptocompare.com/"
     private const val CRYPTO_COMPARE_MIN_API = "https://min-api.cryptocompare.com/"

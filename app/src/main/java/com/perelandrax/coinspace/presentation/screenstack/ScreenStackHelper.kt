@@ -4,6 +4,7 @@ import android.animation.Animator
 import android.animation.AnimatorInflater
 import android.animation.AnimatorSet
 import android.view.ViewGroup
+import android.widget.FrameLayout
 import androidx.annotation.UiThread
 import com.perelandrax.coinspace.R
 import com.perelandrax.coinspace.presentation.screenstack.ScreenProvider.ViewType

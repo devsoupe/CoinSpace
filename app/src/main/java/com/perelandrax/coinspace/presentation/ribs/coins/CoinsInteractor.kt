@@ -6,7 +6,6 @@ import com.perelandrax.coinspace.domain.CoinMaster
 import com.perelandrax.coinspace.interactors.GetCoins
 import com.perelandrax.coinspace.presentation.coroutine.CoroutineScopeProvider
 import com.perelandrax.coinspace.presentation.ribs.splash.masterstream.CoinMasterStreamSource
-import com.perelandrax.coinspace.utilities.Coroutines
 import com.uber.rib.core.Bundle
 import com.uber.rib.core.Interactor
 import com.uber.rib.core.RibInteractor
@@ -16,7 +15,6 @@ import io.reactivex.rxkotlin.subscribeBy
 import java8.util.stream.StreamSupport
 import kotlinx.coroutines.*
 import javax.inject.Inject
-import kotlin.coroutines.CoroutineContext
 
 /**
  * Coordinates Business Logic for [CoinsScope].
