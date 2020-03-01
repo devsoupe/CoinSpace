@@ -46,10 +46,6 @@ class CoinWebsiteView @JvmOverloads constructor(context: Context, attrs: Attribu
     titleToolbar.text = title
   }
 
-  override fun updateToolbarColor(color: Int) {
-    toolbar.setBackgroundColor(color)
-  }
-
   override fun showWebsite(url: String) {
     webview.loadUrl(url)
   }

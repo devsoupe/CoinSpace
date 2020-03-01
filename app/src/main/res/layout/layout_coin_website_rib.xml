@@ -28,7 +28,7 @@
         android:layout_height="match_parent"
         android:fontFamily="@font/digitalt"
         android:gravity="left|center_vertical"
-        android:text="Website Name"
+        android:text=""
         android:textColor="@color/colorWhite"
         android:textSize="30sp"
         android:singleLine="true"

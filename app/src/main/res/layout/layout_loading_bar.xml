@@ -8,15 +8,15 @@
   
   <com.airbnb.lottie.LottieAnimationView
     android:id="@+id/loadingView"
-    android:layout_width="100dp"
-    android:layout_height="100dp"
+    android:layout_width="90dp"
+    android:layout_height="90dp"
     app:layout_constraintBottom_toBottomOf="parent"
     app:layout_constraintLeft_toLeftOf="parent"
     app:layout_constraintRight_toRightOf="parent"
     app:layout_constraintTop_toTopOf="parent"
     app:lottie_autoPlay="true"
     app:lottie_enableMergePathsForKitKatAndAbove="true"
-    app:lottie_fileName="8608-simple-radar-ripple-effect.json"
+    app:lottie_fileName="loading.json"
     app:lottie_loop="true"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

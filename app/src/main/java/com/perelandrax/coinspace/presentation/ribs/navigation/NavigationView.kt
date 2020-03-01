@@ -31,7 +31,7 @@ class NavigationView @JvmOverloads constructor(context: Context, attrs: Attribut
   }
 
   private fun setupBlurView() {
-    val radius = 18f
+    val radius = 15f
     val windowBackground = (context as Activity).window.decorView.background
     val rootView = (context as Activity).window.decorView.rootView as ViewGroup
 

@@ -84,7 +84,7 @@ class CoinWebsiteBuilder(dependency: ParentComponent) :
       fun view(view: CoinWebsiteView): Builder
 
       @BindsInstance
-      fun coinWebsite(coinWebsite: CoinWebsite): CoinWebsiteBuilder.Component.Builder
+      fun coinWebsite(coinWebsite: CoinWebsite): Builder
 
       fun parentComponent(component: ParentComponent): Builder
 

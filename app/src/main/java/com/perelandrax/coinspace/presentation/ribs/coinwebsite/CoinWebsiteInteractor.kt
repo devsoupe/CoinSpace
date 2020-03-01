@@ -23,7 +23,6 @@ class CoinWebsiteInteractor : Interactor<CoinWebsiteInteractor.CoinWebsitePresen
     super.didBecomeActive(savedInstanceState)
 
     presenter.updateTitle(coinWebsite?.title ?: "")
-    presenter.updateToolbarColor(coinWebsite?.titleColor ?: R.color.colorPrimary)
     presenter.showWebsite(coinWebsite?.url ?: "")
   }
 
@@ -39,7 +38,6 @@ class CoinWebsiteInteractor : Interactor<CoinWebsiteInteractor.CoinWebsitePresen
   interface CoinWebsitePresenter {
 
     fun updateTitle(title: String)
-    fun updateToolbarColor(color: Int)
     fun showWebsite(url: String)
   }
 

@@ -5,8 +5,7 @@
   xmlns:tools="http://schemas.android.com/tools"
   android:id="@+id/navigationLayout"
   android:layout_width="match_parent"
-  android:layout_height="wrap_content"
-  android:background="@android:color/transparent">
+  android:layout_height="wrap_content">
 
   <eightbitlab.com.blurview.BlurView
     android:id="@+id/blurView"
@@ -28,15 +27,6 @@
       app:itemTextColor="@drawable/selector"
       app:itemIconSize="@dimen/bottom_navigation_icon_size"
       app:menu="@menu/navigation_menu"/>
-
-<!--    android:background="@android:color/transparent"-->
-<!--    app:itemBackground="@android:color/transparent"-->
-
-<!--    <com.google.android.material.tabs.TabLayout-->
-<!--      android:id="@+id/tabLayout"-->
-<!--      android:layout_width="match_parent"-->
-<!--      android:layout_height="?attr/actionBarSize"-->
-<!--      android:background="@android:color/transparent"/>-->
 
   </eightbitlab.com.blurview.BlurView>
 

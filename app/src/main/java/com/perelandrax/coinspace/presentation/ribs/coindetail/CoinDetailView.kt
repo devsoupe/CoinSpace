@@ -39,7 +39,6 @@ class CoinDetailView @JvmOverloads constructor(context: Context, attrs: Attribut
   AnimationFrameLayout(context, attrs, defStyle), CoinDetailInteractor.CoinDetailPresenter {
 
   private lateinit var coinDetail: CoinDetail
-  private var coinColor = Color.LTGRAY
 
   override fun onFinishInflate() {
     super.onFinishInflate()
@@ -53,7 +52,7 @@ class CoinDetailView @JvmOverloads constructor(context: Context, attrs: Attribut
   override fun onNavigateWebsite(): Observable<CoinWebsite> {
     return websiteButton.clicks()
       .throttleFirst(1000, TimeUnit.MILLISECONDS)
-      .map { CoinWebsite("${coinDetail.symbol} (${coinDetail.name})", coinColor, coinDetail.website) }
+      .map { CoinWebsite("${coinDetail.symbol} (${coinDetail.name})", coinDetail.website) }
   }
 
   override fun showLoading() {
@@ -97,13 +96,13 @@ class CoinDetailView @JvmOverloads constructor(context: Context, attrs: Attribut
         override fun onLoadCleared(placeholder: Drawable?) { }
         override fun onResourceReady(resource: Bitmap, transition: Transition<in Bitmap>?) {
           coinLogoImageView.setImageBitmap(resource)
+          val color = getDominantColor(resource)
 
-          ObjectAnimator.ofObject(dominantBgView, "backgroundColor", ArgbEvaluator(), R.color.colorPrimary,
-            getDominantColor(resource).apply { coinColor = this })
+          ObjectAnimator.ofObject(dominantBgView, "backgroundColor", ArgbEvaluator(), R.color.colorPrimary, color)
             .setDuration(300L)
             .start()
 
-          websiteButton.setBackgroundColor(coinColor)
+          websiteButton.setBackgroundColor(color)
         }
       })
   }
