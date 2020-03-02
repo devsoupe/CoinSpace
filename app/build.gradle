@@ -104,9 +104,10 @@ dependencies {
   implementation 'com.facebook.stetho:stetho:1.5.1'
   implementation 'com.orhanobut:logger:2.2.0'
 
-  // BlurView
+  // UI
   implementation 'com.eightbitlab:supportrenderscriptblur:1.0.2'
   implementation 'com.eightbitlab:blurview:1.6.3'
+  implementation 'com.jaeger.statusbarutil:library:1.5.1'
 
   // Test Assertions
   testImplementation 'com.google.truth:truth:1.0'

@@ -14,5 +14,6 @@
   <color name="colorTab">#424242</color>
   <color name="colorDivider">#d7d7d7</color>
   <color name="colorOverlay">#c2000000</color>
-<!--  <color name="colorOverlay">#29294c</color>-->
+<!--  <color name="colorOverlay">#78ffffff</color>-->
+  <!--  <color name="colorOverlay">#29294c</color>-->
 </resources>

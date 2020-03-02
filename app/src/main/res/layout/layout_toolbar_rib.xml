@@ -3,8 +3,7 @@
   xmlns:app="http://schemas.android.com/apk/res-auto"
   xmlns:tools="http://schemas.android.com/tools"
   android:layout_width="match_parent"
-  android:layout_height="wrap_content"
-  android:animateLayoutChanges="true">
+  android:layout_height="wrap_content">
 
   <eightbitlab.com.blurview.BlurView
     android:id="@+id/blurView"
@@ -20,7 +19,9 @@
       android:layout_width="match_parent"
       android:layout_height="?attr/actionBarSize"
       android:background="@android:color/transparent"
-      android:elevation="4dp">
+      android:elevation="4dp"
+      app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+      app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
 
       <TextView
         android:id="@+id/titleToolbar"

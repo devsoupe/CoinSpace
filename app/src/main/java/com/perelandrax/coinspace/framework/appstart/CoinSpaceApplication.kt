@@ -15,7 +15,6 @@ class CoinSpaceApplication : Application() {
     super.onCreate()
 
     setupLogger()
-//    setupBlurView()
   }
 
   private fun setupLogger() {
@@ -30,8 +29,4 @@ class CoinSpaceApplication : Application() {
       }
     })
   }
-
-//  private fun setupBlurView() {
-//    blurAlgorithm(SupportRenderScriptBlur(this))
-//  }
 }
