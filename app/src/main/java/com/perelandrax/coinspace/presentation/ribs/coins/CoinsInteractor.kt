@@ -50,8 +50,12 @@ class CoinsInteractor : Interactor<CoinsInteractor.CoinsPresenter, CoinsRouter>(
 
   private fun updateCoinList() = launch {
     runCatching { getCoins.invoke() }.apply {
+      onSuccess {
+        val mergedCoinList = mergedCoinListByDetailId(it)
+        dispatchUi { presenter.showCoinList(mergedCoinList) }
+      }
+
       dispatchUi {
-        onSuccess { presenter.showCoinList(mergedCoinListByDetailId(it)) }
         onFailure(presenter::showError)
         presenter.hideLoading()
       }

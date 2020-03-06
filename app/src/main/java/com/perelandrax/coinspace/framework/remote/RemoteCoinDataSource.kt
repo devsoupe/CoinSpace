@@ -15,9 +15,9 @@ import okhttp3.OkHttpClient
 class RemoteCoinDataSource(private val okHttpClient: OkHttpClient) : CoinDataSource {
 
   companion object {
-    private const val COIN_MARKET_CAP = "https://pro-api.coinmarketcap.com/"
-    private const val CRYPTO_COMPARE = "https://www.cryptocompare.com/"
-    private const val CRYPTO_COMPARE_MIN_API = "https://min-api.cryptocompare.com/"
+    private const val COIN_MARKET_CAP = "https://pro-api.coinmarketcap.com"
+    private const val CRYPTO_COMPARE = "https://www.cryptocompare.com"
+    private const val CRYPTO_COMPARE_MIN_API = "https://min-api.cryptocompare.com"
   }
 
   override suspend fun getCoinMaster(): List<CoinMaster> {
@@ -35,7 +35,7 @@ class RemoteCoinDataSource(private val okHttpClient: OkHttpClient) : CoinDataSou
     val coinApi = CoinApi.create(COIN_MARKET_CAP, okHttpClient)
 
     return mutableListOf<Coin>().apply {
-      coinApi.getMarketCapCoinList().forEach {
+      coinApi.getMarketCapCoin().data.forEach {
         add(it.mapToDomain())
       }
     }

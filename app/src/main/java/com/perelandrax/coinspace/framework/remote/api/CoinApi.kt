@@ -25,9 +25,9 @@ interface CoinApi {
     }
   }
 
-  @GET("v1/cryptocurrency/quotes/latest")
-  @Headers("CMC_PRO_API_KEY:addd34be-28f1-4a98-b70f-38bebe9dd801")
-  suspend fun getMarketCapCoinList(): List<MarketCapCoin>
+  @GET("/v1/cryptocurrency/listings/latest")
+  @Headers("X-CMC_PRO_API_KEY: addd34be-28f1-4a98-b70f-38bebe9dd801")
+  suspend fun getMarketCapCoin(): MarketCapCoin
 
   @GET("/data/all/coinlist")
   suspend fun getCrytoCompareCoinList(): CrytoCompareCoinInfo
