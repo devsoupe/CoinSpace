@@ -2,12 +2,13 @@ package com.perelandrax.coinspace.framework.remote.api
 
 import com.perelandrax.coinspace.framework.remote.model.coinsnapshot.CoinSnapshotFull
 import com.perelandrax.coinspace.framework.remote.model.crytocompare.CrytoCompareCoinInfo
-import com.perelandrax.coinspace.framework.remote.model.MarketCapCoin
+import com.perelandrax.coinspace.framework.remote.model.marketcapcoin.MarketCapCoin
 import com.perelandrax.coinspace.framework.remote.model.socialstats.SocialStats
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.http.GET
+import retrofit2.http.Headers
 import retrofit2.http.Query
 
 interface CoinApi {
@@ -24,7 +25,8 @@ interface CoinApi {
     }
   }
 
-  @GET("/v1/ticker/?limit=0")
+  @GET("v1/cryptocurrency/quotes/latest")
+  @Headers("CMC_PRO_API_KEY:addd34be-28f1-4a98-b70f-38bebe9dd801")
   suspend fun getMarketCapCoinList(): List<MarketCapCoin>
 
   @GET("/data/all/coinlist")
