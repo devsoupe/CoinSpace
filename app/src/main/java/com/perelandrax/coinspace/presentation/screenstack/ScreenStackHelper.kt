@@ -98,6 +98,10 @@ class ScreenStackHelper(private val parentViewGroup: ViewGroup) : ScreenStackBas
       override fun onAnimationRepeat(animation: Animator?) {}
       override fun onAnimationEnd(animation: Animator?) {
         parentViewGroup.removeView(outView)
+
+        screenProvider?.let {
+          it.viewProvider.onViewAppeared()
+        }
       }
     })
 
@@ -195,7 +199,6 @@ class ScreenStackHelper(private val parentViewGroup: ViewGroup) : ScreenStackBas
 
   private fun showCurrentView(inAnimId: Int, outAnimId: Int) {
     screenProvider?.let {
-
       val inView = it.viewProvider.buildView(parentViewGroup)
       val outView = parentViewGroup.getChildAt(parentViewGroup.childCount - 1)
 

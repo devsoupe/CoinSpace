@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-  <integer name="screenstack_replace_animation_duration">300</integer>
-  <integer name="screenstack_push_animation_duration">300</integer>
-  <integer name="screenstack_present_animation_duration">275</integer>
+  <integer name="screenstack_replace_animation_duration">250</integer>
+  <integer name="screenstack_push_animation_duration">250</integer>
+  <integer name="screenstack_present_animation_duration">225</integer>
 </resources>

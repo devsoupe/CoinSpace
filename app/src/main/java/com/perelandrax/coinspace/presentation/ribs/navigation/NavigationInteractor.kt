@@ -17,11 +17,8 @@ import javax.inject.Inject
 @RibInteractor
 class NavigationInteractor : Interactor<NavigationInteractor.MainBottomTabPresenter, NavigationRouter>() {
 
-  @Inject
-  lateinit var presenter: MainBottomTabPresenter
-
-  @Inject
-  lateinit var listener: Listener
+  @Inject lateinit var presenter: MainBottomTabPresenter
+  @Inject lateinit var listener: Listener
 
   private val disposables = CompositeDisposable()
 

@@ -7,6 +7,7 @@ import com.perelandrax.coinspace.presentation.ribs.navitype.NaviTypeRouter
 import com.perelandrax.coinspace.presentation.ribs.toolbar.ToolbarBuilder
 import com.perelandrax.coinspace.presentation.ribs.toolbar.ToolbarRouter
 import com.perelandrax.coinspace.presentation.screenstack.ScreenViewRouter
+import io.reactivex.disposables.CompositeDisposable
 import kotlinx.android.synthetic.main.layout_main_rib.view.*
 
 /**
@@ -20,17 +21,11 @@ class MainRouter(view: MainView, interactor: MainInteractor, component: MainBuil
                  naviTypeBuilder: NaviTypeBuilder) :
   ScreenViewRouter<MainView, MainInteractor, MainBuilder.Component>(view, interactor, component) {
 
+  private val disposables = CompositeDisposable()
+
   private var toolbarRouter: ToolbarRouter = toolbarBuilder.build(view)
   private var navigationRouter: NavigationRouter = navigationBuilder.build(view)
   private var naviTypeRouter: NaviTypeRouter = naviTypeBuilder.build()
-
-  override fun willAttach() {
-    super.willAttach()
-  }
-
-  override fun willDetach() {
-    super.willDetach()
-  }
 
   fun attachToolbar() {
     attachChild(toolbarRouter)

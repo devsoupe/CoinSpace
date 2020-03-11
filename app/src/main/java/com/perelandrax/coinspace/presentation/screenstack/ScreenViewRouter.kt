@@ -12,7 +12,7 @@ open class ScreenViewRouter<V : View?, I : Interactor<*, *>?, C : InteractorBase
 
   protected fun handleScreenEvents(router: Router<*, *>?, event: ScreenStackEvent?) {
     when (event) {
-      ScreenStackEvent.APPEARED -> router?.let { attachChild(it) }
+      ScreenStackEvent.APPEARED -> router?.let { if (!it.interactor.isAttached) { attachChild(it) } }
       ScreenStackEvent.HIDDEN -> router?.let { }
       ScreenStackEvent.REMOVED -> router?.let { detachChild(it) }
     }

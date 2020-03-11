@@ -6,7 +6,7 @@ import android.util.AttributeSet
 import android.view.ViewGroup
 import android.widget.FrameLayout
 import com.eightbitlab.supportrenderscriptblur.SupportRenderScriptBlur
-import com.teamdecano.cryptocoin.common.screen_stack.Services
+import com.teamdecano.cryptocoin.common.screen_stack.ActionBarUtil
 import kotlinx.android.synthetic.main.layout_toolbar_rib.view.*
 
 /**
@@ -23,7 +23,7 @@ class ToolbarView @JvmOverloads constructor(context: Context, attrs: AttributeSe
   }
 
   private fun setupToolbar() {
-    Services.setSupportActionBar(context, toolbar)
+    ActionBarUtil.setSupportActionBar(context, toolbar)
   }
 
   private fun setupBlurView() {

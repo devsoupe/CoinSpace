@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
 
-  <dimen name="padding_8dp">8dp</dimen>
-  <dimen name="padding_16dp">16dp</dimen>
-  <dimen name="padding_32dp">32dp</dimen>
+<dimen name="padding_8dp">8dp</dimen>
+<dimen name="padding_16dp">16dp</dimen>
+<dimen name="padding_32dp">32dp</dimen>
 
-  <dimen name="bottom_navigation_icon_size" tools:override="true">35dp</dimen>
+<dimen name="bottom_navigation_icon_size" tools:override="true">35dp</dimen>
+<dimen name="statusbar_view_height">0dp</dimen>
 
 </resources>

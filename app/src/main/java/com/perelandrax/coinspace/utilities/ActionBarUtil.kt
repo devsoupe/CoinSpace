@@ -11,7 +11,7 @@ import com.uber.rib.core.RibActivity
 
 import java.util.concurrent.atomic.AtomicBoolean
 
-class Services {
+class ActionBarUtil {
 
   companion object {
     val ACTION_BAR_SERVICE = "com.perelandrax.coinspace.action_bar"

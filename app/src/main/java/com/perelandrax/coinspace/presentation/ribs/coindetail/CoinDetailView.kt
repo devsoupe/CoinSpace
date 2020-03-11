@@ -11,7 +11,6 @@ import android.view.View
 import androidx.core.content.ContextCompat
 import androidx.palette.graphics.Palette
 import androidx.transition.AutoTransition
-import androidx.transition.Fade
 import androidx.transition.TransitionManager
 import androidx.vectordrawable.graphics.drawable.ArgbEvaluator
 import com.bumptech.glide.Glide
@@ -23,6 +22,8 @@ import com.perelandrax.coinspace.R
 import com.perelandrax.coinspace.domain.CoinWebsite
 import com.perelandrax.coinspace.domain.coindetail.CoinDetail
 import com.perelandrax.coinspace.presentation.screenstack.AnimationFrameLayout
+import com.perelandrax.coinspace.utilities.ActivityUtil
+import com.perelandrax.coinspace.utilities.StatusBarUtil
 import io.reactivex.Observable
 import kotlinx.android.synthetic.main.layout_coin_detail_features.view.*
 import kotlinx.android.synthetic.main.layout_coin_detail_info.view.*
@@ -39,6 +40,7 @@ class CoinDetailView @JvmOverloads constructor(context: Context, attrs: Attribut
   AnimationFrameLayout(context, attrs, defStyle), CoinDetailInteractor.CoinDetailPresenter {
 
   private lateinit var coinDetail: CoinDetail
+  private var headerColor: Int = resources.getColor(R.color.colorPrimaryDark)
 
   override fun onFinishInflate() {
     super.onFinishInflate()
@@ -93,16 +95,22 @@ class CoinDetailView @JvmOverloads constructor(context: Context, attrs: Attribut
       .load(coinDetail.imageUrl)
       .into(object : CustomTarget<Bitmap>(96, 96) {
 
-        override fun onLoadCleared(placeholder: Drawable?) { }
+        override fun onLoadCleared(placeholder: Drawable?) {}
         override fun onResourceReady(resource: Bitmap, transition: Transition<in Bitmap>?) {
           coinLogoImageView.setImageBitmap(resource)
-          val color = getDominantColor(resource)
+          headerColor = getDominantColor(resource)
 
-          ObjectAnimator.ofObject(dominantBgView, "backgroundColor", ArgbEvaluator(), R.color.colorPrimary, color)
+          ObjectAnimator.ofObject(dominantBgView, "backgroundColor", ArgbEvaluator(), R.color
+              .colorPrimary, headerColor)
             .setDuration(300L)
             .start()
 
-          websiteButton.setBackgroundColor(color)
+          StatusBarUtil.setColor(
+            ActivityUtil.scanForAppCompatActivity(context),
+            headerColor,
+            StatusBarUtil.DEFAULT_STATUS_BAR_ALPHA)
+
+          websiteButton.setBackgroundColor(headerColor)
         }
       })
   }
@@ -115,4 +123,6 @@ class CoinDetailView @JvmOverloads constructor(context: Context, attrs: Attribut
 
     return if (swatches.size > 0) swatches[0].rgb else ContextCompat.getColor(context, R.color.colorPrimary)
   }
+
+  fun getHeaderColor(): Int = headerColor
 }

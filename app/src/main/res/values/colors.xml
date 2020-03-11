@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
   <color name="colorPrimary">#29294c</color>
-  <color name="colorPrimaryDark">#000000</color>
+  <color name="colorPrimaryDark">#18183b</color>
   <color name="colorAccent">#ec2e4a</color>
   <color name="colorTransparentButtonText">#00b8d4</color>
   <color name="colorSplashBg">#6ba8ff</color>
@@ -13,7 +13,7 @@
   <color name="colorPercentageNegative">#c62828</color>
   <color name="colorTab">#424242</color>
   <color name="colorDivider">#d7d7d7</color>
-  <color name="colorOverlay">#c2000000</color>
+  <color name="colorOverlay">#cc07072a</color>
 <!--  <color name="colorOverlay">#78ffffff</color>-->
   <!--  <color name="colorOverlay">#29294c</color>-->
 </resources>

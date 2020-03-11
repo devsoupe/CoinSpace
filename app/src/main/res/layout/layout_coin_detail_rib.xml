@@ -7,6 +7,12 @@
   android:layout_height="match_parent"
   android:background="@color/colorWhite">
 
+<!--  <View-->
+<!--    android:layout_width="match_parent"-->
+<!--    android:layout_height="@dimen/statusbar_view_height"-->
+<!--    android:background="@color/colorPrimaryDark" />-->
+
+  <!--    android:id="@+id/coinDetailLayout"-->
   <androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent">

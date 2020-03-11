@@ -37,7 +37,7 @@ class RootBuilder(dependency: ParentComponent) :
       .parentComponent(dependency)
       .view(view)
       .interactor(interactor)
-      .provideContext(context)
+      .context(context)
       .build()
     return component.rootRouter()
   }
@@ -89,7 +89,7 @@ class RootBuilder(dependency: ParentComponent) :
       fun view(view: RootView): Builder
 
       @BindsInstance
-      fun provideContext(context: Context): Builder
+      fun context(context: Context): Builder
 
       fun parentComponent(component: ParentComponent): Builder
 

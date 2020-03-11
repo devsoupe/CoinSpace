@@ -5,22 +5,19 @@
   <uses-permission android:name="android.permission.INTERNET" />
 
   <application
-    android:name="com.perelandrax.coinspace.framework.appstart.CoinSpaceApplication"
+    android:name=".framework.appstart.CoinSpaceApplication"
     android:allowBackup="true"
     android:icon="@mipmap/ic_launcher"
     android:label="@string/app_name"
     android:supportsRtl="true"
     android:theme="@style/AppTheme">
 
-    <activity android:name="com.perelandrax.coinspace.framework.appstart.CoinSpaceActivity">
-
+    <activity android:name=".framework.appstart.CoinSpaceActivity">
       <intent-filter>
         <action android:name="android.intent.action.MAIN"/>
         <category android:name="android.intent.category.LAUNCHER"/>
       </intent-filter>
-
     </activity>
 
   </application>
-
 </manifest>
