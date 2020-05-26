@@ -11,10 +11,12 @@ import com.uber.rib.core.Interactor
 import com.uber.rib.core.RibInteractor
 import io.reactivex.Observable
 import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.rxkotlin.addTo
 import io.reactivex.rxkotlin.subscribeBy
 import java8.util.stream.StreamSupport
 import kotlinx.coroutines.cancelChildren
 import kotlinx.coroutines.launch
+import java.util.concurrent.atomic.AtomicBoolean
 import javax.inject.Inject
 
 /**
@@ -31,22 +33,24 @@ class CoinsInteractor : Interactor<CoinsInteractor.CoinsPresenter, CoinsRouter>(
   @Inject lateinit var coinMasterStreamSource: CoinMasterStreamSource
   @Inject lateinit var getCoins: GetCoins
 
+  private var didLoad = AtomicBoolean(false)
   private val disposables = CompositeDisposable()
 
   override fun didBecomeActive(savedInstanceState: Bundle?) {
     super.didBecomeActive(savedInstanceState)
 
-    presenter.showLoading()
+    presenter.onRefreshCoinList()
+      .subscribeBy { updateCoinList() }
+      .addTo(disposables)
 
-    disposables.add(presenter.onRefreshCoinList().subscribeBy {
+    presenter.onNavigateCoinDetail()
+      .subscribeBy { coin -> coin?.detailId?.let { routeCoinDetail(it) } }
+      .addTo(disposables)
+
+    if (!didLoad.getAndSet(true)) {
+      presenter.showLoading()
       updateCoinList()
-    })
-
-    disposables.add(presenter.onNavigateCoinDetail().subscribeBy { coin ->
-      coin?.detailId?.let { routeCoinDetail(it) }
-    })
-
-    updateCoinList()
+    }
   }
 
   private fun updateCoinList() = launch {

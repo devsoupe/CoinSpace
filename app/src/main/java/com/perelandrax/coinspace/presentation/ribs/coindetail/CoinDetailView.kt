@@ -46,7 +46,7 @@ class CoinDetailView @JvmOverloads constructor(context: Context, attrs: Attribut
     super.onFinishInflate()
     setupLoadingView()
 
-    (context as CoinSpaceActivity).supportActionBar?.setDisplayHomeAsUpEnabled(true)
+//    (context as CoinSpaceActivity).supportActionBar?.setDisplayHomeAsUpEnabled(true)
   }
 
   private fun setupLoadingView() {
