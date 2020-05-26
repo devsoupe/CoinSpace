@@ -2,15 +2,16 @@ package com.perelandrax.coinspace.presentation.screenstack
 
 import android.animation.Animator
 import android.animation.AnimatorInflater
+import android.animation.AnimatorListenerAdapter
 import android.animation.AnimatorSet
 import android.view.ViewGroup
-import android.widget.FrameLayout
 import androidx.annotation.UiThread
 import com.perelandrax.coinspace.R
 import com.perelandrax.coinspace.presentation.screenstack.ScreenProvider.ViewType
 import com.uber.rib.core.screenstack.ScreenStackBase
 import com.uber.rib.core.screenstack.ViewProvider
 import java.util.concurrent.LinkedBlockingDeque
+import java.util.concurrent.atomic.AtomicBoolean
 
 @UiThread
 class ScreenStackHelper(private val parentViewGroup: ViewGroup) : ScreenStackBase, ScreenStack {
@@ -18,6 +19,8 @@ class ScreenStackHelper(private val parentViewGroup: ViewGroup) : ScreenStackBas
   private val backStack = LinkedBlockingDeque<ScreenProvider>()
   private val screenProvider: ScreenProvider?
     get() = if (backStack.isEmpty()) null else backStack.peek()
+
+  private val showingAnimation = AtomicBoolean(false)
 
   override fun size(): Int = backStack.size
 
@@ -52,6 +55,7 @@ class ScreenStackHelper(private val parentViewGroup: ViewGroup) : ScreenStackBas
   override fun handleBackPress(): Boolean = handleBackPress(false)
 
   override fun handleBackPress(shouldAnimate: Boolean): Boolean {
+    if (showingAnimation.get()) return true
     if (backStack.size == 1) return false
 
     popScreen()
@@ -64,15 +68,9 @@ class ScreenStackHelper(private val parentViewGroup: ViewGroup) : ScreenStackBas
 
     screenProvider?.let {
       when (it.viewType) {
-        ViewType.PUSH -> {
-          outAnimId = R.animator.slide_to_right
-          inAnimId = R.animator.slide_from_left
-        }
-
-        ViewType.PRESENT -> {
-          outAnimId = R.animator.slide_to_down
-          inAnimId = R.animator.slide_from_up
-        }
+        ViewType.PUSH -> { outAnimId = R.animator.slide_to_right; inAnimId = R.animator.slide_from_left }
+        ViewType.PRESENT -> { outAnimId = R.animator.slide_to_down;inAnimId = R.animator.slide_from_up }
+        ViewType.STACK -> { outAnimId = R.animator.slide_to_down_fade_out; inAnimId = R.animator.scale_expand }
       }
     }
 
@@ -89,25 +87,30 @@ class ScreenStackHelper(private val parentViewGroup: ViewGroup) : ScreenStackBas
     outAnimation.setTarget(outView)
     inAnimation.setTarget(inView)
 
+    lateinit var previousViewProvider: ViewProvider
+
     animatorSet.playTogether(outAnimation, inAnimation)
-    animatorSet.start()
+    animatorSet.addListener(object : AnimatorListenerAdapter() {
 
-    animatorSet.addListener(object : Animator.AnimatorListener {
-      override fun onAnimationStart(animation: Animator?) {}
-      override fun onAnimationCancel(animation: Animator?) {}
-      override fun onAnimationRepeat(animation: Animator?) {}
+      override fun onAnimationStart(animation: Animator?) {
+        super.onAnimationStart(animation)
+        showingAnimation.set(true)
+      }
+
       override fun onAnimationEnd(animation: Animator?) {
-        parentViewGroup.removeView(outView)
+        previousViewProvider.onViewRemoved()
 
+        parentViewGroup.removeView(outView)
         screenProvider?.let {
           it.viewProvider.onViewAppeared()
         }
+        showingAnimation.set(false)
       }
     })
 
-    screenProvider?.let {
-      it.viewProvider.onViewRemoved()
-    }
+    animatorSet.start()
+
+    screenProvider?.let { previousViewProvider = it.viewProvider }
   }
 
   private fun removeCurrentView(outAnimId: Int) {
@@ -130,6 +133,10 @@ class ScreenStackHelper(private val parentViewGroup: ViewGroup) : ScreenStackBas
     }
   }
 
+  override fun addEmptyScreen() {
+    backStack.push(ScreenProvider(EmptyScreenProvider(), ViewType.REPLACE))
+  }
+
   override fun replace(viewProvider: ViewProvider) {
     hideCurrentView()
     if (!backStack.isEmpty()) {
@@ -141,17 +148,42 @@ class ScreenStackHelper(private val parentViewGroup: ViewGroup) : ScreenStackBas
   }
 
   override fun push(viewProvider: ViewProvider) {
+//    screenProvider?.let {
+//      it.viewProvider.onViewHidden()
+//    }
+
     backStack.push(ScreenProvider(viewProvider, ViewType.PUSH))
     showCurrentView(R.animator.slide_from_right, R.animator.slide_to_left)
   }
 
   override fun present(viewProvider: ViewProvider) {
+//    screenProvider?.let {
+//      it.viewProvider.onViewHidden()
+//    }
+
     backStack.push(ScreenProvider(viewProvider, ViewType.PRESENT))
     showCurrentView(R.animator.slide_from_down, R.animator.slide_to_up)
   }
 
+  override fun stack(viewProvider: ViewProvider) {
+//    screenProvider?.let {
+//      it.viewProvider.onViewHidden()
+//    }
+
+    backStack.push(ScreenProvider(viewProvider, ViewType.STACK))
+    showCurrentView(R.animator.slide_from_down_fade_in, R.animator.scale_contract)
+  }
+
   override fun back(): Boolean {
     return handleBackPress()
+  }
+
+  override fun isAnimating(): Boolean {
+    return showingAnimation.get()
+  }
+
+  override fun getScreenStackCount(): Int {
+    return backStack.size
   }
 
   private fun hideCurrentView() {
@@ -161,12 +193,16 @@ class ScreenStackHelper(private val parentViewGroup: ViewGroup) : ScreenStackBas
     val animation = AnimatorInflater.loadAnimator(parentViewGroup.context, R.animator.fade_out)
 
     animation.setTarget(view)
-    animation.addListener(object : Animator.AnimatorListener {
-      override fun onAnimationStart(animation: Animator?) {}
-      override fun onAnimationCancel(animation: Animator?) {}
-      override fun onAnimationRepeat(animation: Animator?) {}
+    animation.addListener(object : AnimatorListenerAdapter() {
+
+      override fun onAnimationStart(animation: Animator?) {
+        super.onAnimationStart(animation)
+        showingAnimation.set(true)
+      }
+
       override fun onAnimationEnd(animation: Animator?) {
         parentViewGroup.removeView(view)
+        showingAnimation.set(false)
       }
     })
 
@@ -183,14 +219,18 @@ class ScreenStackHelper(private val parentViewGroup: ViewGroup) : ScreenStackBas
       val animation = AnimatorInflater.loadAnimator(parentViewGroup.context, R.animator.fade_in)
 
       animation.setTarget(view)
-      animation.addListener(object : Animator.AnimatorListener {
-        override fun onAnimationRepeat(animation: Animator?) {}
-        override fun onAnimationCancel(animation: Animator?) {}
-        override fun onAnimationStart(animation: Animator?) {}
+      animation.addListener(object : AnimatorListenerAdapter() {
+
+        override fun onAnimationStart(animation: Animator?) {
+          super.onAnimationStart(animation)
+          showingAnimation.set(true)
+        }
+
         override fun onAnimationEnd(animation: Animator?) {
           it.viewProvider.onViewAppeared()
         }
       })
+
       animation.start()
 
       parentViewGroup.addView(view)
@@ -211,14 +251,19 @@ class ScreenStackHelper(private val parentViewGroup: ViewGroup) : ScreenStackBas
       outAnimation.setTarget(outView)
 
       animatorSet.playTogether(outAnimation, inAnimation)
-      animatorSet.addListener(object : Animator.AnimatorListener {
-        override fun onAnimationRepeat(animation: Animator?) {}
-        override fun onAnimationCancel(animation: Animator?) {}
-        override fun onAnimationStart(animation: Animator?) {}
+      animatorSet.addListener(object : AnimatorListenerAdapter() {
+
+        override fun onAnimationStart(animation: Animator?) {
+          super.onAnimationStart(animation)
+          showingAnimation.set(true)
+        }
+
         override fun onAnimationEnd(animation: Animator?) {
           it.viewProvider.onViewAppeared()
+          showingAnimation.set(false)
         }
       })
+
       animatorSet.start()
 
       parentViewGroup.addView(inView)

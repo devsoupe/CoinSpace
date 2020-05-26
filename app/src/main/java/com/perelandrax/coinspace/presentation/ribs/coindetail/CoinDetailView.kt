@@ -21,6 +21,7 @@ import com.orhanobut.logger.Logger
 import com.perelandrax.coinspace.R
 import com.perelandrax.coinspace.domain.CoinWebsite
 import com.perelandrax.coinspace.domain.coindetail.CoinDetail
+import com.perelandrax.coinspace.framework.appstart.CoinSpaceActivity
 import com.perelandrax.coinspace.presentation.screenstack.AnimationFrameLayout
 import com.perelandrax.coinspace.utilities.ActivityUtil
 import com.perelandrax.coinspace.utilities.StatusBarUtil
@@ -45,6 +46,8 @@ class CoinDetailView @JvmOverloads constructor(context: Context, attrs: Attribut
   override fun onFinishInflate() {
     super.onFinishInflate()
     setupLoadingView()
+
+    (context as CoinSpaceActivity).supportActionBar?.setDisplayHomeAsUpEnabled(true)
   }
 
   private fun setupLoadingView() {

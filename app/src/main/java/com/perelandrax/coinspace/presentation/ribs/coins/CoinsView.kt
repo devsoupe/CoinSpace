@@ -28,15 +28,14 @@ class CoinsView @JvmOverloads constructor(context: Context, attrs: AttributeSet?
     setupRecyclerView()
     setupLoadingView()
   }
-
-  private fun setupLoadingView() {
-    loadingView.speed = 1.5f
-  }
-
   private fun setupRecyclerView() {
     recyclerView.layoutManager = LinearLayoutManager(context)
     recyclerView.adapter = CoinListAdapter(R.layout.recyclerview_coin_list_item).apply { coinListAdapter = this }
     recyclerView.addItemDecoration(DividerItemDecoration(recyclerView.context, DividerItemDecoration.VERTICAL))
+  }
+
+  private fun setupLoadingView() {
+    loadingView.speed = 1.5f
   }
 
   override fun onRefreshCoinList(): Observable<Unit> {

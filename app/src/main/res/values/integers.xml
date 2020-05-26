@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-  <integer name="screenstack_replace_animation_duration">250</integer>
-  <integer name="screenstack_push_animation_duration">250</integer>
-  <integer name="screenstack_present_animation_duration">225</integer>
+  <integer name="screenstack_replace_animation_duration">@android:integer/config_mediumAnimTime</integer>
+  <integer name="screenstack_push_animation_duration">@android:integer/config_mediumAnimTime</integer>
+  <integer name="screenstack_present_animation_duration">@android:integer/config_mediumAnimTime</integer>
+  <integer name="screenstack_stack_animation_duration">@android:integer/config_mediumAnimTime</integer>
 </resources>

@@ -16,8 +16,6 @@ import androidx.annotation.IntRange;
 import androidx.annotation.NonNull;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.transition.AutoTransition;
-import androidx.transition.TransitionManager;
 
 import com.perelandrax.coinspace.R;
 
@@ -108,7 +106,6 @@ public class StatusBarUtil {
         }
         transparentStatusBar(activity);
         ViewGroup contentView = (ViewGroup) activity.findViewById(android.R.id.content);
-        // 移除半透明矩形,以免叠加
         View fakeStatusBarView = contentView.findViewById(FAKE_STATUS_BAR_VIEW_ID);
         if (fakeStatusBarView != null) {
             if (fakeStatusBarView.getVisibility() == View.GONE) {
@@ -192,7 +189,6 @@ public class StatusBarUtil {
                 .setPadding(contentLayout.getPaddingLeft(), getStatusBarHeight(activity) + contentLayout.getPaddingTop(),
                     contentLayout.getPaddingRight(), contentLayout.getPaddingBottom());
         }
-        // 设置属性
         setDrawerLayoutProperty(drawerLayout, contentLayout);
         addTranslucentView(activity, statusBarAlpha);
     }
@@ -209,7 +205,6 @@ public class StatusBarUtil {
     public static void setColorForDrawerLayoutDiff(Activity activity, DrawerLayout drawerLayout, @ColorInt int color) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             activity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-            // 生成一个状态栏大小的矩形
             ViewGroup contentLayout = (ViewGroup) drawerLayout.getChildAt(0);
             View fakeStatusBarView = contentLayout.findViewById(FAKE_STATUS_BAR_VIEW_ID);
             if (fakeStatusBarView != null) {
@@ -218,14 +213,11 @@ public class StatusBarUtil {
                 }
                 fakeStatusBarView.setBackgroundColor(calculateStatusColor(color, DEFAULT_STATUS_BAR_ALPHA));
             } else {
-                // 添加 statusBarView 到布局中
                 contentLayout.addView(createStatusBarView(activity, color), 0);
             }
-            // 内容布局不是 LinearLayout 时,设置padding top
             if (!(contentLayout instanceof LinearLayout) && contentLayout.getChildAt(1) != null) {
                 contentLayout.getChildAt(1).setPadding(0, getStatusBarHeight(activity), 0, 0);
             }
-            // 设置属性
             setDrawerLayoutProperty(drawerLayout, contentLayout);
         }
     }
@@ -256,12 +248,10 @@ public class StatusBarUtil {
         }
 
         ViewGroup contentLayout = (ViewGroup) drawerLayout.getChildAt(0);
-        // 内容布局不是 LinearLayout 时,设置padding top
         if (!(contentLayout instanceof LinearLayout) && contentLayout.getChildAt(1) != null) {
             contentLayout.getChildAt(1).setPadding(0, getStatusBarHeight(activity), 0, 0);
         }
 
-        // 设置属性
         setDrawerLayoutProperty(drawerLayout, contentLayout);
     }
 
@@ -388,6 +378,65 @@ public class StatusBarUtil {
             //e.printStackTrace();
         }
     }
+
+//    public class AnimatedColor {
+//        private final int mStartColor, mEndColor;
+//        private final float[] mStartHSV, mEndHSV;
+//        private float[] mMove = new float[3];
+//
+//
+//        public AnimatedColor(int start, int end) {
+//            mStartColor = start;
+//            mEndColor = end;
+//            mStartHSV = toHSV(start);
+//            mEndHSV = toHSV(end);
+//        }
+//
+//        public int with(float delta) {
+//            if (delta <= 0) return mStartColor;
+//            if (delta >= 1) return mEndColor;
+//            return Color.HSVToColor(move(delta));
+//        }
+//
+//        private float[] move(float delta) {
+//            mMove[0] = (mEndHSV[0] - mStartHSV[0]) * delta + mStartHSV[0];
+//            mMove[1] = (mEndHSV[1] - mStartHSV[1]) * delta + mStartHSV[1];
+//            mMove[2] = (mEndHSV[2] - mStartHSV[2]) * delta + mStartHSV[2];
+//            return mMove;
+//        }
+//
+//        private float[] toHSV(int color) {
+//            float[] hsv = new float[3];
+//            Color.colorToHSV(color, hsv);
+//            return hsv;
+//        }
+//    }
+//
+//    private void animateStatusBar() {
+//        ValueAnimator animator = ObjectAnimator.ofFloat(0f, 1f).setDuration(1000);
+//        animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+//            @Override
+//            public void onAnimationUpdate(ValueAnimator animation) {
+//                float v = (float) animation.getAnimatedValue();
+//                getWindow().setStatusBarColor(oneToTwo.with(v));
+//            }
+//        });
+//        animator.addListener(new AnimatorListenerAdapter() {
+//            @Override
+//            public void onAnimationEnd(Animator animation) {
+//                final ValueAnimator animator2 = ObjectAnimator.ofFloat(0f, 1f).setDuration(1000);
+//                animator2.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+//                    @Override
+//                    public void onAnimationUpdate(ValueAnimator animation) {
+//                        float v = (float) animation.getAnimatedValue();
+//                        getWindow().setStatusBarColor(twoToThree.with(v));
+//                    }
+//                });
+//                animator2.start();
+//            }
+//        });
+//        animator.start();
+//    }
 
     ///////////////////////////////////////////////////////////////////////////////////
 

@@ -7,6 +7,7 @@ class ScreenProvider(val viewProvider: ViewProvider, val viewType: ViewType) {
   enum class ViewType {
     REPLACE,
     PUSH,
-    PRESENT
+    PRESENT,
+    STACK
   }
 }
