@@ -1,10 +1,9 @@
-<androidx.constraintlayout.widget.ConstraintLayout
-  xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
   xmlns:app="http://schemas.android.com/apk/res-auto"
   android:layout_width="match_parent"
   android:layout_height="match_parent">
   <!-- android:background="#66000000" -->
-  
+
   <com.airbnb.lottie.LottieAnimationView
     android:id="@+id/loadingView"
     android:layout_width="90dp"
@@ -16,6 +15,6 @@
     app:lottie_autoPlay="true"
     app:lottie_enableMergePathsForKitKatAndAbove="true"
     app:lottie_fileName="loading.json"
-    app:lottie_loop="true"/>
+    app:lottie_loop="true" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

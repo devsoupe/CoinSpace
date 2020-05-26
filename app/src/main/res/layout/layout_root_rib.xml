@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.perelandrax.coinspace.presentation.ribs.root.RootView
-  xmlns:android="http://schemas.android.com/apk/res/android"
+<com.perelandrax.coinspace.presentation.ribs.root.RootView xmlns:android="http://schemas.android.com/apk/res/android"
   xmlns:tools="http://schemas.android.com/tools"
   android:id="@+id/rootLayout"
   android:layout_width="match_parent"
   android:layout_height="match_parent"
   android:background="@color/colorWhite"
-  tools:context=".framework.appstart.CoinSpaceActivity"/>
+  tools:context=".framework.appstart.CoinSpaceActivity" />

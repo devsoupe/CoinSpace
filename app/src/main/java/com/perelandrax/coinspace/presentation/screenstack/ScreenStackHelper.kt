@@ -68,9 +68,15 @@ class ScreenStackHelper(private val parentViewGroup: ViewGroup) : ScreenStackBas
 
     screenProvider?.let {
       when (it.viewType) {
-        ViewType.PUSH -> { outAnimId = R.animator.slide_to_right; inAnimId = R.animator.slide_from_left }
-        ViewType.PRESENT -> { outAnimId = R.animator.slide_to_down;inAnimId = R.animator.slide_from_up }
-        ViewType.STACK -> { outAnimId = R.animator.slide_to_down_fade_out; inAnimId = R.animator.scale_expand }
+        ViewType.PUSH -> {
+          outAnimId = R.animator.slide_to_right; inAnimId = R.animator.slide_from_left
+        }
+        ViewType.PRESENT -> {
+          outAnimId = R.animator.slide_to_down;inAnimId = R.animator.slide_from_up
+        }
+        ViewType.STACK -> {
+          outAnimId = R.animator.slide_to_down_fade_out; inAnimId = R.animator.scale_expand
+        }
       }
     }
 

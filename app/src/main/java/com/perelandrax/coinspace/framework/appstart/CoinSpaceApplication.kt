@@ -1,13 +1,11 @@
 package com.perelandrax.coinspace.framework.appstart
 
 import android.app.Application
-import com.eightbitlab.supportrenderscriptblur.SupportRenderScriptBlur
 import com.orhanobut.logger.AndroidLogAdapter
 import com.orhanobut.logger.FormatStrategy
 import com.orhanobut.logger.Logger
 import com.orhanobut.logger.PrettyFormatStrategy
 import com.perelandrax.coinspace.BuildConfig
-import eightbitlab.com.blurview.BlurAlgorithm
 
 class CoinSpaceApplication : Application() {
 

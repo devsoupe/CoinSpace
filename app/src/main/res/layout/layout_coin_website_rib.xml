@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.perelandrax.coinspace.presentation.ribs.coinwebsite.CoinWebsiteView
-  xmlns:android="http://schemas.android.com/apk/res/android"
-  xmlns:tools="http://schemas.android.com/tools"
+<com.perelandrax.coinspace.presentation.ribs.coinwebsite.CoinWebsiteView xmlns:android="http://schemas.android.com/apk/res/android"
   xmlns:app="http://schemas.android.com/apk/res-auto"
+  xmlns:tools="http://schemas.android.com/tools"
   android:layout_width="match_parent"
   android:layout_height="match_parent"
   android:background="@color/colorWhite">
@@ -17,9 +16,9 @@
       android:layout_height="?attr/actionBarSize"
       android:background="?attr/colorPrimary"
       android:elevation="4dp"
-      app:layout_constraintTop_toTopOf="parent"
       app:layout_constraintLeft_toLeftOf="parent"
-      app:layout_constraintRight_toRightOf="parent">
+      app:layout_constraintRight_toRightOf="parent"
+      app:layout_constraintTop_toTopOf="parent">
 
       <TextView
         android:id="@+id/titleToolbar"
@@ -27,11 +26,11 @@
         android:layout_height="match_parent"
         android:fontFamily="@font/digitalt"
         android:gravity="left|center_vertical"
+        android:singleLine="true"
         android:text=""
         android:textColor="@color/colorWhite"
         android:textSize="30sp"
-        android:singleLine="true"
-        tools:text="Website Name"/>
+        tools:text="Website Name" />
 
     </androidx.appcompat.widget.Toolbar>
 
@@ -40,21 +39,21 @@
       android:layout_width="0dp"
       android:layout_height="0dp"
       android:visibility="visible"
-      app:layout_constraintTop_toBottomOf="@+id/toolbar"
+      app:layout_constraintBottom_toBottomOf="parent"
       app:layout_constraintLeft_toLeftOf="parent"
       app:layout_constraintRight_toRightOf="parent"
-      app:layout_constraintBottom_toBottomOf="parent"/>
+      app:layout_constraintTop_toBottomOf="@+id/toolbar" />
 
     <include
-      layout="@layout/layout_loading_bar"
       android:id="@+id/loadingLayout"
+      layout="@layout/layout_loading_bar"
       android:layout_width="0dp"
       android:layout_height="0dp"
       android:visibility="visible"
-      app:layout_constraintTop_toBottomOf="@+id/toolbar"
       app:layout_constraintBottom_toBottomOf="parent"
       app:layout_constraintLeft_toLeftOf="parent"
-      app:layout_constraintRight_toRightOf="parent"/>
+      app:layout_constraintRight_toRightOf="parent"
+      app:layout_constraintTop_toBottomOf="@+id/toolbar" />
 
   </androidx.constraintlayout.widget.ConstraintLayout>
 

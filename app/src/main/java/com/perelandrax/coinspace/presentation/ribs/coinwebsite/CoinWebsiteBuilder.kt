@@ -4,9 +4,6 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.perelandrax.coinspace.R
 import com.perelandrax.coinspace.domain.CoinWebsite
-import com.perelandrax.coinspace.domain.coindetail.CoinDetail
-import com.perelandrax.coinspace.presentation.ribs.coindetail.CoinDetailBuilder
-import com.perelandrax.coinspace.presentation.ribs.coindetail.CoinDetailView
 import com.uber.rib.core.InteractorBaseComponent
 import com.uber.rib.core.ViewBuilder
 import dagger.Binds

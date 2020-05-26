@@ -28,6 +28,7 @@ class CoinsView @JvmOverloads constructor(context: Context, attrs: AttributeSet?
     setupRecyclerView()
     setupLoadingView()
   }
+
   private fun setupRecyclerView() {
     recyclerView.layoutManager = LinearLayoutManager(context)
     recyclerView.adapter = CoinListAdapter(R.layout.recyclerview_coin_list_item).apply { coinListAdapter = this }

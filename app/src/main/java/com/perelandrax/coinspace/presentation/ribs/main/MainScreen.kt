@@ -6,7 +6,6 @@ import com.perelandrax.coinspace.R
 import com.perelandrax.coinspace.utilities.ActivityUtil
 import com.perelandrax.coinspace.utilities.StatusBarUtil
 import com.uber.rib.core.screenstack.ViewProvider
-import kotlinx.android.synthetic.main.layout_main_rib.view.*
 
 class MainScreen(private val builder: MainBuilder) : ViewProvider() {
 

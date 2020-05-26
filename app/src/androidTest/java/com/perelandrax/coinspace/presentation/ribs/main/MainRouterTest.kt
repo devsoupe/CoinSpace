@@ -12,8 +12,10 @@ class MainRouterTest : RibTestBasePlaceholder() {
 
   @Mock
   internal lateinit var component: MainBuilder.Component
+
   @Mock
   internal lateinit var interactor: MainInteractor
+
   @Mock
   internal lateinit var view: MainView
 

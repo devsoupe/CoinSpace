@@ -11,8 +11,10 @@ class ToolbarInteractorTest : RibTestBasePlaceholder() {
 
   @Mock
   internal lateinit var presenter: ToolbarInteractor.ToolbarPresenter
+
   @Mock
   internal lateinit var listener: ToolbarInteractor.Listener
+
   @Mock
   internal lateinit var router: ToolbarRouter
 

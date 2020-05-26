@@ -12,6 +12,7 @@ class NaviTypeInteractorTest : RibTestBasePlaceholder() {
 
   @Mock
   internal lateinit var presenter: EmptyPresenter
+
   @Mock
   internal lateinit var router: NaviTypeRouter
 

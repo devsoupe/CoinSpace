@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-  xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
   xmlns:app="http://schemas.android.com/apk/res-auto"
   xmlns:tools="http://schemas.android.com/tools"
   android:id="@+id/itemLayout"
   android:layout_width="match_parent"
   android:layout_height="wrap_content"
-  android:layout_marginBottom="@dimen/padding_8dp"
   android:layout_marginTop="@dimen/padding_8dp"
+  android:layout_marginBottom="@dimen/padding_8dp"
   android:background="?android:attr/selectableItemBackground"
   android:clickable="true"
   android:focusable="true"
@@ -22,7 +21,7 @@
     android:layout_height="36dp"
     app:layout_constraintBottom_toBottomOf="parent"
     app:layout_constraintLeft_toLeftOf="parent"
-    app:layout_constraintTop_toTopOf="parent"/>
+    app:layout_constraintTop_toTopOf="parent" />
 
   <TextView
     android:id="@+id/symbolTextView"
@@ -30,14 +29,14 @@
     android:layout_height="wrap_content"
     android:layout_marginLeft="16dp"
     android:fontFamily="@font/orbitron"
+    android:singleLine="true"
     android:textColor="@color/colorPrimaryDark"
     android:textSize="18sp"
-    android:singleLine="true"
     app:layout_constraintBottom_toTopOf="@+id/nameTextView"
     app:layout_constraintLeft_toRightOf="@+id/coinLogoImageView"
     app:layout_constraintRight_toLeftOf="@+id/volumeTextView"
     app:layout_constraintTop_toTopOf="@+id/coinLogoImageView"
-    tools:text="BTC"/>
+    tools:text="BTC" />
 
   <TextView
     android:id="@+id/nameTextView"
@@ -51,7 +50,7 @@
     app:layout_constraintBottom_toBottomOf="@+id/coinLogoImageView"
     app:layout_constraintLeft_toRightOf="@+id/coinLogoImageView"
     app:layout_constraintTop_toBottomOf="@+id/symbolTextView"
-    tools:text="Bitcoin"/>
+    tools:text="Bitcoin" />
 
   <TextView
     android:id="@+id/percentTextView"
@@ -63,7 +62,7 @@
     app:layout_constraintBottom_toTopOf="@+id/priceTextView"
     app:layout_constraintRight_toRightOf="parent"
     app:layout_constraintTop_toTopOf="parent"
-    tools:text="0.0%"/>
+    tools:text="0.0%" />
 
   <TextView
     android:id="@+id/priceTextView"
@@ -74,7 +73,7 @@
     app:layout_constraintBottom_toTopOf="@+id/volumeTextView"
     app:layout_constraintRight_toRightOf="parent"
     app:layout_constraintTop_toBottomOf="@+id/percentTextView"
-    tools:text="$0.0"/>
+    tools:text="$0.0" />
 
   <TextView
     android:id="@+id/volumeTextView"
@@ -85,6 +84,6 @@
     app:layout_constraintBottom_toBottomOf="parent"
     app:layout_constraintRight_toRightOf="parent"
     app:layout_constraintTop_toBottomOf="@+id/priceTextView"
-    tools:text="VOL: 0.0"/>
+    tools:text="VOL: 0.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

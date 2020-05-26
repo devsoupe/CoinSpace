@@ -12,8 +12,10 @@ class CoinsRouterTest : RibTestBasePlaceholder() {
 
   @Mock
   internal lateinit var component: CoinsBuilder.Component
+
   @Mock
   internal lateinit var interactor: CoinsInteractor
+
   @Mock
   internal lateinit var view: CoinsView
 

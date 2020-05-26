@@ -1,6 +1,5 @@
 package com.perelandrax.coinspace.presentation.ribs.main
 
-import com.orhanobut.logger.Logger
 import com.perelandrax.coinspace.presentation.ribs.navigation.NavigationInteractor
 import com.perelandrax.coinspace.presentation.ribs.navigation.menustream.NavigationMenuEvent.*
 import com.perelandrax.coinspace.presentation.ribs.navigation.menustream.NavigationMenuEventStreamUpdater

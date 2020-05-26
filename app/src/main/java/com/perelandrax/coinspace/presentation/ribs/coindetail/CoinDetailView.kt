@@ -3,7 +3,6 @@ package com.perelandrax.coinspace.presentation.ribs.coindetail
 import android.animation.ObjectAnimator
 import android.content.Context
 import android.graphics.Bitmap
-import android.graphics.Color
 import android.graphics.drawable.Drawable
 import android.text.Html
 import android.util.AttributeSet
@@ -104,7 +103,7 @@ class CoinDetailView @JvmOverloads constructor(context: Context, attrs: Attribut
           headerColor = getDominantColor(resource)
 
           ObjectAnimator.ofObject(dominantBgView, "backgroundColor", ArgbEvaluator(), R.color
-              .colorPrimary, headerColor)
+            .colorPrimary, headerColor)
             .setDuration(300L)
             .start()
 

@@ -4,7 +4,6 @@ import android.content.Context
 import android.util.AttributeSet
 import android.view.View
 import android.widget.FrameLayout
-import com.orhanobut.logger.Logger
 import kotlinx.android.synthetic.main.layout_splash_rib.view.*
 
 /**

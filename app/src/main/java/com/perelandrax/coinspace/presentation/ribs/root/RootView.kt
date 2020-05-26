@@ -3,8 +3,6 @@ package com.perelandrax.coinspace.presentation.ribs.root
 import android.content.Context
 import android.util.AttributeSet
 import android.widget.FrameLayout
-import com.orhanobut.logger.Logger
-import com.perelandrax.coinspace.framework.appstart.CoinSpaceActivity
 
 /**
  * Top level view for {@link RootBuilder.RootScope}.

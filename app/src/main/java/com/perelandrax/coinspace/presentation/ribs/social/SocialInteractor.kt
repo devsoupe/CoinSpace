@@ -1,6 +1,5 @@
 package com.perelandrax.coinspace.presentation.ribs.social
 
-import com.uber.rib.core.Bundle
 import com.uber.rib.core.Interactor
 import com.uber.rib.core.RibInteractor
 import javax.inject.Inject

@@ -1,6 +1,5 @@
 package com.perelandrax.coinspace.presentation.ribs.root
 
-import com.orhanobut.logger.Logger
 import com.uber.rib.core.Bundle
 import com.uber.rib.core.Interactor
 import com.uber.rib.core.RibInteractor

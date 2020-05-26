@@ -12,6 +12,7 @@ class RootInteractorTest : RibTestBasePlaceholder() {
 
   @Mock
   internal lateinit var presenter: EmptyPresenter
+
   @Mock
   internal lateinit var router: RootRouter
 

@@ -1,6 +1,5 @@
 package com.perelandrax.coinspace.presentation.ribs.coinwebsite
 
-import com.perelandrax.coinspace.R
 import com.perelandrax.coinspace.domain.CoinWebsite
 import com.uber.rib.core.Bundle
 import com.uber.rib.core.Interactor

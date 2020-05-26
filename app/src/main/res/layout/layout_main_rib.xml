@@ -5,10 +5,10 @@
   android:layout_width="match_parent"
   android:layout_height="match_parent">
 
-<!--  <View-->
-<!--    android:layout_width="match_parent"-->
-<!--    android:layout_height="@dimen/statusbar_view_height"-->
-<!--    android:background="@color/colorPrimaryDark" />-->
+  <!--  <View-->
+  <!--    android:layout_width="match_parent"-->
+  <!--    android:layout_height="@dimen/statusbar_view_height"-->
+  <!--    android:background="@color/colorPrimaryDark" />-->
 
   <androidx.constraintlayout.widget.ConstraintLayout
     android:id="@+id/mainLayout"

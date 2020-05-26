@@ -11,8 +11,10 @@ class NewsInteractorTest : RibTestBasePlaceholder() {
 
   @Mock
   internal lateinit var presenter: NewsInteractor.IcoPresenter
+
   @Mock
   internal lateinit var listener: NewsInteractor.Listener
+
   @Mock
   internal lateinit var router: NewsRouter
 

@@ -1,16 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.perelandrax.coinspace.presentation.ribs.coindetail.CoinDetailView
-  xmlns:android="http://schemas.android.com/apk/res/android"
-  xmlns:tools="http://schemas.android.com/tools"
+<com.perelandrax.coinspace.presentation.ribs.coindetail.CoinDetailView xmlns:android="http://schemas.android.com/apk/res/android"
   xmlns:app="http://schemas.android.com/apk/res-auto"
+  xmlns:tools="http://schemas.android.com/tools"
   android:layout_width="match_parent"
   android:layout_height="match_parent"
   android:background="@color/colorWhite">
 
-<!--  <View-->
-<!--    android:layout_width="match_parent"-->
-<!--    android:layout_height="@dimen/statusbar_view_height"-->
-<!--    android:background="@color/colorPrimaryDark" />-->
+  <!--  <View-->
+  <!--    android:layout_width="match_parent"-->
+  <!--    android:layout_height="@dimen/statusbar_view_height"-->
+  <!--    android:background="@color/colorPrimaryDark" />-->
 
   <!--    android:id="@+id/coinDetailLayout"-->
   <androidx.constraintlayout.widget.ConstraintLayout
@@ -22,22 +21,22 @@
       android:layout_width="0dp"
       android:layout_height="180dp"
       android:background="@color/colorPrimaryDark"
-      app:layout_constraintTop_toTopOf="parent"
       app:layout_constraintLeft_toLeftOf="parent"
-      app:layout_constraintRight_toRightOf="parent"/>
+      app:layout_constraintRight_toRightOf="parent"
+      app:layout_constraintTop_toTopOf="parent" />
 
     <ScrollView
       android:layout_width="0dp"
       android:layout_height="0dp"
       android:layout_marginBottom="@dimen/padding_16dp"
       android:paddingLeft="@dimen/padding_16dp"
-      android:paddingRight="@dimen/padding_16dp"
       android:paddingTop="@dimen/padding_32dp"
+      android:paddingRight="@dimen/padding_16dp"
       android:scrollbars="none"
-      app:layout_constraintTop_toTopOf="parent"
+      app:layout_constraintBottom_toBottomOf="parent"
       app:layout_constraintLeft_toLeftOf="parent"
       app:layout_constraintRight_toRightOf="parent"
-      app:layout_constraintBottom_toBottomOf="parent">
+      app:layout_constraintTop_toTopOf="parent">
 
       <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/coinDetailLayout"
@@ -48,18 +47,18 @@
           android:id="@+id/coinLogCardView"
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
-          app:layout_constraintTop_toTopOf="parent"
+          app:cardElevation="4dp"
+          app:cardUseCompatPadding="true"
           app:layout_constraintLeft_toLeftOf="parent"
           app:layout_constraintRight_toRightOf="parent"
-          app:cardElevation="4dp"
-          app:cardUseCompatPadding="true">
+          app:layout_constraintTop_toTopOf="parent">
 
           <ImageView
             android:id="@+id/coinLogoImageView"
             android:layout_width="72dp"
             android:layout_height="72dp"
             android:layout_margin="@dimen/padding_8dp"
-            android:src="@mipmap/ic_launcher"/>
+            android:src="@mipmap/ic_launcher" />
 
         </androidx.cardview.widget.CardView>
 
@@ -67,58 +66,58 @@
           android:id="@+id/coinDetailLayoutGroup"
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
-          app:constraint_referenced_ids="coinDetailInfoIncludeLayout,space1,coinDetailFeaturesIncludeLayout,space2,coinSupplyCardView,startDateCardView"/>
+          app:constraint_referenced_ids="coinDetailInfoIncludeLayout,space1,coinDetailFeaturesIncludeLayout,space2,coinSupplyCardView,startDateCardView" />
 
         <include
-          layout="@layout/layout_coin_detail_info"
           android:id="@+id/coinDetailInfoIncludeLayout"
+          layout="@layout/layout_coin_detail_info"
           android:layout_width="0dp"
           android:layout_height="wrap_content"
-          android:visibility="invisible"
           android:layout_marginTop="48dp"
-          app:layout_constraintTop_toTopOf="parent"
+          android:visibility="invisible"
           app:layout_constraintLeft_toLeftOf="parent"
-          app:layout_constraintRight_toRightOf="parent"/>
+          app:layout_constraintRight_toRightOf="parent"
+          app:layout_constraintTop_toTopOf="parent" />
 
         <Space
           android:id="@+id/space1"
           android:layout_width="0dp"
           android:layout_height="@dimen/padding_16dp"
-          app:layout_constraintTop_toBottomOf="@+id/coinDetailInfoIncludeLayout"
           app:layout_constraintLeft_toLeftOf="parent"
-          app:layout_constraintRight_toRightOf="parent"/>
+          app:layout_constraintRight_toRightOf="parent"
+          app:layout_constraintTop_toBottomOf="@+id/coinDetailInfoIncludeLayout" />
 
         <include
-          layout="@layout/layout_coin_detail_features"
           android:id="@+id/coinDetailFeaturesIncludeLayout"
+          layout="@layout/layout_coin_detail_features"
           android:layout_width="0dp"
           android:layout_height="wrap_content"
           android:visibility="visible"
-          app:layout_constraintTop_toBottomOf="@+id/space1"
           app:layout_constraintLeft_toLeftOf="parent"
-          app:layout_constraintRight_toRightOf="parent"/>
+          app:layout_constraintRight_toRightOf="parent"
+          app:layout_constraintTop_toBottomOf="@+id/space1" />
 
         <Space
           android:id="@+id/space2"
           android:layout_width="0dp"
           android:layout_height="@dimen/padding_16dp"
-          app:layout_constraintTop_toBottomOf="@+id/coinDetailFeaturesIncludeLayout"
           app:layout_constraintLeft_toLeftOf="parent"
-          app:layout_constraintRight_toRightOf="parent"/>
+          app:layout_constraintRight_toRightOf="parent"
+          app:layout_constraintTop_toBottomOf="@+id/coinDetailFeaturesIncludeLayout" />
 
         <androidx.cardview.widget.CardView
           android:id="@+id/coinSupplyCardView"
           android:layout_width="match_parent"
           android:layout_height="0dp"
           app:cardUseCompatPadding="true"
-          app:layout_constraintTop_toBottomOf="@+id/space2"
-          app:layout_constraintLeft_toLeftOf="parent">
+          app:layout_constraintLeft_toLeftOf="parent"
+          app:layout_constraintTop_toBottomOf="@+id/space2">
 
           <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="@dimen/padding_8dp"
-            android:background="@color/colorPrimary">
+            android:background="@color/colorPrimary"
+            android:padding="@dimen/padding_8dp">
 
             <TextView
               android:layout_width="wrap_content"
@@ -127,8 +126,8 @@
               android:textAllCaps="true"
               android:textColor="@color/colorWhite"
               android:textStyle="bold"
-              app:layout_constraintTop_toTopOf="parent"
-              app:layout_constraintLeft_toLeftOf="parent"/>
+              app:layout_constraintLeft_toLeftOf="parent"
+              app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
               android:id="@+id/coinSupplyTextView"
@@ -136,9 +135,9 @@
               android:layout_height="wrap_content"
               android:textColor="@color/colorWhite"
               android:textStyle="bold"
-              app:layout_constraintTop_toTopOf="parent"
               app:layout_constraintRight_toRightOf="parent"
-              tools:text="Bitcoin"/>
+              app:layout_constraintTop_toTopOf="parent"
+              tools:text="Bitcoin" />
 
           </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -149,14 +148,14 @@
           android:layout_width="match_parent"
           android:layout_height="0dp"
           app:cardUseCompatPadding="true"
-          app:layout_constraintTop_toBottomOf="@+id/coinSupplyCardView"
-          app:layout_constraintLeft_toLeftOf="parent">
+          app:layout_constraintLeft_toLeftOf="parent"
+          app:layout_constraintTop_toBottomOf="@+id/coinSupplyCardView">
 
           <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="@dimen/padding_8dp"
-            android:background="@color/colorPrimary">
+            android:background="@color/colorPrimary"
+            android:padding="@dimen/padding_8dp">
 
             <TextView
               android:layout_width="wrap_content"
@@ -165,8 +164,8 @@
               android:textAllCaps="true"
               android:textColor="@color/colorWhite"
               android:textStyle="bold"
-              app:layout_constraintTop_toTopOf="parent"
-              app:layout_constraintLeft_toLeftOf="parent"/>
+              app:layout_constraintLeft_toLeftOf="parent"
+              app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
               android:id="@+id/startDateTextView"
@@ -174,9 +173,9 @@
               android:layout_height="wrap_content"
               android:textColor="@color/colorWhite"
               android:textStyle="bold"
-              app:layout_constraintTop_toTopOf="parent"
               app:layout_constraintRight_toRightOf="parent"
-              tools:text="Bitcoin"/>
+              app:layout_constraintTop_toTopOf="parent"
+              tools:text="Bitcoin" />
 
           </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -187,15 +186,15 @@
     </ScrollView>
 
     <include
-      layout="@layout/layout_loading_bar"
       android:id="@+id/loadingLayout"
+      layout="@layout/layout_loading_bar"
       android:layout_width="0dp"
       android:layout_height="0dp"
       android:visibility="gone"
-      app:layout_constraintTop_toTopOf="parent"
       app:layout_constraintBottom_toBottomOf="parent"
       app:layout_constraintLeft_toLeftOf="parent"
-      app:layout_constraintRight_toRightOf="parent"/>
+      app:layout_constraintRight_toRightOf="parent"
+      app:layout_constraintTop_toTopOf="parent" />
 
   </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -12,8 +12,10 @@ class NavigationRouterTest : RibTestBasePlaceholder() {
 
   @Mock
   internal lateinit var component: NavigationBuilder.Component
+
   @Mock
   internal lateinit var interactor: NavigationInteractor
+
   @Mock
   internal lateinit var view: NavigationView
 

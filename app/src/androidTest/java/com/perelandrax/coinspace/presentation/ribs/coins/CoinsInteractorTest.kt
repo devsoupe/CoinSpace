@@ -11,8 +11,10 @@ class CoinsInteractorTest : RibTestBasePlaceholder() {
 
   @Mock
   internal lateinit var presenter: CoinsInteractor.CoinsPresenter
+
   @Mock
   internal lateinit var listener: CoinsInteractor.Listener
+
   @Mock
   internal lateinit var router: CoinsRouter
 

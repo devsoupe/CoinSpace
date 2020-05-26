@@ -4,7 +4,6 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.perelandrax.coinspace.R
 import com.perelandrax.coinspace.data.CoinRepository
-import com.perelandrax.coinspace.domain.coindetail.CoinDetail
 import com.perelandrax.coinspace.interactors.GetCoinDetail
 import com.perelandrax.coinspace.presentation.coroutine.CoroutineScopeProvider
 import com.perelandrax.coinspace.presentation.ribs.coinwebsite.CoinWebsiteBuilder
@@ -15,7 +14,6 @@ import com.uber.rib.core.ViewBuilder
 import dagger.Binds
 import dagger.BindsInstance
 import dagger.Provides
-import kotlinx.coroutines.CoroutineScope
 import javax.inject.Qualifier
 import javax.inject.Scope
 import kotlin.annotation.AnnotationRetention.BINARY

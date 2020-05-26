@@ -11,8 +11,10 @@ class SocialInteractorTest : RibTestBasePlaceholder() {
 
   @Mock
   internal lateinit var presenter: SocialInteractor.UpcomingPresenter
+
   @Mock
   internal lateinit var listener: SocialInteractor.Listener
+
   @Mock
   internal lateinit var router: SocialRouter
 

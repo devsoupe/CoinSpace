@@ -12,8 +12,10 @@ class SocialRouterTest : RibTestBasePlaceholder() {
 
   @Mock
   internal lateinit var component: SocialBuilder.Component
+
   @Mock
   internal lateinit var interactor: SocialInteractor
+
   @Mock
   internal lateinit var view: SocialView
 

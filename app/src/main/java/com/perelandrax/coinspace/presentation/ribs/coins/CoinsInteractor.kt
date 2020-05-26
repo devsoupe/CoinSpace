@@ -13,7 +13,8 @@ import io.reactivex.Observable
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.rxkotlin.subscribeBy
 import java8.util.stream.StreamSupport
-import kotlinx.coroutines.*
+import kotlinx.coroutines.cancelChildren
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 /**
@@ -41,8 +42,8 @@ class CoinsInteractor : Interactor<CoinsInteractor.CoinsPresenter, CoinsRouter>(
       updateCoinList()
     })
 
-    disposables.add(presenter.onNavigateCoinDetail().subscribeBy {
-      coin -> coin?.detailId?.let { routeCoinDetail(it) }
+    disposables.add(presenter.onNavigateCoinDetail().subscribeBy { coin ->
+      coin?.detailId?.let { routeCoinDetail(it) }
     })
 
     updateCoinList()

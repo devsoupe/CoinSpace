@@ -5,18 +5,18 @@
     android:id="@+id/coins"
     android:enabled="true"
     android:icon="@drawable/ic_coins"
-    android:title="Coins"/>
+    android:title="Coins" />
 
   <item
     android:id="@+id/news"
     android:enabled="true"
     android:icon="@drawable/ic_news"
-    android:title="News"/>
+    android:title="News" />
 
   <item
     android:id="@+id/about"
     android:enabled="true"
     android:icon="@drawable/ic_about"
-    android:title="About"/>
+    android:title="About" />
 
 </menu>

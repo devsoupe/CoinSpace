@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.perelandrax.coinspace.presentation.ribs.navigation.NavigationView
-  xmlns:android="http://schemas.android.com/apk/res/android"
+<com.perelandrax.coinspace.presentation.ribs.navigation.NavigationView xmlns:android="http://schemas.android.com/apk/res/android"
   xmlns:app="http://schemas.android.com/apk/res-auto"
-  xmlns:tools="http://schemas.android.com/tools"
   android:id="@+id/navigationLayout"
   android:layout_width="match_parent"
   android:layout_height="wrap_content">
@@ -20,13 +18,13 @@
       android:layout_width="match_parent"
       android:layout_height="?attr/actionBarSize"
       android:background="@android:color/transparent"
-      app:itemBackground="@android:color/transparent"
       app:elevation="0dp"
-      app:labelVisibilityMode="unlabeled"
+      app:itemBackground="@android:color/transparent"
+      app:itemIconSize="@dimen/bottom_navigation_icon_size"
       app:itemIconTint="@drawable/selector"
       app:itemTextColor="@drawable/selector"
-      app:itemIconSize="@dimen/bottom_navigation_icon_size"
-      app:menu="@menu/navigation_menu"/>
+      app:labelVisibilityMode="unlabeled"
+      app:menu="@menu/navigation_menu" />
 
   </eightbitlab.com.blurview.BlurView>
 

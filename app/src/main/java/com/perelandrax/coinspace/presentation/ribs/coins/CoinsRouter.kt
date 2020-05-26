@@ -1,6 +1,5 @@
 package com.perelandrax.coinspace.presentation.ribs.coins
 
-import com.perelandrax.coinspace.domain.coindetail.CoinDetail
 import com.perelandrax.coinspace.presentation.ribs.coindetail.CoinDetailScreen
 import com.perelandrax.coinspace.presentation.screenstack.ScreenStack
 import com.perelandrax.coinspace.presentation.screenstack.ScreenViewRouter

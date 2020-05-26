@@ -9,7 +9,8 @@ import com.perelandrax.coinspace.presentation.screenstack.ScreenStack
 import com.uber.rib.core.Bundle
 import com.uber.rib.core.Interactor
 import com.uber.rib.core.RibInteractor
-import kotlinx.coroutines.*
+import kotlinx.coroutines.cancelChildren
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 /**

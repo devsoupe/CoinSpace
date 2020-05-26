@@ -12,8 +12,10 @@ class NewsRouterTest : RibTestBasePlaceholder() {
 
   @Mock
   internal lateinit var component: NewsBuilder.Component
+
   @Mock
   internal lateinit var interactor: NewsInteractor
+
   @Mock
   internal lateinit var view: NewsView
 

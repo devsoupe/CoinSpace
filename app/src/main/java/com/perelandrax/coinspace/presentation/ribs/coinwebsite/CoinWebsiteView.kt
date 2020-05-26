@@ -7,7 +7,6 @@ import android.webkit.WebView
 import android.webkit.WebViewClient
 import com.perelandrax.coinspace.presentation.screenstack.AnimationFrameLayout
 import kotlinx.android.synthetic.main.layout_coin_website_rib.view.*
-import kotlinx.android.synthetic.main.layout_coin_website_rib.view.loadingLayout
 import kotlinx.android.synthetic.main.layout_loading_bar.view.*
 
 /**

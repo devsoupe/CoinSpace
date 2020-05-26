@@ -3,7 +3,7 @@ package com.perelandrax.coinspace.domain.coindetail
 data class CoinDetail(
   var coinId: String? = null,
   var name: String? = null,
-  var symbol: String ? = null,
+  var symbol: String? = null,
   var description: String? = null,
   var technology: String? = null,
   var features: String? = null,

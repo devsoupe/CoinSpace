@@ -1,7 +1,6 @@
 package com.perelandrax.coinspace.presentation.ribs.news
 
 import com.perelandrax.coinspace.presentation.ribs.news.tablayout.TabLayoutView
-import com.uber.rib.core.Bundle
 import com.uber.rib.core.Interactor
 import com.uber.rib.core.RibInteractor
 import javax.inject.Inject

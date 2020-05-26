@@ -12,8 +12,10 @@ class ArticleRouterTest : RibTestBasePlaceholder() {
 
   @Mock
   internal lateinit var component: ArticleBuilder.Component
+
   @Mock
   internal lateinit var interactor: ArticleInteractor
+
   @Mock
   internal lateinit var view: ArticleView
 

@@ -11,8 +11,10 @@ class AboutInteractorTest : RibTestBasePlaceholder() {
 
   @Mock
   internal lateinit var presenter: AboutInteractor.AboutPresenter
+
   @Mock
   internal lateinit var listener: AboutInteractor.Listener
+
   @Mock
   internal lateinit var router: AboutRouter
 

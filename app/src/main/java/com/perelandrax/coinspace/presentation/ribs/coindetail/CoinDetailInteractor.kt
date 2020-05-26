@@ -10,7 +10,7 @@ import com.uber.rib.core.Interactor
 import com.uber.rib.core.RibInteractor
 import io.reactivex.Observable
 import io.reactivex.disposables.CompositeDisposable
-import kotlinx.coroutines.*
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 /**

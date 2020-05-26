@@ -11,8 +11,10 @@ class NavigationInteractorTest : RibTestBasePlaceholder() {
 
   @Mock
   internal lateinit var presenter: NavigationInteractor.MainBottomTabPresenter
+
   @Mock
   internal lateinit var listener: NavigationInteractor.Listener
+
   @Mock
   internal lateinit var router: NavigationRouter
 
